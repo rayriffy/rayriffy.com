@@ -37,8 +37,7 @@
   "pnpm": {
     "overrides": {
       "axios": "^0.27.2",
-      "node-pre-gyp": "npm:@mapbox/node-pre-gyp",
-      "sharp": "git://github.com/lovell/sharp#v0.30.7"
+      "node-pre-gyp": "npm:@mapbox/node-pre-gyp"
     }
   }
 }
