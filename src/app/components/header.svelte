@@ -12,10 +12,10 @@
 	<nav class="navbar bg-base-100 rounded-2xl shadow-lg">
 		<div class="navbar-start">
 			<div class="dropdown">
-				<button tabindex="0" class="btn btn-ghost btn-circle">
+				<label for="#header-menu" tabindex="0" class="btn btn-ghost btn-circle">
 					<MenuIcon class="w-6 h-6" />
-				</button>
-				<ul tabindex="0" class="menu menu-compact dropdown-content mt-6 p-2 shadow bg-base-100 rounded-box w-52">
+				</label>
+				<ul id="header-menu" tabindex="0" class="menu menu-compact dropdown-content mt-4 p-2 shadow bg-base-100 rounded-box w-52">
 					{#each paths as path}
 						<li>
 							<a sveltekit:prefetch href={path.path} class="font-medium hover:text-blue-400 animate-rainbow text-base">
@@ -28,7 +28,7 @@
 		</div>
 		<div class="navbar-center">
 			<a sveltekit:prefetch class="btn btn-ghost normal-case text-xl" href="/">
-				<R class="w-8 h-8" />
+				<R class="w-9 h-9" />
 			</a>
 		</div>
 		<div class="navbar-end">
