@@ -4,6 +4,10 @@ export const paths = [
     name: 'Home',
     hidden: true,
   },
+  {
+    path: '/articles',
+    name: 'Articles',
+  },
   // {
   //   path: '/projects',
   //   name: 'Projects',

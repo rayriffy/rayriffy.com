@@ -26,15 +26,15 @@
 				</ul>
 			</div>
 		</div>
-		<div class="navbar-center">
-			<a sveltekit:prefetch class="btn btn-ghost normal-case text-xl" href="/">
+		<div class="navbar-center space-x-2">
+			<a sveltekit:prefetch class="btn btn-ghost normal-case text-xl px-2" href="/">
 				<R class="w-9 h-9" />
 			</a>
-		</div>
-		<div class="navbar-end">
 			{#if targetPath !== undefined}
 				<h1 class="mr-4 font-bold text-lg">{targetPath.name}</h1>
 			{/if}
+		</div>
+		<div class="navbar-end">
 		</div>
 	</nav>
 </div>

@@ -2,7 +2,7 @@
   import Image from 'svelte-image'
 </script>
 
-<section>
+<section class="max-w-3xl ml-auto">
   <Image src="biography.jpg" />
 </section>
 
