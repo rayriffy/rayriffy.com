@@ -11,6 +11,7 @@ specifiers:
   postcss: ^8.4.16
   prettier: ^2.6.2
   prettier-plugin-svelte: ^2.7.0
+  sharp: ^0.30.7
   svelte: ^3.46.0
   svelte-check: ^2.7.1
   svelte-image: ^0.2.9
@@ -33,6 +34,7 @@ devDependencies:
   postcss: 8.4.16
   prettier: 2.7.1
   prettier-plugin-svelte: 2.7.0_o3ioganyptcsrh6x4hnxvjkpqi
+  sharp: 0.30.7
   svelte: 3.49.0
   svelte-check: 2.8.0_vylzxgme5yisu3bsyvcau4hjtq
   svelte-image: 0.2.9
