@@ -1,57 +1,27 @@
 <script lang="ts">
-	import Counter from '$lib/Counter.svelte';
+  import Image from 'svelte-image'
 </script>
 
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+  <title>rayriffy</title>
+  <meta name="description" content="Svelte demo app" />
 </svelte:head>
 
 <section>
-	<h1>
-		<span class="welcome">
-			<picture>
-				<source srcset="svelte-welcome.webp" type="image/webp" />
-				<img src="svelte-welcome.png" alt="Welcome" />
-			</picture>
-		</span>
-
-		to your new<br />SvelteKit app
-	</h1>
-
-	<h2>
-		try editing <strong>src/routes/index.svelte</strong>
-	</h2>
-
-	<Counter />
+  <Image src="cover.jpg" />
 </section>
 
-<style>
-	section {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex: 1;
-	}
-
-	h1 {
-		width: 100%;
-	}
-
-	.welcome {
-		display: block;
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
-	}
-
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
-	}
-</style>
+<section class="my-6 text-xl sm:text-3xl space-y-6 sm:space-y-8">
+  <h1>
+    I am a full-stack web developer, who keeps looking for new challenges. Over
+    the past 8 years, I have been learning web technologies since junior high
+    school as a hobby. I am also always energetic to learn about upcoming modern
+    web technologies and try to put them into practical use.
+  </h1>
+  <h1>
+    More than that I am a maker, automating workflows both in my daily life to
+    the workplace to simplify much manual work, and keep life less busy. I also
+    sometimes created IoT hardware to build many interesting things from smart
+    home devices to the embedded system.
+  </h1>
+</section>
