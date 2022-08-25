@@ -36,7 +36,7 @@
   </h1>
 </section>
 
-<section class="mt-6 grid grid-cols-3 gap-5 items-center">
+<section class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 items-center">
   {#if blogs === null}
     {#each Array.from({ length: 3 }) as _}
       <ArticleSkeleton />
