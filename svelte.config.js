@@ -31,6 +31,8 @@ const config = {
     methodOverride: {
       allowed: ['PATCH', 'DELETE'],
     },
+
+    inlineStyleThreshold: 1024
   },
 }
 
