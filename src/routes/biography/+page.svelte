@@ -2,9 +2,6 @@
   import Image from 'svelte-image'
 </script>
 
-<!-- <p class="text-xl hidden lg:block">break</p> -->
-
-<!-- <section class="max-w-3xl ml-auto"> -->
 <div class="space-y-6 lg:space-y-0 lg:flex lg:gap-8 lg:flex-row-reverse">
   <div class="w-full lg:w-3/5 shrink-0">
     <Image src="biography.jpg" />
@@ -18,10 +15,3 @@
     <p>Dispite that, he study web technologies for over 8 years already, and now he is looking for the next chapter.</p>
   </div>
 </div>
-<!-- <section>
-  <Image src="biography.jpg" />
-
-  <h1 class="font-medium text-2xl mt-2">
-    [<a href="/full-resume-20220825.pdf" class="mx-1 text-gray-600 hover:text-gray-400">Full resume</a>]
-  </h1>
-</section> -->

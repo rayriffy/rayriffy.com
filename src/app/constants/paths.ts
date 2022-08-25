@@ -8,10 +8,10 @@ export const paths = [
     path: '/articles',
     name: 'Articles',
   },
-  // {
-  //   path: '/projects',
-  //   name: 'Projects',
-  // },
+  {
+    path: '/projects',
+    name: 'Projects',
+  },
   // {
   //   path: '/talks',
   //   name: 'Talks',
@@ -20,8 +20,8 @@ export const paths = [
     path: '/biography',
     name: 'Biography',
   },
-  // {
-  //   path: '/contact',
-  //   name: 'Contact',
-  // },
+  {
+    path: '/contact',
+    name: 'Contact',
+  },
 ]

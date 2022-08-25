@@ -10,7 +10,7 @@
       href="https://creatorsgarten.org/ring"
       title="Creatorsgarten"
     >
-      <img src="/garten.svg" class="w-6 sm:w-8 aspect-square transition-transform duration-700 ease-in-out hover:rotate-[720deg]" alt="webring" />
+      <img src="/garten.svg" class="w-6 sm:w-8 aspect-square" alt="webring" />
     </a>
   </div>
   <div class="mx-4 h-6 sm:h-8 border-l-2 border-gray-300" />
