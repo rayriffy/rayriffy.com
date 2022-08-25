@@ -1,11 +1,7 @@
-<script lang="ts">
-  import Image from 'svelte-image'
-</script>
-
 <section class="my-8 sm:flex gap-8">
   <div>
-    <div class="w-52 aspect-square rounded-full bg-purple-200 overflow-hidden relative shrink-0 mx-auto sm:mx-0">
-      <Image src="/memoji.png" />
+    <div class="w-52 aspect-square rounded-full bg-purple-200 overflow-hidden shrink-0 mx-auto sm:mx-0">
+        <img src="/memoji.png" alt="memoji" />
     </div>
   </div>
   <div class="mt-6 sm:mt-0">
