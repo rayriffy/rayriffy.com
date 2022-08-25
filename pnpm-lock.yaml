@@ -6,7 +6,7 @@ overrides:
 
 specifiers:
   '@fontsource/fira-mono': ^4.5.0
-  '@sveltejs/adapter-auto': next
+  '@sveltejs/adapter-vercel': 1.0.0-next.68
   '@sveltejs/kit': next
   '@types/cookie': ^0.5.1
   autoprefixer: ^10.4.8
@@ -29,8 +29,8 @@ dependencies:
   cookie: 0.4.2
 
 devDependencies:
-  '@sveltejs/adapter-auto': 1.0.0-next.66
-  '@sveltejs/kit': 1.0.0-next.435_svelte@3.49.0+vite@3.0.9
+  '@sveltejs/adapter-vercel': 1.0.0-next.68
+  '@sveltejs/kit': 1.0.0-next.437_svelte@3.49.0+vite@3.0.9
   '@types/cookie': 0.5.1
   autoprefixer: 10.4.8_postcss@8.4.16
   daisyui: 2.24.0_25hquoklqeoqwmt7fwvvcyxm5e
@@ -55,10 +55,6 @@ packages:
       regenerator-runtime: 0.13.9
     dev: true
 
-  /@cloudflare/workers-types/3.14.1:
-    resolution: {integrity: sha512-B1/plF62pt+H2IJHvApK8fdOJAVsvojvacuac8x8s+JIyqbropMyqNqHTKLm3YD8ZFLGwYeFTudU+PQ7vGvBdA==}
-    dev: true
-
   /@esbuild/linux-loong64/0.14.54:
     resolution: {integrity: sha512-bZBrLAIX1kpWelV0XemxBZllyRmM6vgFQQG2GdNb+r3Fkp0FOh1NJSvekXDs7jq70k4euu1cryLMfU+mTXlEpw==}
     engines: {node: '>=12'}
@@ -71,10 +67,6 @@ packages:
   /@fontsource/fira-mono/4.5.9:
     resolution: {integrity: sha512-DDhkRUjPHwPK/wB7GM/7LzGkcEC5JyTZM93YnFoP2Qfjffq3qX1asnXNqfglgZxXHXVmu3RI8OjRf87I97XCfA==}
     dev: false
-
-  /@iarna/toml/2.2.5:
-    resolution: {integrity: sha512-trnsAYxU3xnS1gPHPyU961coFyLkh4gAD/0zQ5mymY4yOZ+CYvsPqUbOFSw0aDM4y0tV7tiFxL/1XfXPNC6IPg==}
-    dev: true
 
   /@jimp/bmp/0.14.0_@jimp+custom@0.14.0:
     resolution: {integrity: sha512-5RkX6tSS7K3K3xNEb2ygPuvyL9whjanhoaB/WmmXlJS6ub4DjTqrapu8j4qnIWmO4YYtFeTbDTXV6v9P1yMA5A==}
@@ -518,34 +510,6 @@ packages:
       picomatch: 2.3.1
     dev: true
 
-  /@sveltejs/adapter-auto/1.0.0-next.66:
-    resolution: {integrity: sha512-p78AQaSDHkLS5EFGqCF2xrLHMjKxx6wTLUvnP26cu2llh/VV4NihQ0rheVNgPWL+tGZpVznhrUG8fWmJxPciug==}
-    dependencies:
-      '@sveltejs/adapter-cloudflare': 1.0.0-next.32
-      '@sveltejs/adapter-netlify': 1.0.0-next.72
-      '@sveltejs/adapter-vercel': 1.0.0-next.68
-    transitivePeerDependencies:
-      - encoding
-      - supports-color
-    dev: true
-
-  /@sveltejs/adapter-cloudflare/1.0.0-next.32:
-    resolution: {integrity: sha512-tzkUsdQlBk9xUjcGUOBYos4HKaeaXvz9v4TQ1QS2yIHEtL5xvMEDPZ94/DB2gPL4LZCnYbdY2lsy5HCsoN0hkQ==}
-    dependencies:
-      '@cloudflare/workers-types': 3.14.1
-      esbuild: 0.14.54
-      worktop: 0.8.0-next.14
-    dev: true
-
-  /@sveltejs/adapter-netlify/1.0.0-next.72:
-    resolution: {integrity: sha512-g570hYAMkgrJfo/TRg3DZFmlR7bNFHECFPOMgc8R+f28ROap/nXA8ICbiSBF7+zJ5JXvJbqHGjERSsyhEq+59g==}
-    dependencies:
-      '@iarna/toml': 2.2.5
-      esbuild: 0.14.54
-      set-cookie-parser: 2.5.1
-      tiny-glob: 0.2.9
-    dev: true
-
   /@sveltejs/adapter-vercel/1.0.0-next.68:
     resolution: {integrity: sha512-ImM+fDwGkVaf920Wzh284nfAfu/WoPXCpMwog0kveIODVgCozbpJY55fO860LccqdS0YDyeFqOUrZJCqcYNx4w==}
     dependencies:
@@ -556,8 +520,8 @@ packages:
       - supports-color
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.435_svelte@3.49.0+vite@3.0.9:
-    resolution: {integrity: sha512-3JR9Eqb20ZJcYmDgJH/EaQgISkXunIYrYTYcYf/hAZGpqOiLEfQ9b24AQcKEZ0fMZWeEew7+KiRpMZtyYkTZVw==}
+  /@sveltejs/kit/1.0.0-next.437_svelte@3.49.0+vite@3.0.9:
+    resolution: {integrity: sha512-O0jTjJzb9zVqGpdWJxGiQzNe8eNPVxsfOownrqCTfAN5XDPAOvAYkIoax9xo/QYr/XlK0FKpscJXTuvLYYAXqg==}
     engines: {node: '>=16.9'}
     hasBin: true
     requiresBuild: true
@@ -2473,11 +2437,6 @@ packages:
       functions-have-names: 1.2.3
     dev: true
 
-  /regexparam/2.0.1:
-    resolution: {integrity: sha512-zRgSaYemnNYxUv+/5SeoHI0eJIgTL/A2pUtXUPLHQxUldagouJ9p+K6IbIZ/JiQuCEv2E2B1O11SjVQy3aMCkw==}
-    engines: {node: '>=8'}
-    dev: true
-
   /resolve-from/4.0.0:
     resolution: {integrity: sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g==}
     engines: {node: '>=4'}
@@ -3080,14 +3039,6 @@ packages:
     resolution: {integrity: sha512-eDMORYaPNZ4sQIuuYPDHdQvf4gyCF9rEEV/yPxGfwPkRodwEgiMUUXTx/dex+Me0wxx53S+NgUHaP7y3MGlDmg==}
     dependencies:
       string-width: 4.2.3
-    dev: true
-
-  /worktop/0.8.0-next.14:
-    resolution: {integrity: sha512-RZgqHu1w/JcUdWOE/BUEAzarrUUHh39eWkLdX8XpA6MfgLJF6X5Vl26CV7/wcm4O/UpZvHMGJUtB9eYTqDjc9g==}
-    engines: {node: '>=12'}
-    dependencies:
-      mrmime: 1.0.1
-      regexparam: 2.0.1
     dev: true
 
   /wrappy/1.0.2:

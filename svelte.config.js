@@ -1,6 +1,6 @@
-import adapter from '@sveltejs/adapter-auto'
 import preprocess from 'svelte-preprocess'
 import image from 'svelte-image'
+import vercel from '@sveltejs/adapter-vercel'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -25,14 +25,14 @@ const config = {
   ],
 
   kit: {
-    adapter: adapter(),
+    adapter: vercel({
+      edge: true
+    }),
 
     // Override http methods in the Todo forms
     methodOverride: {
       allowed: ['PATCH', 'DELETE'],
     },
-
-    inlineStyleThreshold: 1024
   },
 }
 
