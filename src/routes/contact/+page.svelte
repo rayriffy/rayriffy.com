@@ -1,7 +1,7 @@
 <section class="my-8 sm:flex gap-8">
   <div>
     <div class="w-52 aspect-square rounded-full bg-purple-200 overflow-hidden shrink-0 mx-auto sm:mx-0">
-        <img src="/memoji.png" alt="memoji" />
+        <img src="/memoji.png" alt="memoji" width="420" height="420" class="w-full aspect-square" />
     </div>
   </div>
   <div class="mt-6 sm:mt-0">

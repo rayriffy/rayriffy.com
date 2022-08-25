@@ -8,7 +8,7 @@
 </svelte:head>
 
 <section>
-  <Image src="cover.jpg" />
+  <Image src="cover.jpg" width="2000" height="1334" />
 </section>
 
 <section class="my-6 text-xl sm:text-3xl space-y-6 sm:space-y-8">
