@@ -6,10 +6,6 @@ html {
   @apply bg-gray-100 !important;
 }
 
-.safari-overflow-hotfix {
-  -webkit-mask-image: -webkit-radial-gradient(white, black);
-}
-
 .animate-rainbow {
   animation: rot 2s linear infinite;
 }

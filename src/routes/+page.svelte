@@ -2,11 +2,6 @@
   import Image from 'svelte-image'
 </script>
 
-<svelte:head>
-  <title>rayriffy</title>
-  <meta name="description" content="Svelte demo app" />
-</svelte:head>
-
 <section>
   <Image src="cover.jpg" width="2000" height="1334" />
 </section>
