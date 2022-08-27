@@ -1,6 +1,5 @@
 export interface Blog {
   url: string
-  slug: string
   banner: {
     url: string
     width: number
@@ -10,11 +9,5 @@ export interface Blog {
   subtitle: string
   date: string
   featured: boolean
-  categoryCollection: {
-    items: {
-      name: string
-      key: string
-      desc: string
-    }[]
-  }
+  categories: string[]
 }

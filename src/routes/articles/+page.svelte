@@ -4,25 +4,23 @@
   import ArticleSkeleton from '../../modules/articles/components/articleSkeleton.svelte'
   import Article from '../../modules/articles/components/article.svelte'
 
-  import type { APIResult } from '../../modules/articles/@types/APIResult'
   import type { Blog } from '../../modules/articles/@types/Blog'
 
   let blogs: Blog[] | null = null
 
-  const fetchBlogs = async (page: number) => {
-    const result: APIResult<Blog[]> = await fetch(
-      `https://blog.rayriffy.com/api/author/rayriffy?page=${page}`
+  const fetchBlogs = async () => {
+    const result: Blog[] = await fetch(
+      'https://blog.rayriffy.com/data/latest/rayriffy.json'
     ).then(o => o.json())
 
     blogs = [
       ...(blogs ?? []),
-      ...result.data,
+      ...result,
     ]
   }
 
   onMount(async () => {
-    await fetchBlogs(1)
-    await fetchBlogs(2)
+    await fetchBlogs()
   })
 </script>
 
