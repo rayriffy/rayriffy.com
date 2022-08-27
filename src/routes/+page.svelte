@@ -2,7 +2,7 @@
   import Image from 'svelte-image'
 </script>
 
-<section>
+<section class="w-full aspect-[2000/1334]">
   <Image src="cover.jpg" width="2000" height="1334" />
 </section>
 

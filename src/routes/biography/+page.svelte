@@ -4,7 +4,9 @@
 
 <div class="space-y-6 lg:space-y-0 lg:flex lg:gap-8 lg:flex-row-reverse">
   <div class="w-full lg:w-3/5 shrink-0">
-    <Image src="biography.jpg" width="2000" height="1334" />
+    <section class="w-full aspect-[2000/1334]">
+      <Image src="biography.jpg" width="2000" height="1334" />
+    </section>
   
     <h1 class="font-medium text-xl lg:text-2xl mt-2">
       [<a href="/full-resume-20220825.pdf" class="mx-1 text-gray-600 hover:text-gray-400">Full resume</a>]
