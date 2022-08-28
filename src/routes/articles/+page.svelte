@@ -1,6 +1,4 @@
 <script lang="ts">
-  import { onMount } from 'svelte'
-
   import ArticleSkeleton from '../../modules/articles/components/articleSkeleton.svelte'
   import Article from '../../modules/articles/components/article.svelte'
 
@@ -19,9 +17,7 @@
     ]
   }
 
-  onMount(async () => {
-    await fetchBlogs()
-  })
+  fetchBlogs()
 </script>
 
 <section>
@@ -36,7 +32,7 @@
 
 <section class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 items-center">
   {#if blogs === null}
-    {#each Array.from({ length: 3 }) as _}
+    {#each Array.from({ length: 12 }) as _}
       <ArticleSkeleton />
     {/each}
   {:else}
