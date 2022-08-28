@@ -19,3 +19,7 @@ html {
     filter: hue-rotate(360deg);
   }
 }
+
+section a {
+  @apply underline hover:text-gray-500;
+}

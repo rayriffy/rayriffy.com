@@ -25,7 +25,7 @@
     I usually loves to share many stories from programming, games to lifestyles
     on my personal blog. Here're my latest blogs that I wrote. If you want to
     learn more about articles that I wrote, please have a look at <a
-      href="https://blog.rayriffy.com" class="underline hover:text-gray-500">Riffy Blog</a
+      href="https://blog.rayriffy.com">Riffy Blog</a
     >
   </h1>
 </section>

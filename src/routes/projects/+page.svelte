@@ -8,8 +8,7 @@
     Since high school, I created lots projects to let myself learn new web
     technologies ... from browser Web APIs, libraries, to frameworks. Most of
     projects are open-sourced on <a
-      href="https://github.com/rayriffy"
-      class="underline hover:text-gray-500">my GitHub</a
+      href="https://github.com/rayriffy">my GitHub</a
     >, if you like what you see then consider following and maybe support me
     through sponsors as well.
   </h1>

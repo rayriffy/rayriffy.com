@@ -33,7 +33,7 @@
       <h2 class="text-2xl">Follow me</h2>
       <div class="space-x-2">
         {#each socials as social}
-          <a href={social.url} class="text-lg underline hover:text-gray-600">{social.label}</a>
+          <a href={social.url} class="text-lg">{social.label}</a>
         {/each}
       </div>
     </div>

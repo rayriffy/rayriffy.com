@@ -4,7 +4,7 @@
   export let blog: Blog
 </script>
 
-<a href={`https://blog.rayriffy.com${blog.url}`}>
+<a href={`https://blog.rayriffy.com${blog.url}`} class="no-underline">
   <article class="bg-white rounded-xl overflow-hidden shadow-md">
     <img
       class="w-full aspect-[1500/788]"

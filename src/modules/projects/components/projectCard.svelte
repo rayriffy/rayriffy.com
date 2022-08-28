@@ -9,7 +9,7 @@
   <div class="my-1 flex space-x-2 flex-wrap">
     <span class="my-1">{project.year}{#if project.active}{' '}- Present{/if} · </span>
     {#each project.links as link}
-      <a href={link.url} class="underline hover:text-gray-500 my-1"
+      <a href={link.url} class="my-1"
         >{link.label}</a
       >
     {/each}

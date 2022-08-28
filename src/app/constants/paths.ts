@@ -12,10 +12,10 @@ export const paths = [
     path: '/projects',
     name: 'Projects',
   },
-  // {
-  //   path: '/talks',
-  //   name: 'Talks',
-  // },
+  {
+    path: '/talks',
+    name: 'Talks',
+  },
   {
     path: '/biography',
     name: 'Biography',
