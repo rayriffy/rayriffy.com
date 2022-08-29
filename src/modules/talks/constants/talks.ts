@@ -30,6 +30,9 @@ export const talks: Talk[] = [
       {
         label: 'Keynote',
         url: 'https://storage.rayriffy.com/files/ywcprogmeet-typescript-life.pdf'
+      }, {
+        label: 'Demo',
+        url: 'https://github.com/rayriffy/juri'
       }
     ]
   },
@@ -46,6 +49,9 @@ export const talks: Talk[] = [
       {
         label: 'Keynote',
         url: 'https://storage.rayriffy.com/files/gqlbkk8-graphql-introduction.pdf'
+      }, {
+        label: 'Demo',
+        url: 'https://github.com/rayriffy/gql-bkk-8-demo'
       }
     ]
   },
