@@ -14,6 +14,9 @@ export const talks: Talk[] = [
       {
         label: 'Keynote',
         url: 'https://storage.rayriffy.com/files/bkkjs16-says-goodbye-to-password.pdf'
+      }, {
+        label: 'Demo',
+        url: 'https://github.com/rayriffy/juri'
       }
     ]
   },
@@ -30,9 +33,6 @@ export const talks: Talk[] = [
       {
         label: 'Keynote',
         url: 'https://storage.rayriffy.com/files/ywcprogmeet-typescript-life.pdf'
-      }, {
-        label: 'Demo',
-        url: 'https://github.com/rayriffy/juri'
       }
     ]
   },
