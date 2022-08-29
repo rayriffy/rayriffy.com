@@ -23,7 +23,7 @@ export const projects: Project[] = [
   {
     title: 'Jacquard RTC',
     year: 2022,
-    description: 'I brought Levi\'s Trucker Jacet with Google Jacquard included, but I saw more potential in terms of functionality than just using Google\'s application. So I wrote Swift application to sent gesture from my jacket to Macbook by using peer-to-peer to trigger a keyboard press.',
+    description: 'I brought Levi\'s Trucker Jacket with Google Jacquard included, but I saw more potential in terms of functionality than just using Google\'s application. So I wrote a Swift application to send gestures from my jacket to my Macbook by using peer-to-peer to trigger a keyboard press.',
     links: [
       {
         label: 'Web',
@@ -38,7 +38,7 @@ export const projects: Project[] = [
   {
     title: 'Soli Debugger',
     year: 2022,
-    description: 'Google Pixel 4 has Soli sensor included. I was amazed when Google ATAP team show what it could do in 2016. This is just a small debugger web application to test the sensor, and observe the data that sensor sent.',
+    description: 'Google Pixel 4 has a Soli sensor included. I was amazed when the Google ATAP team show what it could do in 2016. This is just a small debugger web application to test the sensor, and observe the data that the sensor sent.',
     links: [
       {
         label: 'Web',
@@ -53,7 +53,7 @@ export const projects: Project[] = [
   {
     title: 'Stupid Randomizer',
     year: 2022,
-    description: 'Awarding game for The ៦th Stupid Hackathon Thailand. Built with React, and jQuery to project 3D perspective of the reward table onto the rug.',
+    description: 'Awarding game for The ៦th Stupid Hackathon Thailand. Built with React, and jQuery to project the 3D perspective of the reward table onto the rug.',
     links: [
       {
         label: 'GitHub',
@@ -118,7 +118,7 @@ export const projects: Project[] = [
     title: 'Riffy Blog',
     year: 2019,
     active: true,
-    description: 'My personal blog, originally posted since 2018 but those days my blogs are powered by PHP which consumes a lot of compute power form my server. So, I changed by tech stack for my blog to be statically generated.',
+    description: 'My personal blog was originally founded in 2018 but those days my blogs are powered by PHP which consumes a lot of computing power from my server. So, I changed my tech stack for my blog to be statically generated.',
     links: [
       {
         label: 'Web',
@@ -134,7 +134,7 @@ export const projects: Project[] = [
     title: 'Thai Lotto API',
     year: 2019,
     active: true,
-    description: 'There’s very little public API to see Thai lottery results so I made one by myself. Serving over 200,000 requests per month.',
+    description: 'There\'s very little public API to see Thai lottery results so I made one by myself. Serving over 200,000 requests per month.',
     links: [
       {
         label: 'GitHub',
@@ -145,7 +145,7 @@ export const projects: Project[] = [
   {
     title: 'Vote',
     year: 2019,
-    description: 'A much better voting system when comparing to Domitory Elect from 2018. Powered by Firebase so everything is fast scalable, and real-time.',
+    description: 'A much better voting system when compared to Dormitory Elect from 2018. Powered by Firebase so everything is fast scalable and real-time.',
     links: [
       {
         label: 'GitHub',
@@ -186,7 +186,7 @@ export const projects: Project[] = [
   {
     title: 'maimai Song Randomizer',
     year: 2019,
-    description: 'Don\'t know which songs to play? maimai Song Randomizer is a Google Assistant bot to help randomly choosing 5 songs to play by genre while waiting for queue to play.',
+    description: 'Don\'t know which songs to play? maimai Song Randomizer is a Google Assistant bot to help randomly choose 5 songs to play by genre while waiting for a queue to play.',
     links: [
       {
         label: 'GitHub',
@@ -198,7 +198,7 @@ export const projects: Project[] = [
     title: 'Riffy H',
     year: 2018,
     active: true,
-    description: 'Thinking like an alternative manga reader web application, but optimized for speed and without ads.',
+    description: 'Thinking like an alternative manga reader web application, but is optimized for speed and without ads.',
     links: [
       {
         label: 'GitHub',
@@ -209,7 +209,7 @@ export const projects: Project[] = [
   {
     title: 'Siri Fastpass',
     year: 2018,
-    description: 'This project was made in Actions on Google Hackathon Thailand which sponsored by Sansiri. We see a problem that Sansiris\' residents having a difficulty to invite visitors into their home due to its high secrity. This project will create QR code as visitor pass to their phone via SMS, which can be easily made by home owner by talking to Google Assistant. We got a second prize, and get Google Home hub, and Google Home mini as rewards.',
+    description: 'This project was made in Actions on Google Hackathon Thailand which was sponsored by Sansiri. We see a problem that Sansiris\' residents have difficulty inviting visitors into their homes due to its high security. This project will create a QR code as visitor pass to their phone via SMS, which can be easily made by the homeowner by talking to Google Assistant. We got a second prize, and get a Google Home hub, and a Google Home mini as rewards.',
     links: [
       {
         label: 'Blog',
@@ -224,7 +224,7 @@ export const projects: Project[] = [
   {
     title: 'BirthTU',
     year: 2018,
-    description: 'When your country is ruled by a dictator, you have to remeber when to celebrate his birthday as well. This project was made in The Stupid Hackathon Thailand #2',
+    description: 'When your country is ruled by a dictator, you have to remember when to celebrate his birthday as well. This project was made in The Stupid Hackathon Thailand #2.',
     links: [
       {
         label: 'Demo',
@@ -239,7 +239,7 @@ export const projects: Project[] = [
   {
     title: 'scan-mang (แสกนแม่ง) API',
     year: 2018,
-    description: 'The backend of scan-mang, the project created with a group of 5 people to compete in Hack Your Tech hackathon at Faculty of ICT, Mahidol University. This project has won the first prize with 50,000 THB as a reward.',
+    description: 'The backend of scan-mang, the project was created with a group of 5 people to compete in the Hack Your Tech hackathon at the Faculty of ICT, Mahidol University. This project has won the first prize with 50,000 THB as a reward.',
     links: [
       {
         label: 'Award photo @ICT',
@@ -254,7 +254,7 @@ export const projects: Project[] = [
   {
     title: 'Dormitory Elect',
     year: 2018,
-    description: 'Keeping students in dormitory in check is hard. So every year new constitution to manage dormitory, and act as middleman between students and dormitory personel. This web application is created to help dormitory staff counts vote results from students faster.',
+    description: 'Keeping students in the dormitory in check is hard. So every year new constitution to manage the dormitory, and act as a middleman between students and dormitory personnel. This web application is created to help dormitory staff counts vote results from students faster.',
     links: [
       {
         label: 'GitHub',
@@ -265,7 +265,7 @@ export const projects: Project[] = [
   {
     title: 'Dockr',
     year: 2018,
-    description: 'Web application to manage Docker container without interacting with commandline at all. This project has been contested in the 20th National Software Contest, and recieved consolation prize award.',
+    description: 'Web application to manage Docker container without interacting with the command line at all. This project has been contested in the 20th National Software Contest, and received consolation prize award.',
     links: [
       {
         label: 'Award photo @NSC',
@@ -280,7 +280,7 @@ export const projects: Project[] = [
   {
     title: 'OrchidGazer Tensorflow',
     year: 2017,
-    description: 'A second iteration of image recognition model from my sciene project in MWIT using TensorFlow. Quickly abandoned after project has been cancelled.',
+    description: 'A second iteration of the image recognition model from my science project in MWIT using TensorFlow. Quickly abandoned after the project has been canceled.',
     links: [
       {
         label: 'GitHub',
@@ -291,7 +291,7 @@ export const projects: Project[] = [
   {
     title: 'OrchidGazer',
     year: 2016,
-    description: 'This is my science project that I worked with my team as graduation-thesis at Mahidol Wittayanusorn School. This project has been contested in the 19th National Software Contest, and recieved first runner-up award.',
+    description: 'This is the science project that I worked on with my team as a graduation thesis at Mahidol Wittayanusorn School. This project has been contested in the 19th National Software Contest and received the first runner-up award.',
     links: [
       {
         label: 'Award photo @NSC',
@@ -309,7 +309,7 @@ export const projects: Project[] = [
   },
   {
     title: 'Pre-MWITS 2016: The Last Chapter',
-    description: 'The very first game that I wrote for Pre-MWITS camp, a camp to tease junior high school students about a life at MWIT (the most high regard science school in the country). The games uses the perfect combination between software as a interactive information and processing, and actual people who needs to walk around and work together as a team.',
+    description: 'The very first game that I wrote for Pre-MWITS camp, a camp to tease junior high school students about life at MWIT (the highest regarded science school in the country). The games use the perfect combination of software as a piece of interactive information and processing, and actual people who need to walk around and work together as a team.',
     year: 2015,
     links: [
       {

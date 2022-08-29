@@ -21,7 +21,7 @@ export const talks: Talk[] = [
     title: 'TypeScript.life',
     event: 'YWC Programmer Meetup',
     year: 2020,
-    description: 'JavaScript is hell when trying to handle site securely, especially when your codebase is shared with multiple developers. TypeScript is the future of JavaScript, you can prevent type conflict before it pushed to production. And I\'m here to tell you how',
+    description: 'JavaScript is hell when trying to handle a site securely, especially when your codebase is shared with multiple developers. TypeScript is the future of JavaScript, you can prevent type conflict before it is pushed to production. And I\'m here to tell you how.',
     links: [
       {
         label: 'Facebook',
@@ -37,7 +37,7 @@ export const talks: Talk[] = [
     title: 'GraphQL Introduction',
     event: 'GraphQL BKK Meetup #8',
     year: 2020,
-    description: 'Don\'t waste user\'s precious data bandwidth to load very large JSON from REST API. Only choose what you need with GraphQL.',
+    description: 'Don\'t waste the user\'s precious data bandwidth to load very large JSON from REST API. Only choose what you need with GraphQL.',
     links: [
       {
         label: 'Meetup',

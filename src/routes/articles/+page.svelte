@@ -11,10 +11,7 @@
       'https://blog.rayriffy.com/data/latest/rayriffy.json'
     ).then(o => o.json())
 
-    blogs = [
-      ...(blogs ?? []),
-      ...result,
-    ]
+    blogs = [...(blogs ?? []), ...result]
   }
 
   fetchBlogs()
@@ -22,15 +19,17 @@
 
 <section>
   <h1 class="text-xl">
-    I usually loves to share many stories from programming, games to lifestyles
-    on my personal blog. Here're my latest blogs that I wrote. If you want to
+    I usually love to share many stories from programming, and games to
+    lifestyles on my blog. Here're the latest blogs that I wrote. If you want to
     learn more about articles that I wrote, please have a look at <a
       href="https://blog.rayriffy.com">Riffy Blog</a
-    >
+    >.
   </h1>
 </section>
 
-<section class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 items-center">
+<section
+  class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 items-center"
+>
   {#if blogs === null}
     {#each Array.from({ length: 12 }) as _}
       <ArticleSkeleton />
