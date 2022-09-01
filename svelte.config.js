@@ -1,6 +1,6 @@
 import preprocess from 'svelte-preprocess'
 import image from 'svelte-image'
-import vercel from '@sveltejs/adapter-vercel'
+import auto from '@sveltejs/adapter-auto'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -25,9 +25,7 @@ const config = {
   ],
 
   kit: {
-    adapter: vercel({
-      edge: true
-    }),
+    adapter: auto(),
     prerender: {
       default: true
     }
