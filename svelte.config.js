@@ -28,9 +28,6 @@ const config = {
     adapter: vercel({
       edge: true
     }),
-    prerender: {
-      default: true
-    },
   },
 }
 
