@@ -2,6 +2,21 @@ import type { Project } from '../@types/Project'
 
 export const projects: Project[] = [
   {
+    title: 'KnuckleBones',
+    year: 2022,
+    description: 'Svelte implementation of a mini-game "Knucklebones" featured in an action game "Cult of the Lamb" (Only designed for iPad)',
+    links: [
+      {
+        label: 'Web',
+        url: 'https://knuckle.rayriffy.com/'
+      },
+      {
+        label: 'GitHub',
+        url: 'https://github.com/rayriffy/knucklebones'
+      }
+    ]
+  },
+  {
     title: 'Juri',
     year: 2022,
     description: 'A demo for passkeys, the future of password-less authentication. Made for talks at BKK.JS #16 Meetup called "Say goodbye to passwords... permanently"',
