@@ -12,9 +12,11 @@
 	<nav class="navbar bg-base-100 rounded-2xl shadow-lg">
 		<div class="navbar-start">
 			<div class="dropdown">
+				<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 				<label for="#header-menu" tabindex="0" class="btn btn-ghost btn-circle">
 					<MenuIcon class="w-6 h-6" />
 				</label>
+				<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 				<ul id="header-menu" tabindex="0" class="menu menu-compact dropdown-content mt-4 p-2 shadow bg-base-100 rounded-box w-52">
 					{#each paths as path}
 						<li>
