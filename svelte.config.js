@@ -1,6 +1,6 @@
 import preprocess from 'svelte-preprocess'
 import image from 'svelte-image'
-import vercel from '@sveltejs/adapter-vercel'
+import adapter from '@sveltejs/adapter-static'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -25,8 +25,9 @@ const config = {
   ],
 
   kit: {
-    adapter: vercel({
-      edge: true
+    adapter: adapter({
+      pages: 'dist',
+      assets: 'dist',
     }),
   },
 }

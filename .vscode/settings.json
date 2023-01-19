@@ -1,0 +1,5 @@
+{
+  "yaml.schemas": {
+    "https://json.schemastore.org/github-workflow.json": "file:///Users/rayriffy/Git/rayriffy-front-next-chapter-3/.github/workflows/deploy.yml"
+  }
+}
