@@ -1,26 +1,11 @@
 import { vitePreprocess } from '@sveltejs/kit/vite'
-import image from 'svelte-image'
 import adapter from '@sveltejs/adapter-static'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
   // Consult https://kit.svelte.dev/docs/integrations#preprocessors
   // for more information about preprocessors
-  preprocess: [
-    image({
-      compressionLevel: 8,
-      quality: 90,
-      placeholder: 'blur',
-      webpOptions: {
-        quality: 90,
-        lossless: false,
-        force: true,
-      },
-      sizes: [800, 1600, 2000],
-      breakpoints: [375, 768, 1024],
-    }),
-    vitePreprocess(),
-  ],
+  preprocess: vitePreprocess(),
 
   kit: {
     adapter: adapter({

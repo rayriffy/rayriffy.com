@@ -1,9 +1,12 @@
-<script lang="ts">
-  import Image from 'svelte-image'
-</script>
-
 <section class="w-full aspect-[2000/1334]">
-  <Image src="cover.jpg" width="2000" height="1334" />
+  <img
+    src="/cover.jpg"
+    width="2000"
+    height="1339"
+    class="w-full h-auto"
+    alt="cover"
+    decoding="async"
+  />
 </section>
 
 <section class="my-6 text-xl sm:text-3xl space-y-6 sm:space-y-8">
