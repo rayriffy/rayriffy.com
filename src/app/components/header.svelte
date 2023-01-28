@@ -20,7 +20,7 @@
 				<ul id="header-menu" tabindex="0" class="menu menu-compact dropdown-content mt-4 p-2 shadow bg-base-100 rounded-box w-52">
 					{#each paths as path}
 						<li>
-							<a sveltekit:prefetch href={path.path} class="font-medium hover:text-blue-400 animate-rainbow text-base">
+							<a href={path.path} class="font-medium hover:text-blue-400 animate-rainbow text-base">
 								{path.name}
 							</a>
 						</li>
@@ -29,7 +29,7 @@
 			</div>
 		</div>
 		<div class="navbar-center space-x-2">
-			<a sveltekit:prefetch class="btn btn-ghost normal-case text-xl px-2" href="/">
+			<a class="btn btn-ghost normal-case text-xl px-2" href="/">
 				<R class="w-9 h-9" />
 			</a>
 			{#if targetPath !== undefined}

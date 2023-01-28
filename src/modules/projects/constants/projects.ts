@@ -2,6 +2,53 @@ import type { Project } from '../@types/Project'
 
 export const projects: Project[] = [
   {
+    title: 'Mirai',
+    year: 2022,
+    description: 'A thesis project for my banchlor degree. This is a prototype of the new arcade token system for coins to be purchased, stored and used digitally.',
+    links: [
+      {
+        label: 'Thesis',
+        url: 'https://storage.rayriffy.com/files/SP2021-35.pdf'
+      },
+      {
+        label: 'GitHub',
+        url: 'https://github.com/rayriffy/mirai'
+      }
+    ]
+  },
+  {
+    title: 'Svelte Automatic Image Optimization',
+    year: 2022,
+    active: true,
+    description: 'A recreation of NextJS\'s automatic image optimization feature for SvelteKit',
+    links: [
+      {
+        label: 'Demo',
+        url: 'https://svelte-aio.vercel.app/'
+      },
+      {
+        label: 'GitHub',
+        url: 'https://github.com/rayriffy/svelte-aio'
+      }
+    ]
+  },
+  {
+    title: 'Apple Music GitHub Profile',
+    year: 2022,
+    active: true,
+    description: 'Displaying card on your GitHub profile to show your recently played song on Apple Music',
+    links: [
+      {
+        label: 'Web',
+        url: 'https://apple-music-github-profile.rayriffy.com/'
+      },
+      {
+        label: 'GitHub',
+        url: 'https://github.com/rayriffy/apple-music-github-profile'
+      }
+    ]
+  },
+  {
     title: 'KnuckleBones',
     year: 2022,
     description: 'Svelte implementation of a mini-game "Knucklebones" featured in an action game "Cult of the Lamb" (Only designed for iPad)',
@@ -105,7 +152,6 @@ export const projects: Project[] = [
   {
     title: 'セカイ Wiki',
     year: 2020,
-    active: true,
     description: 'A wiki site for Project Sekai: Colorful Stage feat. Hatsune Miku, optimized for speed by NextJS',
     links: [
       {
@@ -184,21 +230,6 @@ export const projects: Project[] = [
     ]
   },
   {
-    title: 'Miko',
-    year: 2019,
-    description: 'Slap the desk!',
-    links: [
-      {
-        label: 'Demo',
-        url: 'https://miko.rayriffy.com/'
-      },
-      {
-        label: 'GitHub',
-        url: 'https://github.com/rayriffy/miko'
-      }
-    ]
-  },
-  {
     title: 'maimai Song Randomizer',
     year: 2019,
     description: 'Don\'t know which songs to play? maimai Song Randomizer is a Google Assistant bot to help randomly choose 5 songs to play by genre while waiting for a queue to play.',
@@ -215,6 +246,10 @@ export const projects: Project[] = [
     active: true,
     description: 'Thinking like an alternative manga reader web application, but is optimized for speed and without ads.',
     links: [
+      {
+        label: 'Web',
+        url: 'https://h.rayriffy.com'
+      },
       {
         label: 'GitHub',
         url: 'https://github.com/rayriffy/rayriffy-h'

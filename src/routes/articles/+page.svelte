@@ -4,17 +4,13 @@
 
   import type { Blog } from '../../modules/articles/@types/Blog'
 
-  let blogs: Blog[] | null = null
-
-  const fetchBlogs = async () => {
+  const getBlogs = async () => {
     const result: Blog[] = await fetch(
       'https://blog.rayriffy.com/data/latest/rayriffy.json'
     ).then(o => o.json())
-
-    blogs = [...(blogs ?? []), ...result]
+    
+    return result
   }
-
-  fetchBlogs()
 </script>
 
 <section>
@@ -30,13 +26,13 @@
 <section
   class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 items-center"
 >
-  {#if blogs === null}
+  {#await getBlogs()}
     {#each Array.from({ length: 12 }) as _}
       <ArticleSkeleton />
     {/each}
-  {:else}
+  {:then blogs}
     {#each blogs as blog}
       <Article {blog} />
     {/each}
-  {/if}
+  {/await}
 </section>
