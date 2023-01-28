@@ -1,6 +1,6 @@
-<svg width="416" height="416" viewBox="0 0 416 416" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="103" cy="103" r="78" stroke="#6b7280" stroke-width="18" />
-  <rect x="235" y="235" width="156" height="156" stroke="#4b6fff" stroke-width="18" />
+<svg class="w-6 sm:w-8 h-6 sm:h-8 group transition duration-700 hover:-rotate-180 ease-in-out" width="416" height="416" viewBox="0 0 416 416" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="103" cy="103" r="78" stroke="#6b7280" stroke-width="18" class="stroke-[#6b7280] group-hover:stroke-[#4b6fff] transition duration-700" />
+  <rect x="235" y="235" width="156" height="156" stroke-width="18" class="stroke-[#4b6fff] group-hover:stroke-[#6b7280] transition duration-700" />
   <mask id="path-3-inside-1_670_44654" fill="white">
     <path fill-rule="evenodd" clip-rule="evenodd" d="M400 190C400 93.9025 322.098 16 226 16L226 190L400 190Z" />
   </mask>
