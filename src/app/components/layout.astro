@@ -1,0 +1,37 @@
+---
+import Header from './header.astro'
+import Footer from './footer.astro'
+
+import '../styles/tailwind.css'
+
+export interface Props {
+  title?: string
+  path: string
+}
+
+const { title, path } = Astro.props
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" href="/favicon.png" />
+
+    <title>{title ? `${title} · rayriffy` : 'rayriffy'}</title>
+
+    <link rel="dns-prefetch" href="https://blog.rayriffy.com">
+  </head>
+  <body>
+    <Header path={path} />
+
+    <main class="max-w-7xl mx-auto mt-10 px-4 md:px-6">
+      <slot />
+    </main>
+
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,7 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Disallow: /articles
+Disallow: /projects
+Disallow: /talks
+Disallow: /biography
+Disallow: /contact
