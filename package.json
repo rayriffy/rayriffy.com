@@ -8,7 +8,8 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "format": "prettier --write --plugin-search-dir=. ."
   },
   "devDependencies": {
     "@astrojs/image": "^0.16.0",

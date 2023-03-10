@@ -10,47 +10,75 @@ export interface Props {
 ---
 
 <div class="max-w-7xl mx-auto my-6 px-4 md:px-6">
-	<nav class="navbar bg-base-100 rounded-2xl shadow-lg">
-		<div class="navbar-start">
-			<div class="hidden md:block ml-2">
-				<a rel="prefetch" class="btn btn-ghost normal-case text-xl px-2" href="/">
-					<R class="w-9 h-9" />
-				</a>
-			</div>
-			<div class="dropdown md:hidden">
-				<label for="#header-menu" tabindex="0" class="btn btn-ghost btn-circle">
-					<MenuIcon class="w-6 h-6" />
-				</label>
-				<ul id="header-menu" tabindex="0" class="menu menu-compact dropdown-content mt-4 p-2 shadow bg-base-100 rounded-box w-52">
-          {paths.map(path => (
-						<li>
-							<a rel="prefetch" href={path.path} class="font-medium hover:text-blue-400 animate-rainbow text-base">
-								{path.name}
-							</a>
-						</li>
-          ))}
-				</ul>
-			</div>
-		</div>
-		<div class="navbar-center">
-			<div class="block md:hidden">
-				<a rel="prefetch" class="btn btn-ghost normal-case text-xl px-2" href="/">
-					<R class="w-9 h-9" />
-				</a>
-			</div>
-		</div>
-		<div class="navbar-end">
-			<div class="hidden md:flex flex-none mr-2">
-				<ul class="menu menu-horizontal px-1">
-          {paths.map(path => (
-						<li>
-							<a rel="prefetch" href={path.path} class={`${path.path === Astro.props.path ? 'text-blue-400' : 'hover:text-blue-400'} font-medium animate-rainbow text-base`}>
-								{path.name}
-							</a>
-						</li>
-          ))}
-				</ul>
-			</div>
-		</div>
-	</nav>
+  <nav class="navbar bg-base-100 rounded-2xl shadow-lg">
+    <div class="navbar-start">
+      <div class="hidden md:block ml-2">
+        <a
+          rel="prefetch"
+          class="btn btn-ghost normal-case text-xl px-2"
+          href="/"
+        >
+          <R class="w-9 h-9" />
+        </a>
+      </div>
+      <div class="dropdown md:hidden">
+        <label for="#header-menu" tabindex="0" class="btn btn-ghost btn-circle">
+          <MenuIcon class="w-6 h-6" />
+        </label>
+        <ul
+          id="header-menu"
+          tabindex="0"
+          class="menu menu-compact dropdown-content mt-4 p-2 shadow bg-base-100 rounded-box w-52"
+        >
+          {
+            paths.map(path => (
+              <li>
+                <a
+                  rel="prefetch"
+                  href={path.path}
+                  class="font-medium hover:text-blue-400 animate-rainbow text-base"
+                >
+                  {path.name}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+    <div class="navbar-center">
+      <div class="block md:hidden">
+        <a
+          rel="prefetch"
+          class="btn btn-ghost normal-case text-xl px-2"
+          href="/"
+        >
+          <R class="w-9 h-9" />
+        </a>
+      </div>
+    </div>
+    <div class="navbar-end">
+      <div class="hidden md:flex flex-none mr-2">
+        <ul class="menu menu-horizontal px-1">
+          {
+            paths.map(path => (
+              <li>
+                <a
+                  rel="prefetch"
+                  href={path.path}
+                  class={`${
+                    path.path === Astro.props.path
+                      ? 'text-blue-400'
+                      : 'hover:text-blue-400'
+                  } font-medium animate-rainbow text-base`}
+                >
+                  {path.name}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </nav>
 </div>
