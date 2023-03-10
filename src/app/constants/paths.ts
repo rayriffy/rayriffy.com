@@ -2,7 +2,6 @@ export const paths = [
   {
     path: '/',
     name: 'Home',
-    hidden: true,
   },
   {
     path: '/articles',
