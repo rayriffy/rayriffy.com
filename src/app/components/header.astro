@@ -3,6 +3,7 @@ import MenuIcon from './menuIcon.astro'
 import R from './r.astro'
 
 import { paths } from '../constants/paths'
+import NavbarItems from './navbarItems.astro';
 
 export interface Props {
   path: string
@@ -30,19 +31,7 @@ export interface Props {
           tabindex="0"
           class="menu menu-compact dropdown-content mt-4 p-2 shadow bg-base-100 rounded-box w-52"
         >
-          {
-            paths.map(path => (
-              <li>
-                <a
-                  rel="prefetch"
-                  href={path.path}
-                  class="font-medium hover:text-blue-400 animate-rainbow text-base"
-                >
-                  {path.name}
-                </a>
-              </li>
-            ))
-          }
+          <NavbarItems {...Astro.props} />
         </ul>
       </div>
     </div>
@@ -60,23 +49,7 @@ export interface Props {
     <div class="navbar-end">
       <div class="hidden md:flex flex-none mr-2">
         <ul class="menu menu-horizontal px-1">
-          {
-            paths.map(path => (
-              <li>
-                <a
-                  rel="prefetch"
-                  href={path.path}
-                  class={`${
-                    path.path === Astro.props.path
-                      ? 'text-blue-400'
-                      : 'hover:text-blue-400'
-                  } font-medium animate-rainbow text-base`}
-                >
-                  {path.name}
-                </a>
-              </li>
-            ))
-          }
+          <NavbarItems {...Astro.props} />
         </ul>
       </div>
     </div>
