@@ -22,7 +22,11 @@ export interface Props {
       <button class="md:hidden w-12 h-12" x-on:click="open = ! open">
         <MenuIcon class="w-5 h-5 mx-auto" />
       </button>
-      <R class="mx-auto w-6 h-6 md:mx-0 md:w-8 md:h-8 my-auto" />
+      <div class="flex items-center justify-center">
+        <a rel="prefetch" href="/">
+          <R class="mx-auto w-6 h-6 md:mx-0 md:w-8 md:h-8 my-auto" />
+        </a>
+      </div>
       <ul
         class="hidden md:flex items-center space-x-4 text-sm text-neutral-400 ml-8"
       >
