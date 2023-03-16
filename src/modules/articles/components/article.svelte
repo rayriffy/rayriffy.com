@@ -5,7 +5,7 @@
 </script>
 
 <a href={`https://blog.rayriffy.com${blog.url}`} class="no-underline">
-  <article class="bg-white rounded-xl overflow-hidden shadow-md">
+  <article class="bg-white rounded-xl overflow-hidden shadow-md border">
     <img
       class="w-full aspect-[1500/788]"
       src={blog.banner.url}

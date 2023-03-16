@@ -1,15 +1,16 @@
 ---
-import Header from './header.astro'
 import Footer from './footer.astro'
+import Header from './header.astro'
 
 import '../styles/tailwind.css'
 
 export interface Props {
   title?: string
   path: string
+  noPadding?: boolean
 }
 
-const { title, path } = Astro.props
+const { title, noPadding = false } = Astro.props
 ---
 
 <!DOCTYPE html>
@@ -17,7 +18,10 @@ const { title, path } = Astro.props
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=contain"
+    />
 
     <link rel="icon" href="/favicon.png" />
 
@@ -25,14 +29,14 @@ const { title, path } = Astro.props
     <meta name="description" content="The front frontier of rayriffy.com!" />
 
     <link rel="dns-prefetch" href="https://blog.rayriffy.com" />
+
+    <script src="//unpkg.com/alpinejs" defer is:inline></script>
   </head>
   <body>
-    <Header path={path} />
-
-    <main class="max-w-7xl mx-auto mt-10 px-4 md:px-6">
+    <main class={noPadding ? '' : 'pb-12 md:pb-20'}>
       <slot />
     </main>
 
-    <Footer />
+    <Header {...Astro.props} />
   </body>
 </html>

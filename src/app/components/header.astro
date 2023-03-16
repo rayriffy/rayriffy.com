@@ -1,56 +1,90 @@
 ---
-import MenuIcon from './menuIcon.astro'
 import R from './r.astro'
 
-import NavbarItems from './navbarItems.astro';
+import { paths } from '../constants/paths'
+import Garten from './garten.astro'
+import MenuIcon from './menuIcon.astro'
 
 export interface Props {
   path: string
 }
 ---
 
-<div class="max-w-7xl mx-auto my-6 px-4 md:px-6">
-  <nav class="navbar bg-base-100 rounded-2xl shadow-lg">
-    <div class="navbar-start">
-      <div class="hidden md:block ml-2">
+<header
+  x-bind:class="! open ? 'h-12' : 'h-full'"
+  class="fixed z-50 border-t w-full bottom-0 bg-white overflow-hidden transition-all ease-header duration-500 md:h-20"
+  x-data="{ open: false }"
+>
+  <div class="md:py-6 md:px-8 md:flex justify-between">
+    <section
+      class="grid grid-cols-3 md:flex justify-start h-12 md:h-full border-b md:border-none"
+    >
+      <button class="md:hidden w-12 h-12" x-on:click="open = ! open">
+        <MenuIcon class="w-5 h-5 mx-auto" />
+      </button>
+      <R class="mx-auto w-6 h-6 md:mx-0 md:w-8 md:h-8 my-auto" />
+      <ul
+        class="hidden md:flex items-center space-x-4 text-sm text-neutral-400 ml-8"
+      >
+        {
+          paths.map(({ path, name }) => (
+            <li class={Astro.props.path === path ? 'text-black' : ''}>
+              <a rel="prefetch" href={path} class="no-underline">
+                {name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="hidden md:flex space-x-4">
+      <a href="https://webring.wonderful.software#rayriffy.com" title="webring">
+        <img
+          src="/webring.svg"
+          class="w-8 aspect-square transition-transform duration-700 ease-in-out hover:rotate-[720deg]"
+          alt="webring"
+        />
+      </a>
+      <a href="https://creatorsgarten.org/ring" title="Creatorsgarten">
+        <Garten />
+      </a>
+    </section>
+  </div>
+
+  <section class="block md:hidden overflow-y-scroll">
+    <ul class="text-neutral-400 divide-y border-b">
+      {
+        paths.map(({ path, name }) => (
+          <li>
+            <a rel="prefetch" href={path} class="no-underline">
+              <p
+                class={[
+                  'px-4 py-3',
+                  Astro.props.path === path ? 'text-black' : '',
+                ].join(' ')}
+              >
+                {name}
+              </p>
+            </a>
+          </li>
+        ))
+      }
+      <li class="px-4 py-3 flex space-x-2">
         <a
-          rel="prefetch"
-          class="btn btn-ghost normal-case text-xl px-2"
-          href="/"
+          href="https://webring.wonderful.software#rayriffy.com"
+          title="webring"
         >
-          <R class="w-9 h-9" />
+          <img
+            src="/webring.svg"
+            class="w-6 aspect-square transition-transform duration-700 ease-in-out hover:rotate-[720deg]"
+            alt="webring"
+          />
         </a>
-      </div>
-      <div class="dropdown md:hidden">
-        <label for="#header-menu" tabindex="0" class="btn btn-ghost btn-circle">
-          <MenuIcon class="w-6 h-6" />
-        </label>
-        <ul
-          id="header-menu"
-          tabindex="0"
-          class="menu menu-compact dropdown-content mt-4 p-2 shadow bg-base-100 rounded-box w-52"
-        >
-          <NavbarItems {...Astro.props} />
-        </ul>
-      </div>
-    </div>
-    <div class="navbar-center">
-      <div class="block md:hidden">
-        <a
-          rel="prefetch"
-          class="btn btn-ghost normal-case text-xl px-2"
-          href="/"
-        >
-          <R class="w-9 h-9" />
+        <a href="https://creatorsgarten.org/ring" title="Creatorsgarten">
+          <Garten />
         </a>
-      </div>
-    </div>
-    <div class="navbar-end">
-      <div class="hidden md:flex flex-none mr-2">
-        <ul class="menu menu-horizontal px-1">
-          <NavbarItems {...Astro.props} />
-        </ul>
-      </div>
-    </div>
-  </nav>
-</div>
+      </li>
+    </ul>
+  </section>
+</header>

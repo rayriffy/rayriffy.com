@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  @apply bg-base-200 !important;
-}
-
 .animate-rainbow {
   animation: rot 2s linear infinite;
 }
@@ -22,4 +18,8 @@ html {
 
 section a {
   @apply underline hover:text-gray-500;
+}
+
+.ease-header {
+  transition-timing-function: cubic-bezier(1, 0, 0, 0.81);
 }

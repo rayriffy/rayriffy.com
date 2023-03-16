@@ -4,36 +4,38 @@ import { talks } from '../modules/talks/constants/talks'
 ---
 
 <Layout title="Talks" path="/talks">
-  <section class="my-8">
-    <h1 class="text-xl">
-      I am an experienced public speaker who is able to deliver keynote talks,
-      as well as participate in panels and networking. Furthermore, I also
-      joined the group of <a href="https://www.creatorsgarten.org/"
-        >Creatorsgarten</a
-      > to help organize various events in the past, and future.
-    </h1>
-  </section>
+  <div class="max-w-7xl mx-auto mt-10 px-4 md:px-6 pb-6">
+    <section class="my-8">
+      <h1 class="text-xl">
+        I am an experienced public speaker who is able to deliver keynote talks,
+        as well as participate in panels and networking. Furthermore, I also
+        joined the group of <a href="https://www.creatorsgarten.org/"
+          >Creatorsgarten</a
+        > to help organize various events in the past, and future.
+      </h1>
+    </section>
 
-  <section class="space-y-8 max-w-5xl mx-auto">
-    {
-      talks.map(talk => (
-        <div class="bg-white rounded-xl shadow-md divide-y-2 divide-dotted divide-gray-300 py-8">
-          <div class="px-8 pb-6">
-            <h1 class="font-bold text-2xl">{talk.title}</h1>
-            <p class="text-gray-700 mt-1">
-              {talk.event} · <span class="font-semibold">{talk.year}</span>
-            </p>
-            <div class="mt-1 space-x-2 flex flex-wrap">
-              {talk.links.map(link => (
-                <a href={link.url} class="my-1">
-                  {link.label}
-                </a>
-              ))}
+    <section class="space-y-8 max-w-5xl mx-auto">
+      {
+        talks.map(talk => (
+          <div class="bg-white rounded-xl shadow-md divide-y-2 divide-dotted divide-gray-300 py-8 border">
+            <div class="px-8 pb-6">
+              <h1 class="font-bold text-2xl">{talk.title}</h1>
+              <p class="text-gray-700 mt-1">
+                {talk.event} · <span class="font-semibold">{talk.year}</span>
+              </p>
+              <div class="mt-1 space-x-2 flex flex-wrap">
+                {talk.links.map(link => (
+                  <a href={link.url} class="my-1">
+                    {link.label}
+                  </a>
+                ))}
+              </div>
             </div>
+            <p class="pt-8 px-8">{talk.description}</p>
           </div>
-          <p class="pt-8 px-8">{talk.description}</p>
-        </div>
-      ))
-    }
-  </section>
+        ))
+      }
+    </section>
+  </div>
 </Layout>

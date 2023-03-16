@@ -4,31 +4,26 @@ import { Picture } from '@astrojs/image/components'
 import Layout from '../app/components/layout.astro'
 ---
 
-<Layout path="/">
+<Layout path="/" noPadding>
   <Picture
-    src="/cover.jpg"
-    aspectRatio={2000 / 1334}
-    class="w-full h-auto"
+    src="/front.jpg"
+    aspectRatio={1.33}
     alt="cover"
     decoding="async"
-    widths={[800, 1600]}
-    sizes="(max-width: 1280px) 100vw, 1280px"
-    formats={['jpg', 'webp', 'avif']}
+    widths={[3200]}
+    quality={85}
+    sizes=""
+    formats={['jpg', 'webp']}
     background="white"
   />
-
-  <section class="my-6 text-xl sm:text-3xl space-y-6 sm:space-y-8">
-    <h1>
-      I am a full-stack web developer, who keeps looking for new challenges.
-      Over the past 8 years, I have been learning web technologies since junior
-      high school as a hobby. I am also always energetic to learn about upcoming
-      modern web technologies and try to put them into practical use.
-    </h1>
-    <h1>
-      More than that I am a maker, automating workflows both in my daily life to
-      the workplace to simplify much manual work, and keep life less busy. I
-      also sometimes created IoT hardware to build many interesting things from
-      smart home devices to the embedded system.
-    </h1>
-  </section>
 </Layout>
+
+<style>
+  picture,
+  img {
+    width: 100%;
+    height: 100vh;
+    max-height: -webkit-fill-available;
+    object-fit: cover;
+  }
+</style>
