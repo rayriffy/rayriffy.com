@@ -4,7 +4,7 @@ import Listing from '../modules/articles/components/listing.svelte'
 ---
 
 <Layout title="Articles" path="/articles">
-  <div class="max-w-7xl mx-auto mt-10 px-4 md:px-6 pb-6">
+  <div class="mx-auto mt-10 max-w-7xl px-4 pb-6 md:px-6">
     <section>
       <h1 class="text-xl">
         I love to share many stories from programming, games to lifestyles on my
@@ -16,7 +16,7 @@ import Listing from '../modules/articles/components/listing.svelte'
     </section>
 
     <section
-      class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 items-center"
+      class="mt-6 grid grid-cols-1 items-center gap-8 sm:grid-cols-2 lg:grid-cols-3"
     >
       <Listing client:load />
     </section>

@@ -3,13 +3,13 @@ import Garten from './garten.astro'
 ---
 
 <footer
-  class="mt-12 mb-8 max-w-7xl mx-auto px-4 md:px-6 flex items-center text-gray-600 text-sm sm:text-base"
+  class="mx-auto mb-8 mt-12 flex max-w-7xl items-center px-4 text-sm text-gray-600 sm:text-base md:px-6"
 >
-  <div class="space-x-2 flex">
+  <div class="flex space-x-2">
     <a href="https://webring.wonderful.software#rayriffy.com" title="webring">
       <img
         src="/webring.svg"
-        class="w-6 sm:w-8 aspect-square transition-transform duration-700 ease-in-out hover:rotate-[720deg]"
+        class="aspect-square w-6 transition-transform duration-700 ease-in-out hover:rotate-[720deg] sm:w-8"
         alt="webring"
       />
     </a>
@@ -17,6 +17,6 @@ import Garten from './garten.astro'
       <Garten />
     </a>
   </div>
-  <div class="mx-4 h-6 sm:h-8 border-l-2 border-gray-300"></div>
+  <div class="mx-4 h-6 border-l-2 border-gray-300 sm:h-8"></div>
   <p>© {new Date().getFullYear()} Phumrapee Limpianchop</p>
 </footer>

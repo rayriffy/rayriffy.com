@@ -4,13 +4,13 @@ import Layout from '../app/components/layout.astro'
 ---
 
 <Layout title="Biography" path="/biography">
-  <div class="max-w-7xl mx-auto mt-10 px-4 md:px-6 pb-6">
-    <div class="space-y-6 lg:space-y-0 lg:flex lg:gap-8 lg:flex-row-reverse">
-      <div class="w-full lg:w-3/5 shrink-0">
+  <div class="mx-auto mt-10 max-w-7xl px-4 pb-6 md:px-6">
+    <div class="space-y-6 lg:flex lg:flex-row-reverse lg:gap-8 lg:space-y-0">
+      <div class="w-full shrink-0 lg:w-3/5">
         <Picture
           src="/biography.jpg"
           aspectRatio={2000 / 1334}
-          class="w-full h-auto"
+          class="h-auto w-full"
           alt="cover"
           decoding="async"
           widths={[1600]}
@@ -19,7 +19,7 @@ import Layout from '../app/components/layout.astro'
           background="white"
         />
 
-        <h1 class="font-medium text-xl lg:text-2xl mt-2">
+        <h1 class="mt-2 text-xl font-medium lg:text-2xl">
           [<a
             href="/full-resume-20230310.pdf"
             class="mx-1 text-gray-600 hover:text-gray-400">Full resume</a
@@ -27,7 +27,7 @@ import Layout from '../app/components/layout.astro'
         </h1>
       </div>
       <div
-        class="col-span-2 bg-purple-600 rounded-2xl text-white p-6 text-2xl space-y-4 w-full lg:w-2/5"
+        class="col-span-2 w-full space-y-4 rounded-2xl bg-purple-600 p-6 text-2xl text-white lg:w-2/5"
       >
         <p>
           Riffy is a full-stack web developer who make a lot of cool stuff with

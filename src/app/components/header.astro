@@ -12,23 +12,23 @@ export interface Props {
 
 <header
   x-bind:class="! open ? 'h-12' : 'h-full'"
-  class="fixed z-50 border-t w-full bottom-0 bg-white overflow-hidden transition-all ease-header duration-500 h-12 md:h-20"
+  class="ease-header fixed bottom-0 z-50 h-12 w-full overflow-hidden border-t bg-white transition-all duration-500 md:h-20"
   x-data="{ open: false }"
 >
-  <div class="md:py-6 md:px-8 md:flex justify-between">
+  <div class="justify-between md:flex md:px-8 md:py-6">
     <section
-      class="grid grid-cols-3 md:flex justify-start h-12 md:h-full border-b md:border-none"
+      class="grid h-12 grid-cols-3 justify-start border-b md:flex md:h-full md:border-none"
     >
-      <button class="md:hidden w-12 h-12" x-on:click="open = ! open">
-        <MenuIcon class="w-5 h-5 mx-auto" />
+      <button class="h-12 w-12 md:hidden" x-on:click="open = ! open">
+        <MenuIcon class="mx-auto h-5 w-5" />
       </button>
       <div class="flex items-center justify-center">
         <a rel="prefetch" href="/">
-          <R class="mx-auto w-6 h-6 md:mx-0 md:w-8 md:h-8 my-auto" />
+          <R class="mx-auto my-auto h-6 w-6 md:mx-0 md:h-8 md:w-8" />
         </a>
       </div>
       <ul
-        class="hidden md:flex items-center space-x-4 text-sm text-neutral-400 ml-8"
+        class="ml-8 hidden items-center space-x-4 text-sm text-neutral-400 md:flex"
       >
         {
           paths.map(({ path, name }) => (
@@ -42,11 +42,11 @@ export interface Props {
       </ul>
     </section>
 
-    <section class="hidden md:flex space-x-4">
+    <section class="hidden space-x-4 md:flex">
       <a href="https://webring.wonderful.software#rayriffy.com" title="webring">
         <img
           src="/webring.svg"
-          class="w-8 aspect-square transition-transform duration-700 ease-in-out hover:rotate-[720deg]"
+          class="aspect-square w-8 transition-transform duration-700 ease-in-out hover:rotate-[720deg]"
           alt="webring"
         />
       </a>
@@ -56,8 +56,8 @@ export interface Props {
     </section>
   </div>
 
-  <section class="block md:hidden overflow-y-scroll">
-    <ul class="text-neutral-400 divide-y border-b">
+  <section class="block overflow-y-scroll md:hidden">
+    <ul class="divide-y border-b text-neutral-400">
       {
         paths.map(({ path, name }) => (
           <li>
@@ -74,14 +74,14 @@ export interface Props {
           </li>
         ))
       }
-      <li class="px-4 py-3 flex space-x-2">
+      <li class="flex space-x-2 px-4 py-3">
         <a
           href="https://webring.wonderful.software#rayriffy.com"
           title="webring"
         >
           <img
             src="/webring.svg"
-            class="w-6 aspect-square transition-transform duration-700 ease-in-out hover:rotate-[720deg]"
+            class="aspect-square w-6 transition-transform duration-700 ease-in-out hover:rotate-[720deg]"
             alt="webring"
           />
         </a>
