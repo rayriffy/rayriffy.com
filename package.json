@@ -12,12 +12,12 @@
     "format": "prettier --write --plugin-search-dir=. ."
   },
   "devDependencies": {
-    "@astrojs/image": "^0.16.5",
+    "@astrojs/image": "^0.16.6",
     "@astrojs/prefetch": "^0.2.1",
     "@astrojs/tailwind": "^3.1.1",
-    "astro": "^2.2.1",
-    "astro-compress": "^1.1.35",
-    "prettier": "^2.8.7",
+    "astro": "^2.3.0",
+    "astro-compress": "^1.1.41",
+    "prettier": "^2.8.8",
     "prettier-plugin-astro": "^0.8.0",
     "prettier-plugin-tailwindcss": "^0.2.7",
     "tailwindcss": "^3.3.1"
