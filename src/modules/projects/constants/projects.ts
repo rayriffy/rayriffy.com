@@ -43,27 +43,11 @@ export const projects: Project[] = [
     links: [
       {
         label: 'Web',
-        url: 'https://apple-music-github-profile.rayriffy.com/',
+        url: 'https://music-profile.rayriffy.com/',
       },
       {
         label: 'GitHub',
         url: 'https://github.com/rayriffy/apple-music-github-profile',
-      },
-    ],
-  },
-  {
-    title: 'KnuckleBones',
-    year: 2022,
-    description:
-      'Svelte implementation of a mini-game "Knucklebones" featured in an action game "Cult of the Lamb" (Only designed for iPad)',
-    links: [
-      {
-        label: 'Web',
-        url: 'https://knuckle.rayriffy.com/',
-      },
-      {
-        label: 'GitHub',
-        url: 'https://github.com/rayriffy/knucklebones',
       },
     ],
   },
@@ -104,22 +88,6 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: 'Soli Debugger',
-    year: 2022,
-    description:
-      'Google Pixel 4 has a Soli sensor included. I was amazed when the Google ATAP team show what it could do in 2016. This is just a small debugger web application to test the sensor, and observe the data that the sensor sent.',
-    links: [
-      {
-        label: 'Web',
-        url: 'https://soli-debugger.vercel.app/',
-      },
-      {
-        label: 'GitHub',
-        url: 'https://github.com/rayriffy/soli-debugger',
-      },
-    ],
-  },
-  {
     title: 'Stupid Randomizer',
     year: 2022,
     description:
@@ -128,34 +96,6 @@ export const projects: Project[] = [
       {
         label: 'GitHub',
         url: 'https://github.com/rayriffy/stupid-randomizer',
-      },
-    ],
-  },
-  {
-    title: 'Stupid Adventure',
-    year: 2022,
-    description:
-      'Mini-adventure game for finding event tickets to The ៦th Stupid Hackathon Thailand',
-    links: [
-      {
-        label: 'Web',
-        url: 'https://ผจญภัยโง่ๆ.ริฟฟี่.ไทย',
-      },
-      {
-        label: 'GitHub',
-        url: 'https://github.com/rayriffy/stupid-adventure',
-      },
-    ],
-  },
-  {
-    title: 'Horvoryor (ห.ว.ย.)',
-    year: 2021,
-    description:
-      'An attempt to write Flutter application. This app will tell you the lottery result based on number you entered to the app.',
-    links: [
-      {
-        label: 'GitHub',
-        url: 'https://github.com/rayriffy/horvoryor',
       },
     ],
   },
@@ -172,18 +112,6 @@ export const projects: Project[] = [
       {
         label: 'GitHub',
         url: 'https://github.com/rayriffy/sekai-next',
-      },
-    ],
-  },
-  {
-    title: 'FISHSIX Online',
-    year: 2020,
-    description:
-      'Online course reservation system, with full payment system integration. Powered by Firebase',
-    links: [
-      {
-        label: 'Web',
-        url: 'https://online.fishsix.in.th',
       },
     ],
   },
@@ -230,34 +158,6 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: 'Instant sort',
-    year: 2019,
-    description:
-      'The fastest sorting algorithm ever with the speed of O(1). "Empty array is always sorted array"',
-    links: [
-      {
-        label: 'NPM',
-        url: 'http://npm.im/instant-sort',
-      },
-      {
-        label: 'GitHub',
-        url: 'https://github.com/rayriffy/instant-sort',
-      },
-    ],
-  },
-  {
-    title: 'maimai Song Randomizer',
-    year: 2019,
-    description:
-      "Don't know which songs to play? maimai Song Randomizer is a Google Assistant bot to help randomly choose 5 songs to play by genre while waiting for a queue to play.",
-    links: [
-      {
-        label: 'GitHub',
-        url: 'https://github.com/rayriffy/maimai-song-randomizer',
-      },
-    ],
-  },
-  {
     title: 'Riffy H',
     year: 2018,
     active: true,
@@ -291,22 +191,6 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: 'BirthTU',
-    year: 2018,
-    description:
-      'When your country is ruled by a dictator, you have to remember when to celebrate his birthday as well. This project was made in The Stupid Hackathon Thailand #2.',
-    links: [
-      {
-        label: 'Demo',
-        url: 'https://birth-tu.netlify.app',
-      },
-      {
-        label: 'GitHub',
-        url: 'https://github.com/Birth-TU/web',
-      },
-    ],
-  },
-  {
     title: 'scan-mang (แสกนแม่ง) API',
     year: 2018,
     description:
@@ -319,18 +203,6 @@ export const projects: Project[] = [
       {
         label: 'GitHub',
         url: 'https://github.com/rayriffy/hacktech-backend',
-      },
-    ],
-  },
-  {
-    title: 'Dormitory Elect',
-    year: 2018,
-    description:
-      'Keeping students in the dormitory in check is hard. So every year new constitution to manage the dormitory, and act as a middleman between students and dormitory personnel. This web application is created to help dormitory staff counts vote results from students faster.',
-    links: [
-      {
-        label: 'GitHub',
-        url: 'https://github.com/rayriffy/dormitory-elect',
       },
     ],
   },
@@ -351,18 +223,6 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: 'OrchidGazer Tensorflow',
-    year: 2017,
-    description:
-      'A second iteration of the image recognition model from my science project in MWIT using TensorFlow. Quickly abandoned after the project has been canceled.',
-    links: [
-      {
-        label: 'GitHub',
-        url: 'https://github.com/rayriffy/OrchidGazer-tensorflow',
-      },
-    ],
-  },
-  {
     title: 'OrchidGazer',
     year: 2016,
     description:
@@ -379,18 +239,6 @@ export const projects: Project[] = [
       {
         label: 'GitHub',
         url: 'https://github.com/rayriffy/caffeCNN',
-      },
-    ],
-  },
-  {
-    title: 'Pre-MWITS 2016: The Last Chapter',
-    description:
-      'The very first game that I wrote for Pre-MWITS camp, a camp to tease junior high school students about life at MWIT (the highest regarded science school in the country). The games use the perfect combination of software as a piece of interactive information and processing, and actual people who need to walk around and work together as a team.',
-    year: 2015,
-    links: [
-      {
-        label: 'GitHub',
-        url: 'https://github.com/rayriffy/premwits_2015',
       },
     ],
   },
