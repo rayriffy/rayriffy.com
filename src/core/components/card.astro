@@ -1,0 +1,50 @@
+---
+export interface Props {
+  heading?: {
+    title?: string
+    subHeading?: {
+      left?: string | number
+      right?: string | number
+    }
+    links?: {
+      label: string
+      href: string
+    }[]
+  }
+}
+
+const { heading } = Astro.props
+---
+
+<div
+  class="divide-y-2 divide-dotted divide-gray-300 rounded-xl border bg-white py-6 shadow-md"
+>
+  {
+    heading && (
+      <div class="px-6 pb-6">
+        {heading.title && <h1 class="text-xl font-bold">{heading.title}</h1>}
+        {heading.subHeading && (
+          <p class="text-gray-700">
+            {heading.subHeading.left}
+            {heading.subHeading.left && heading.subHeading.right && (
+              <span> · </span>
+            )}
+            <span class="font-semibold">{heading.subHeading.right}</span>
+          </p>
+        )}
+        {heading.links && heading.links.length !== 0 && (
+          <div class="flex flex-wrap space-x-2">
+            {heading.links.map(link => (
+              <a href={link.href} class="my-1">
+                {link.label}
+              </a>
+            ))}
+          </div>
+        )}
+      </div>
+    )
+  }
+  <div class="px-6 pt-6 text-sm">
+    <slot />
+  </div>
+</div>

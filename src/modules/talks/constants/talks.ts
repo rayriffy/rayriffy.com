@@ -9,8 +9,8 @@ export const talks: Talk[] = [
       'Passwords are bad for people when the website required you to include at least capital and special case character. Why waste time remembering a hard password, or using a password manager and waiting for the time to be phished? Introducing WebAuthn, the password-less authentication method for the future.',
     links: [
       {
-        label: 'Facebook',
-        url: 'https://www.facebook.com/web.developer.th/posts/3317903315203169',
+        label: 'Video',
+        url: 'https://youtu.be/wjwNIYIhYhw',
       },
       {
         label: 'Keynote',

@@ -1,5 +1,7 @@
 ---
 import Layout from '../app/components/layout.astro'
+import Card from '$core/components/card.astro'
+
 import { talks } from '../modules/talks/constants/talks'
 ---
 
@@ -15,25 +17,24 @@ import { talks } from '../modules/talks/constants/talks'
       </h1>
     </section>
 
-    <section class="mx-auto max-w-5xl space-y-8">
+    <section class="mx-auto grid max-w-5xl grid-cols-2 gap-4">
       {
         talks.map(talk => (
-          <div class="divide-y-2 divide-dotted divide-gray-300 rounded-xl border bg-white py-8 shadow-md">
-            <div class="px-8 pb-6">
-              <h1 class="text-2xl font-bold">{talk.title}</h1>
-              <p class="mt-1 text-gray-700">
-                {talk.event} · <span class="font-semibold">{talk.year}</span>
-              </p>
-              <div class="mt-1 flex flex-wrap space-x-2">
-                {talk.links.map(link => (
-                  <a href={link.url} class="my-1">
-                    {link.label}
-                  </a>
-                ))}
-              </div>
-            </div>
-            <p class="px-8 pt-8">{talk.description}</p>
-          </div>
+          <Card
+            heading={{
+              title: talk.title,
+              subHeading: {
+                left: talk.event,
+                right: talk.year,
+              },
+              links: talk.links.map(link => ({
+                label: link.label,
+                href: link.url,
+              })),
+            }}
+          >
+            {talk.description}
+          </Card>
         ))
       }
     </section>

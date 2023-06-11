@@ -4,7 +4,8 @@
     "forceConsistentCasingInFileNames": false,
     "baseUrl": ".",
     "paths": {
-      "$modules/*": ["src/modules/*"]
+      "$modules/*": ["src/modules/*"],
+      "$core/*": ["src/core/*"]
     }
   }
 }

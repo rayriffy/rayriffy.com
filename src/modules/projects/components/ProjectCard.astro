@@ -1,4 +1,6 @@
 ---
+import Card from '$core/components/card.astro';
+
 import type { Project } from '../@types/Project'
 
 export interface Props {
@@ -8,21 +10,17 @@ export interface Props {
 const { title, year, active, links, description } = Astro.props.project
 ---
 
-<div
-  class="divide-y-2 divide-dotted divide-gray-300 rounded-lg border bg-white py-6 shadow-md"
+<Card
+  heading={{
+    title,
+    subHeading: {
+      right: `${year}${active ? ' - Present' : ''}`
+    },
+    links: links.map(link => ({
+      label: link.label,
+      href: link.url,
+    }))
+  }}
 >
-  <div class="px-6 pb-3">
-    <h1 class="text-xl font-bold leading-tight">{title}</h1>
-    <div class="flex flex-wrap space-x-2">
-      <span class="my-1">{year}{active ? ' - Present' : ''} ·</span>
-      {
-        links.map(link => (
-          <a href={link.url} class="my-1">
-            {link.label}
-          </a>
-        ))
-      }
-    </div>
-  </div>
-  <p class="px-6 pt-6 text-sm">{description}</p>
-</div>
+  {description}
+</Card>
