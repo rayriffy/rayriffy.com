@@ -22,57 +22,57 @@ const { page, entryCollection } = Astro.props
 const totalPage = Math.ceil(entryCollection.total / 10)
 ---
 
-  <div class="mx-auto max-w-3xl px-3 sm:px-6 xl:max-w-5xl xl:px-0">
-    <ul class="space-y-10 py-12">
-      {
-        entryCollection.items.map(blog => {
-          return (
-            <li>
-              <article class="space-y-2 xl:grid xl:grid-cols-4 xl:items-start xl:space-y-0">
-                <dl>
-                  <dt class="sr-only">Published on</dt>
-                  <dd class="text-base font-medium leading-6 text-gray-500">
-                    <time datetime="2020-09-22">
-                      {dayjs(blog.fields.date).format('D MMMM, YYYY')}
-                    </time>
-                  </dd>
-                </dl>
-                <div class="space-y-3 xl:col-span-3">
-                  <div>
+<div class="mx-auto max-w-3xl px-3 sm:px-6 xl:max-w-5xl xl:px-0">
+  <ul class="space-y-10 py-12">
+    {
+      entryCollection.items.map(blog => {
+        return (
+          <li>
+            <article class="space-y-2 xl:grid xl:grid-cols-4 xl:items-start xl:space-y-0">
+              <dl>
+                <dt class="sr-only">Published on</dt>
+                <dd class="text-base font-medium leading-6 text-gray-500">
+                  <time datetime="2020-09-22">
+                    {dayjs(blog.fields.date).format('D MMMM, YYYY')}
+                  </time>
+                </dd>
+              </dl>
+              <div class="space-y-3 xl:col-span-3">
+                <div>
+                  <a href={`/blog/${blog.fields.slug}`}>
+                    <CFImage
+                      src={blog.fields.banner!.fields.file!.url}
+                      width={800}
+                      ratio={1500 / 788}
+                      src={blog.fields.banner!.fields.file!.url}
+                      transform={{ quality: 85 }}
+                      class="h-auto w-full rounded-xl border shadow-md"
+                    />
+                  </a>
+                  <h3 class="mt-4 text-2xl font-bold leading-8 tracking-tight text-gray-900 xl:w-2/3">
                     <a href={`/blog/${blog.fields.slug}`}>
-                      <CFImage
-                        src={blog.fields.banner!.fields.file!.url}
-                        width={800}
-                        ratio={1500 / 788}
-                        src={blog.fields.banner!.fields.file!.url}
-                        transform={{ quality: 85 }}
-                        class="h-auto w-full rounded-xl border shadow-md"
-                      />
+                      {blog.fields.title}
                     </a>
-                    <h3 class="mt-4 text-2xl font-bold leading-8 tracking-tight text-gray-900 xl:w-2/3">
-                      <a href={`/blog/${blog.fields.slug}`}>
-                        {blog.fields.title}
+                  </h3>
+                  <div class="mt-1 flex flex-wrap">
+                    {blog.fields.category.map(category => (
+                      <a class="mr-3 text-sm font-medium text-blue-500">
+                        {category!.fields.name}
                       </a>
-                    </h3>
-                    <div class="mt-1 flex flex-wrap">
-                      {blog.fields.category.map(category => (
-                        <a class="mr-3 text-sm font-medium text-blue-500">
-                          {category!.fields.name}
-                        </a>
-                      ))}
-                    </div>
+                    ))}
                   </div>
-                  <p class="max-w-none text-gray-500">{blog.fields.subtitle}</p>
                 </div>
-              </article>
-            </li>
-          )
-        })
-      }
-    </ul>
-    <div class="flex justify-between pb-12">
-      <Link page={page - 1} max={totalPage}>Previous</Link>
-      <div>{page} of {totalPage}</div>
-      <Link page={page + 1} max={totalPage}>Next</Link>
-    </div>
+                <p class="max-w-none text-gray-500">{blog.fields.subtitle}</p>
+              </div>
+            </article>
+          </li>
+        )
+      })
+    }
+  </ul>
+  <div class="flex justify-between pb-12">
+    <Link page={page - 1} max={totalPage}>Previous</Link>
+    <div>{page} of {totalPage}</div>
+    <Link page={page + 1} max={totalPage}>Next</Link>
   </div>
+</div>

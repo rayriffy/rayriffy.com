@@ -3,6 +3,7 @@ import SEO from '$core/components/seo.astro'
 import Header from './header.astro'
 
 import '../styles/tailwind.css'
+import '../styles/twemoji.css'
 
 export interface Props {
   noPadding?: boolean
@@ -23,9 +24,7 @@ const { noPadding = false } = Astro.props
     <link rel="icon" href="/favicon.png" />
 
     <slot name="seo">
-      <SEO
-        description="The front frontier of rayriffy.com!"
-      />
+      <SEO description="The front frontier of rayriffy.com!" />
     </slot>
 
     <script src="//unpkg.com/alpinejs" defer is:inline></script>

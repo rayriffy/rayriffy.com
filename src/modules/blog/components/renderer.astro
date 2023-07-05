@@ -20,4 +20,7 @@ const renderedContent = await unified()
   .process(Astro.props.content)
 ---
 
-<article class="prose prose-blue max-w-3xl mx-auto" set:html={renderedContent.value} />
+<article
+  class="prose prose-lg prose-blue max-w-none"
+  set:html={renderedContent.value}
+/>
