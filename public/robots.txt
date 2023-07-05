@@ -1,6 +1,6 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow: /articles
+Disallow: /pages/*
 Disallow: /projects
 Disallow: /talks
 Disallow: /biography

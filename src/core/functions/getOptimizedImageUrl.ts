@@ -6,6 +6,6 @@ export const getOptimizedImageUrl = (
     quality: 80,
   }
 ) =>
-  `https://creatorsgarten.org/cdn-cgi/image/${Object.entries(options)
+  `https://rayriffy.com/cdn-cgi/image/${Object.entries(options)
     .map(pair => new URLSearchParams(Object.fromEntries([pair])).toString())
     .join(',')}/${url}`
