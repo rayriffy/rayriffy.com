@@ -39,7 +39,7 @@ const totalPage = Math.ceil(entryCollection.total / 10)
               </dl>
               <div class="space-y-3 xl:col-span-3">
                 <div>
-                  <a href={`/blog/${blog.fields.slug}`}>
+                  <a rel="prefetch" href={`/blog/${blog.fields.slug}`}>
                     <CFImage
                       src={blog.fields.banner!.fields.file!.url}
                       width={800}
@@ -50,15 +50,15 @@ const totalPage = Math.ceil(entryCollection.total / 10)
                     />
                   </a>
                   <h3 class="mt-4 text-2xl font-bold leading-8 tracking-tight text-gray-900 xl:w-2/3">
-                    <a href={`/blog/${blog.fields.slug}`}>
+                    <a rel="prefetch" href={`/blog/${blog.fields.slug}`}>
                       {blog.fields.title}
                     </a>
                   </h3>
                   <div class="mt-1 flex flex-wrap">
                     {blog.fields.category.map(category => (
-                      <a class="mr-3 text-sm font-medium text-blue-500">
+                      <span class="mr-3 text-sm font-medium text-blue-500">
                         {category!.fields.name}
-                      </a>
+                      </span>
                     ))}
                   </div>
                 </div>
