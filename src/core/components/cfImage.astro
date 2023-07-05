@@ -46,7 +46,7 @@ const originalHeight = Math.floor(originalWidth / ratio)
 
 // uses cloudflare image optimization on prod
 if (import.meta.env.PROD || true) {
-  const formats: OptimizedImageOption['format'][] = ['webp']
+  const formats: OptimizedImageOption['format'][] = ['webp', 'avif']
 
   sources = formats.map(format => {
     return {
