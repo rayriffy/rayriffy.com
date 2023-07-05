@@ -1,10 +1,18 @@
 ---
+import SEO from '$core/components/seo.astro'
 import CfImage from '$core/components/cfImage.astro';
 import Layout from '../app/components/layout.astro'
+
 import { socials } from '../modules/contact/constants/socials'
 ---
 
-<Layout title="Contact" path="/contact">
+<Layout>
+  <SEO
+    slot='seo'
+    title='Contact'
+    description="Contact me for any inquiries."
+  />
+
   <div class="mx-auto mt-10 max-w-7xl px-4 pb-6 md:px-6">
     <section class="mb-8 mt-12 gap-8 sm:flex">
       <div>

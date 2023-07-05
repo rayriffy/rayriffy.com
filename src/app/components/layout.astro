@@ -1,15 +1,14 @@
 ---
+import SEO from '$core/components/seo.astro'
 import Header from './header.astro'
 
 import '../styles/tailwind.css'
 
 export interface Props {
-  title?: string
-  path: string
   noPadding?: boolean
 }
 
-const { title, noPadding = false } = Astro.props
+const { noPadding = false } = Astro.props
 ---
 
 <!DOCTYPE html>
@@ -21,13 +20,13 @@ const { title, noPadding = false } = Astro.props
       name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=contain"
     />
-
     <link rel="icon" href="/favicon.png" />
 
-    <title>{title ? `${title} · rayriffy` : 'rayriffy'}</title>
-    <meta name="description" content="The front frontier of rayriffy.com!" />
-
-    <link rel="dns-prefetch" href="https://blog.rayriffy.com" />
+    <slot name="seo">
+      <SEO
+        description="The front frontier of rayriffy.com!"
+      />
+    </slot>
 
     <script src="//unpkg.com/alpinejs" defer is:inline></script>
   </head>

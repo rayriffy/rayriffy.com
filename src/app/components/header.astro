@@ -5,9 +5,7 @@ import { paths } from '../constants/paths'
 import Garten from './garten.astro'
 import MenuIcon from './menuIcon.astro'
 
-export interface Props {
-  path: string
-}
+const { pathname } = new URL(Astro.request.url)
 ---
 
 <header
@@ -32,7 +30,7 @@ export interface Props {
       >
         {
           paths.map(({ path, name }) => (
-            <li class={Astro.props.path === path ? 'text-black' : ''}>
+            <li class={pathname.startsWith(path) ? 'text-black' : ''}>
               <a rel="prefetch" href={path} class="no-underline">
                 {name}
               </a>

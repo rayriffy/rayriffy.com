@@ -1,5 +1,4 @@
 ---
-import Layout from '$app/components/layout.astro'
 import CFImage from '$core/components/cfImage.astro'
 
 import Link from './link.astro'
@@ -23,7 +22,6 @@ const { page, entryCollection } = Astro.props
 const totalPage = Math.ceil(entryCollection.total / 10)
 ---
 
-<Layout title="Blogs" path="/blogs">
   <div class="mx-auto max-w-3xl px-3 sm:px-6 xl:max-w-5xl xl:px-0">
     <ul class="space-y-10 py-12">
       {
@@ -78,4 +76,3 @@ const totalPage = Math.ceil(entryCollection.total / 10)
       <Link page={page + 1} max={totalPage}>Next</Link>
     </div>
   </div>
-</Layout>

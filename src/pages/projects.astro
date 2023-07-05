@@ -1,13 +1,21 @@
 ---
+import SEO from '$core/components/seo.astro'
 import Layout from '../app/components/layout.astro'
 import ProjectCard from '../modules/projects/components/ProjectCard.astro'
+
 import { projects } from '../modules/projects/constants/projects'
 
 const activeProjects = projects.filter(o => o.active)
 const archivedProjects = projects.filter(o => !o.active)
 ---
 
-<Layout title="Projects" path="/projects">
+<Layout>
+  <SEO
+    slot='seo'
+    title='Projects'
+    description="Here's all projects that I've created since high school."
+  />
+
   <div class="mx-auto mt-10 max-w-7xl px-4 pb-6 md:px-6">
     <section class="my-8">
       <h1 class="text-xl">

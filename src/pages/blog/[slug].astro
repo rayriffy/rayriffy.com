@@ -1,6 +1,7 @@
 ---
 import Layout from '$app/components/layout.astro'
 import Renderer from '$modules/blog/components/renderer.astro'
+import SEO from '$core/components/seo.astro'
 
 import { getBlog } from '$modules/blog/functions/getBlog'
 
@@ -13,7 +14,13 @@ if (!blog) {
 }
 ---
 
-<Layout title={blog.fields.title} path="/blogs">
+<Layout>
+  <SEO
+    slot='seo'
+    title={blog.fields.title}
+    description={blog.fields.subtitle}
+    image={blog.fields.banner!.fields.file!.url}
+  />
   <div class="mx-auto max-w-3xl px-3 sm:px-6 xl:max-w-5xl xl:px-0">
     <div class="mx-auto max-w-3xl sm:px-6 xl:max-w-5xl xl:px-0">
       <h1

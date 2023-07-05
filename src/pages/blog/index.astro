@@ -1,5 +1,8 @@
 ---
+import Layout from '$app/components/layout.astro'
 import BlogListing from '$modules/blog/components/listing.astro'
+import SEO from '$core/components/seo.astro'
+
 import { getBlogs } from '$modules/blog/functions/getBlogs'
 
 import type { BlogPostSkeleton } from '$core/@types/BlogPostSkeleton'
@@ -21,4 +24,11 @@ if (!entryCollection || entryCollection.items.length === 0) {
 }
 ---
 
-<BlogListing page={targetPage} entryCollection={entryCollection!} />
+<Layout>
+  <SEO
+    slot='seo'
+    title='Blog'
+    description="Here's a list of all my blog posts."
+  />
+  <BlogListing page={targetPage} entryCollection={entryCollection!} />
+</Layout>

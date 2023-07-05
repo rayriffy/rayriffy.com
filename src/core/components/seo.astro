@@ -1,0 +1,34 @@
+---
+import { SEO } from "astro-seo"
+
+export interface Props {
+  title?: string
+  description?: string
+  image?: string
+  noindex?: boolean
+}
+
+const { title, description, image = '/cover.jpg', noindex = false } = Astro.props
+const transformedTitle = title ? `${title} · rayriffy` : 'rayriffy'
+---
+
+<SEO
+  title={transformedTitle}
+  description={description}
+  openGraph={{
+    basic: {
+      title: transformedTitle,
+      type: 'website',
+      image: image!,
+    } 
+  }}
+  twitter={{
+    creator: "@rayriffy",
+    card: 'summary_large_image',
+    site: 'https://rayriffy.com',
+    title: transformedTitle,
+    image,
+    description
+  }}
+  noindex={noindex}
+/>
