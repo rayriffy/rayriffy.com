@@ -13,7 +13,7 @@ interface ExtendedNode extends Node {
 }
 
 const generateSourceSet = (url: string, type?: 'webp' | 'avif') =>
-  [640, 750, 828, 1080, 1200]
+  [480, 640, 768, 1024]
     .map(size =>
       [
         encode(
