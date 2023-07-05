@@ -1,21 +1,23 @@
 ---
-import { Picture } from '@astrojs/image/components'
-
+import CfImage from '$core/components/cfImage.astro';
 import Layout from '../app/components/layout.astro'
 ---
 
 <Layout path="/" noPadding>
-  <Picture
-    src="/front.jpg"
-    aspectRatio={1.33}
-    alt="cover"
-    decoding="async"
-    widths={[2400]}
-    quality={83}
-    sizes=""
+  <CfImage
     id="cover"
-    formats={['jpg', 'webp']}
-    background="white"
+    src="./front.jpg"
+    width={{
+      sm: 640,
+      md: 768,
+      lg: 1024,
+      xl: 1280,
+      max: 2000
+    }}
+    ratio={1.33}
+    fetchpriority='high'
+    decoding="async"
+    alt="cover"
   />
 </Layout>
 

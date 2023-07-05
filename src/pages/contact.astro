@@ -1,5 +1,5 @@
 ---
-import { Image } from '@astrojs/image/components'
+import CfImage from '$core/components/cfImage.astro';
 import Layout from '../app/components/layout.astro'
 import { socials } from '../modules/contact/constants/socials'
 ---
@@ -11,13 +11,11 @@ import { socials } from '../modules/contact/constants/socials'
         <div
           class="mx-auto aspect-square w-52 shrink-0 overflow-hidden rounded-full bg-purple-200 sm:mx-0"
         >
-          <Image
+          <CfImage
             src="/memoji.png"
             alt="memoji"
-            format="png"
             width={220}
-            height={220}
-            aspectRatio={1}
+            ratio={1}
             class="aspect-square w-full"
           />
         </div>

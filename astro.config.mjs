@@ -1,7 +1,6 @@
 import { defineConfig } from 'astro/config'
 import tailwind from '@astrojs/tailwind'
 import prefetch from '@astrojs/prefetch'
-import image from '@astrojs/image'
 import svelte from '@astrojs/svelte'
 
 import node from '@astrojs/node'
@@ -20,7 +19,6 @@ export default defineConfig({
       },
     }),
     prefetch(),
-    image(),
     svelte(),
   ],
 })
