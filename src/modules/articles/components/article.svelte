@@ -5,14 +5,14 @@
 </script>
 
 <a href={`https://blog.rayriffy.com${blog.url}`} class="no-underline">
-  <article class="bg-white rounded-xl overflow-hidden shadow-md border">
+  <article class="overflow-hidden rounded-xl border bg-white shadow-md">
     <img
-      class="w-full aspect-[1500/788]"
+      class="aspect-[1500/788] w-full"
       src={blog.banner.url}
       alt={blog.title}
     />
     <div class="px-6 py-4">
-      <h2 class="font-bold text-xl">{blog.title}</h2>
+      <h2 class="text-xl font-bold">{blog.title}</h2>
       <p class="text-gray-700">{blog.subtitle}</p>
     </div>
   </article>

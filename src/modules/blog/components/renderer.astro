@@ -1,0 +1,23 @@
+---
+import { unified } from 'unified'
+import remarkParse from 'remark-parse'
+import remarkHtml from 'remark-html'
+
+import { iframeParser } from '$modules/blog/plugins/iframeParser'
+import { imageParser } from '$modules/blog/plugins/imageParser'
+
+interface Props {
+  content: string
+}
+
+const renderedContent = await unified()
+  .use(remarkParse)
+  .use(remarkHtml, {
+    sanitize: false,
+  })
+  .use(iframeParser)
+  .use(imageParser)
+  .process(Astro.props.content)
+---
+
+<article class="prose prose-blue max-w-3xl mx-auto" set:html={renderedContent.value} />

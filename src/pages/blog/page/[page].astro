@@ -1,0 +1,26 @@
+---
+import BlogListing from '$modules/blog/components/listing.astro'
+import { getBlogs } from '$modules/blog/functions/getBlogs'
+
+import type { BlogPostSkeleton } from '$core/@types/BlogPostSkeleton'
+import type { EntryCollection } from 'contentful'
+
+const { page } = Astro.params
+
+let targetPage = Number(page)
+let entryCollection:
+  | EntryCollection<BlogPostSkeleton, 'WITHOUT_UNRESOLVABLE_LINKS', string>
+  | undefined
+
+try {
+  entryCollection = await getBlogs(Number(targetPage))
+} catch (error) {}
+
+if (!entryCollection || entryCollection.items.length === 0) {
+  return new Response(undefined, {
+    status: 404,
+  })
+}
+---
+
+<BlogListing page={targetPage} entryCollection={entryCollection!} />

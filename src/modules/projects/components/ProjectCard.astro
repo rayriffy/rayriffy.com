@@ -1,5 +1,5 @@
 ---
-import Card from '$core/components/card.astro';
+import Card from '$core/components/card.astro'
 
 import type { Project } from '../@types/Project'
 
@@ -14,12 +14,12 @@ const { title, year, active, links, description } = Astro.props.project
   heading={{
     title,
     subHeading: {
-      right: `${year}${active ? ' - Present' : ''}`
+      right: `${year}${active ? ' - Present' : ''}`,
     },
     links: links.map(link => ({
       label: link.label,
       href: link.url,
-    }))
+    })),
   }}
 >
   {description}

@@ -5,7 +5,9 @@
     "baseUrl": ".",
     "paths": {
       "$modules/*": ["src/modules/*"],
+      "$app/*": ["src/app/*"],
       "$core/*": ["src/core/*"]
     }
-  }
+  },
+  "include": ["src"]
 }

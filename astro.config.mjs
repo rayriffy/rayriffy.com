@@ -1,14 +1,18 @@
 import { defineConfig } from 'astro/config'
-
-import compress from 'astro-compress'
 import tailwind from '@astrojs/tailwind'
 import prefetch from '@astrojs/prefetch'
 import image from '@astrojs/image'
 import svelte from '@astrojs/svelte'
 
+import node from '@astrojs/node'
+
 // https://astro.build/config
 export default defineConfig({
+  output: 'server',
   site: 'https://rayriffy.com',
+  adapter: node({
+    mode: 'middleware',
+  }),
   integrations: [
     tailwind({
       config: {
@@ -18,10 +22,5 @@ export default defineConfig({
     prefetch(),
     image(),
     svelte(),
-    compress({
-      img: false,
-      svg: false,
-      js: true,
-    }),
   ],
 })

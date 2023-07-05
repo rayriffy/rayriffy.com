@@ -4,8 +4,8 @@ export const paths = [
     name: 'Home',
   },
   {
-    path: '/articles',
-    name: 'Articles',
+    path: '/blog',
+    name: 'Blog',
   },
   {
     path: '/projects',

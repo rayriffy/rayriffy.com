@@ -1,0 +1,22 @@
+---
+export interface Props {
+  page: number
+  max: number
+}
+
+const { page, max } = Astro.props
+
+const isDisabled = page < 1 || page > max
+---
+
+{
+  isDisabled ? (
+    <span class="opacity-50">
+      <slot />
+    </span>
+  ) : (
+    <a rel="prefetch" href={page === 1 ? '/blog' : '/blog/page/' + page}>
+      <slot />
+    </a>
+  )
+}

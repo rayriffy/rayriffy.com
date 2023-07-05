@@ -13,12 +13,11 @@
   }
 </script>
 
-
 {#await getBlogs()}
   {#each Array.from({ length: 12 }) as _}
     <ArticleSkeleton />
   {/each}
-  {:then blogs}
+{:then blogs}
   {#each blogs as blog}
     <Article {blog} />
   {/each}
