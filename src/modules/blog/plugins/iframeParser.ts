@@ -63,7 +63,11 @@ export const iframeParser: Plugin = () => {
         if (o.ok) return o.json()
         else throw o
       })
-      await writeFileSystem(oembedKey, providersRemote, 1000 * 60 * 60 * 24 * 30)
+      await writeFileSystem(
+        oembedKey,
+        providersRemote,
+        1000 * 60 * 60 * 24 * 30
+      )
     }
 
     // transform
@@ -128,7 +132,11 @@ export const iframeParser: Plugin = () => {
                       else throw o
                     })
 
-                    writeFileSystem(oembedEndpointKey, oembedResult, 1000 * 60 * 60)
+                    writeFileSystem(
+                      oembedEndpointKey,
+                      oembedResult,
+                      1000 * 60 * 60
+                    )
 
                     // override node
                     node.type = `html`

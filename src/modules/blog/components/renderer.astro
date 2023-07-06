@@ -3,8 +3,13 @@ import { unified } from 'unified'
 import remarkParse from 'remark-parse'
 import remarkHtml from 'remark-html'
 
+import { rehype } from 'rehype'
+import rehypePrism from 'rehype-prism-plus'
+
 import { iframeParser } from '$modules/blog/plugins/iframeParser'
 import { imageParser } from '$modules/blog/plugins/imageParser'
+
+import '../styles/prism.css'
 
 interface Props {
   content: string
@@ -18,6 +23,13 @@ const renderedContent = await unified()
   .use(iframeParser)
   .use(imageParser)
   .process(Astro.props.content)
+  .then(vFile =>
+    rehype()
+      .use(rehypePrism, {
+        ignoreMissing: true,
+      })
+      .process(vFile.value)
+  )
 ---
 
 <article
