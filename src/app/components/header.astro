@@ -30,7 +30,7 @@ const { pathname } = new URL(Astro.request.url)
       >
         {
           paths.map(({ path, name }) => (
-            <li class={pathname.startsWith(path) ? 'text-black' : ''}>
+            <li class={(path === '/' ? pathname === path : pathname.startsWith(path)) ? 'text-black' : ''}>
               <a rel="prefetch" href={path} class="no-underline">
                 {name}
               </a>
