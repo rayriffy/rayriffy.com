@@ -38,7 +38,6 @@
     "@types/node": "^20.3.3",
     "@types/unist": "^2.0.6",
     "astro": "^2.7.4",
-    "astro-compress": "^1.1.49",
     "astro-seo": "^0.7.4",
     "prettier": "2.8.8",
     "prettier-plugin-astro": "^0.10.0",
