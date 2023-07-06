@@ -22,21 +22,37 @@ const { page, entryCollection } = Astro.props
 const totalPage = Math.ceil(entryCollection.total / 10)
 ---
 
-<div class="mx-auto max-w-3xl px-3 sm:px-6 xl:max-w-5xl xl:px-0">
+<div
+  class="mx-auto max-w-3xl space-y-4 px-3 py-12 sm:px-6 xl:max-w-5xl xl:px-0"
+>
+  <h1
+    class="md:leading-14 text-3xl font-extrabold leading-9 tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-6xl"
+  >
+    Blogs
+  </h1>
+  <p class="text-lg leading-7 text-gray-500">
+    I usually write about any web-related technologies that I found interesting,
+    and sometime about my personal life as well.
+  </p>
   <ul class="space-y-10 py-12">
     {
       entryCollection.items.map(blog => {
         return (
           <li>
             <article class="space-y-2 xl:grid xl:grid-cols-4 xl:items-start xl:space-y-0">
-              <dl>
-                <dt class="sr-only">Published on</dt>
-                <dd class="text-base font-medium leading-6 text-gray-500">
-                  <time datetime="2020-09-22">
-                    {dayjs(blog.fields.date).format('D MMMM, YYYY')}
-                  </time>
-                </dd>
-              </dl>
+              <div class="flex xl:block">
+                <dl class="pr-2">
+                  <dt class="sr-only">Published on</dt>
+                  <dd class="text-base font-medium leading-6 text-gray-500">
+                    <time datetime="2020-09-22">
+                      {dayjs(blog.fields.date).format('D MMMM, YYYY')}
+                    </time>
+                  </dd>
+                </dl>
+                {blog.fields.featured && (
+                  <span class="text-orange-700 bg-orange-100 border-2 border-orange-700 px-2 rounded-full text-sm font-semibold">FEATURED</span>
+                )}
+              </div>
               <div class="space-y-3 xl:col-span-3">
                 <div>
                   <a rel="prefetch" href={`/blog/${blog.fields.slug}`}>
@@ -70,7 +86,7 @@ const totalPage = Math.ceil(entryCollection.total / 10)
       })
     }
   </ul>
-  <div class="flex justify-between pb-12">
+  <div class="flex justify-between">
     <Link page={page - 1} max={totalPage}>Previous</Link>
     <div>{page} of {totalPage}</div>
     <Link page={page + 1} max={totalPage}>Next</Link>

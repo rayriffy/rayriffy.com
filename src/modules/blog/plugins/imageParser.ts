@@ -4,9 +4,9 @@ import { encode } from 'html-entities'
 import { getOptimizedImageUrl } from '$core/functions/getOptimizedImageUrl'
 
 import type { Plugin } from 'unified'
-import type { Node } from 'unist'
+import type { Data, Node } from 'unist'
 
-interface ExtendedNode extends Node {
+interface ExtendedNode extends Node<Data> {
   value: string
   url: string
   alt?: string

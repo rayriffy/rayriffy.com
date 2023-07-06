@@ -8,8 +8,7 @@ import rehypePrism from 'rehype-prism-plus'
 
 import { iframeParser } from '$modules/blog/plugins/iframeParser'
 import { imageParser } from '$modules/blog/plugins/imageParser'
-
-import '../styles/prism.css'
+import { codeHighlight } from '../plugins/codeHighlight'
 
 interface Props {
   content: string
@@ -28,6 +27,7 @@ const renderedContent = await unified()
       .use(rehypePrism, {
         ignoreMissing: true,
       })
+      .use(codeHighlight)
       .process(vFile.value)
   )
 ---

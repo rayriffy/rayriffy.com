@@ -1,0 +1,20 @@
+---
+import Layout from '$app/components/layout.astro';
+import { notion } from '$core/constants/notion'
+
+const items = await notion.databases.query({
+  database_id: '767256390e784c1794efee891777fabd',
+  sorts: [{
+    timestamp: 'created_time',
+    direction: 'ascending'
+  }]
+})
+---
+
+<Layout>
+  <section class="space-y-8">
+    {items.results.map(it => (
+      <div>{JSON.stringify(it)}</div>
+    ))}
+  </section>
+</Layout>
