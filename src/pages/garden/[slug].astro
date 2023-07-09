@@ -1,0 +1,36 @@
+---
+import Layout from '$app/components/layout.astro'
+import SEO from '$core/components/seo.astro'
+
+import { getGardenPost } from '$modules/garden/functions/getGardenPost'
+
+import Renderer from '$modules/markdown/components/renderer.astro'
+
+const { slug } = Astro.params
+
+const gardenContent = await getGardenPost(slug ?? '')
+// const blocks = await getPageBlocks(targetPageDatabase.id)
+
+if (!gardenContent) {
+  return new Response(undefined, {
+    status: 404,
+  })
+}
+---
+
+<Layout>
+  <SEO slot="seo" title={gardenContent.title} />
+  <div
+    class="mx-auto max-w-3xl space-y-4 px-3 py-12 sm:px-6 xl:max-w-5xl xl:px-0"
+  >
+    <h1
+      class="md:leading-14 text-3xl font-extrabold leading-10 tracking-tight text-gray-900 md:text-5xl lg:text-[54px] lg:leading-[64px]"
+    >
+      {gardenContent.title}
+    </h1>
+    <Renderer
+      class="prose prose-lg prose-blue max-w-none"
+      content={gardenContent.content}
+    />
+  </div>
+</Layout>

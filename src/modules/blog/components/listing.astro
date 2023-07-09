@@ -44,13 +44,17 @@ const totalPage = Math.ceil(entryCollection.total / 10)
                 <dl class="pr-2">
                   <dt class="sr-only">Published on</dt>
                   <dd class="text-base font-medium leading-6 text-gray-500">
-                    <time datetime="2020-09-22">
+                    <time
+                      datetime={dayjs(blog.fields.date).format('YYYY-MM-DD')}
+                    >
                       {dayjs(blog.fields.date).format('D MMMM, YYYY')}
                     </time>
                   </dd>
                 </dl>
                 {blog.fields.featured && (
-                  <span class="text-orange-700 bg-orange-100 border-2 border-orange-700 px-2 rounded-full text-sm font-semibold">FEATURED</span>
+                  <span class="rounded-full border-2 border-orange-700 bg-orange-100 px-2 text-sm font-semibold text-orange-700">
+                    FEATURED
+                  </span>
                 )}
               </div>
               <div class="space-y-3 xl:col-span-3">

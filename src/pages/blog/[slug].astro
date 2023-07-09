@@ -1,6 +1,6 @@
 ---
 import Layout from '$app/components/layout.astro'
-import Renderer from '$modules/blog/components/renderer.astro'
+import Renderer from '$modules/markdown/components/renderer.astro'
 import SEO from '$core/components/seo.astro'
 import CFImage from '$core/components/cfImage.astro'
 
@@ -72,7 +72,7 @@ if (!blog) {
           </dd>
         </div>
       </dl>
-      <Renderer content={blog.fields.content} />
+      <Renderer class="prose prose-lg prose-blue max-w-none" content={blog.fields.content} />
     </div>
   </div>
   <div class="pb-12"></div>

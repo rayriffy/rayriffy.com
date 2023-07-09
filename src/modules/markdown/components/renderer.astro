@@ -6,13 +6,15 @@ import remarkHtml from 'remark-html'
 import { rehype } from 'rehype'
 import rehypePrism from 'rehype-prism-plus'
 
-import { iframeParser } from '$modules/blog/plugins/iframeParser'
-import { imageParser } from '$modules/blog/plugins/imageParser'
+import { iframeParser } from '../plugins/iframeParser'
+import { imageParser } from '../plugins/imageParser'
 import { codeHighlight } from '../plugins/codeHighlight'
 
-interface Props {
+export interface Props extends astroHTML.JSX.HTMLAttributes {
   content: string
 }
+
+const { content, ...rest } = Astro.props
 
 const renderedContent = await unified()
   .use(remarkParse)
@@ -33,6 +35,6 @@ const renderedContent = await unified()
 ---
 
 <article
-  class="prose prose-lg prose-blue max-w-none"
   set:html={renderedContent.value}
+  {...rest}
 />

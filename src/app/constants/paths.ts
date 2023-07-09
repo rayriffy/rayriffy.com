@@ -8,6 +8,10 @@ export const paths = [
     name: 'Blog',
   },
   {
+    path: '/garden',
+    name: 'Garden',
+  },
+  {
     path: '/projects',
     name: 'Projects',
   },

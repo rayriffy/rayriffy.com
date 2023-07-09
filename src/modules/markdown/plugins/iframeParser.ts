@@ -4,7 +4,7 @@ import { readFileSystem, writeFileSystem } from '$core/functions/fileSystem'
 
 import type { Plugin } from 'unified'
 import type { Data, Node } from 'unist'
-import type { OembedProvider } from '../@types/OembedProvider'
+import type { OembedProvider } from '../../blog/@types/OembedProvider'
 
 interface ExtendedNode extends Node<Data> {
   value: string

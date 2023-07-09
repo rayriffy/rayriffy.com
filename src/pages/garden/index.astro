@@ -1,20 +1,85 @@
 ---
-import Layout from '$app/components/layout.astro';
+import Layout from '$app/components/layout.astro'
+import SEO from '$core/components/seo.astro'
+
+import dayjs from 'dayjs'
 import { notion } from '$core/constants/notion'
 
-const items = await notion.databases.query({
-  database_id: '767256390e784c1794efee891777fabd',
-  sorts: [{
-    timestamp: 'created_time',
-    direction: 'ascending'
-  }]
-})
+import type { PostItem } from '$modules/garden/@types/post'
+import type { QueryDatabaseResponse } from '@notionhq/client/build/src/api-endpoints'
+import { readFileSystem, writeFileSystem } from '$core/functions/fileSystem'
+
+const cacheKeys = ['garden', 'listing']
+let postItems = await readFileSystem<PostItem[]>(cacheKeys).then(o => o?.data)
+
+if (!postItems) {
+  const items = (await notion.databases.query({
+    database_id: '767256390e784c1794efee891777fabd',
+    filter: {
+      property: 'Publish',
+      checkbox: {
+        equals: true,
+      },
+    },
+    sorts: [
+      {
+        timestamp: 'created_time',
+        direction: 'ascending',
+      },
+    ],
+    page_size: 100,
+  })) as unknown as Omit<QueryDatabaseResponse, 'results'> & {
+    results: PostItem[]
+  }
+  writeFileSystem<PostItem[]>(cacheKeys, items.results, 1000 * 60 * 5)
+  postItems = items.results
+}
 ---
 
 <Layout>
-  <section class="space-y-8">
-    {items.results.map(it => (
-      <div>{JSON.stringify(it)}</div>
-    ))}
-  </section>
+  <SEO
+    slot="seo"
+    title="Garden"
+    description="This is a short-form writing space where I share my thoughts and ideas."
+  />
+  <div
+    class="mx-auto max-w-3xl space-y-4 px-3 py-12 sm:px-6 xl:max-w-5xl xl:px-0"
+  >
+    <h1
+      class="md:leading-14 text-3xl font-extrabold leading-9 tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-6xl"
+    >
+      Garden
+    </h1>
+    <p class="text-lg leading-7 text-gray-500">
+      This is a short-form writing space where I share my thoughts and ideas.
+    </p>
+    <ul class="space-y-10 py-12">
+      {
+        postItems.map(item => (
+          <li>
+            <article class="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
+              <dl class="pr-2">
+                <dt class="sr-only">Published on</dt>
+                <dd class="text-base font-medium leading-6 text-gray-500">
+                  <time
+                    datetime={dayjs(item.created_time).format('YYYY-MM-DD')}
+                  >
+                    {dayjs(item.created_time).format('D MMMM, YYYY')}
+                  </time>
+                </dd>
+              </dl>
+              <h3 class="mt-4 text-2xl font-bold leading-8 tracking-tight text-gray-900 xl:col-span-3">
+                <a
+                  rel="prefetch"
+                  href={`/garden/${item.properties.Slug.rich_text[0].plain_text}`}
+                >
+                  {item.properties.Topic.title[0].plain_text}
+                </a>
+              </h3>
+            </article>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
 </Layout>

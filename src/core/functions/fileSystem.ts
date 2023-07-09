@@ -60,9 +60,9 @@ export const readFileSystem = async <T = unknown>(key: string[]) => {
   return null
 }
 
-export const writeFileSystem = async (
+export const writeFileSystem = async <T = unknown>(
   key: string[],
-  content: unknown,
+  content: T,
   maxAgeInMs = 60 * 1000
 ) => {
   const stringifiedContent = JSON.stringify(content)
