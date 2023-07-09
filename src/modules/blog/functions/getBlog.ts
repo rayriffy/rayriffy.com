@@ -6,13 +6,14 @@ import type { BlogPostSkeleton } from '$core/@types/BlogPostSkeleton'
 
 type BlogEntry = Entry<BlogPostSkeleton, 'WITHOUT_UNRESOLVABLE_LINKS', string>
 
-export const getBlog = async (slug: string): Promise<BlogEntry> => {
-  let cacheKey = ['core', 'blog', 'slug', slug]
+export const getBlog = async (slug: string, preview: boolean): Promise<BlogEntry> => {
+  const mode = preview ? 'preview' : 'production'
+  let cacheKey = ['core', 'blog', mode, 'slug', slug]
 
   const cachedResult = await readFileSystem<BlogEntry>(cacheKey)
   if (cachedResult !== null) return cachedResult.data
 
-  const contentful = getContentfulClient()
+  const contentful = getContentfulClient(mode)
   const blog = await contentful.withoutUnresolvableLinks
     .getEntries<BlogPostSkeleton>({
       content_type: 'blogPost',
@@ -21,6 +22,8 @@ export const getBlog = async (slug: string): Promise<BlogEntry> => {
     })
     .then(o => o.items[0])
 
-  writeFileSystem(cacheKey, blog, 1000 * 60 * 5)
+  if (!preview)
+    writeFileSystem(cacheKey, blog, 1000 * 60 * 5)
+
   return blog
 }

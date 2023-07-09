@@ -4,6 +4,7 @@ import Layout from '$app/components/layout.astro'
 import SEO from '$core/components/seo.astro'
 
 import { getBlogs } from '$modules/blog/functions/getBlogs'
+import { previewKey } from '$core/constants/secrets/previewKey'
 
 import type { BlogPostSkeleton } from '$core/@types/BlogPostSkeleton'
 import type { EntryCollection } from 'contentful'
@@ -16,7 +17,10 @@ let entryCollection:
   | undefined
 
 try {
-  entryCollection = await getBlogs(Number(targetPage))
+  entryCollection = await getBlogs(
+    Number(targetPage),
+    Astro.cookies.get('preview').value === previewKey
+  )
 } catch (error) {}
 
 if (!entryCollection || entryCollection.items.length === 0) {

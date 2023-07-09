@@ -8,8 +8,12 @@ import dayjs from 'dayjs'
 import getReadingTime from 'reading-time'
 
 import { getBlog } from '$modules/blog/functions/getBlog'
+import { previewKey } from '$core/constants/secrets/previewKey'
 
-const blog = await getBlog(Astro.params.slug ?? '')
+const blog = await getBlog(
+  Astro.params.slug ?? '',
+  Astro.cookies.get('preview').value === previewKey
+)
 
 if (!blog) {
   return new Response(undefined, {
@@ -72,7 +76,10 @@ if (!blog) {
           </dd>
         </div>
       </dl>
-      <Renderer class="prose prose-lg prose-blue max-w-none" content={blog.fields.content} />
+      <Renderer
+        class="prose prose-lg prose-blue max-w-none"
+        content={blog.fields.content}
+      />
     </div>
   </div>
   <div class="pb-12"></div>

@@ -10,13 +10,17 @@ type BlogEntries = EntryCollection<
   string
 >
 
-export const getBlogs = async (page: number): Promise<BlogEntries> => {
-  let cacheKey = ['core', 'blog', 'page', page.toString()]
+export const getBlogs = async (
+  page: number,
+  preview: boolean
+): Promise<BlogEntries> => {
+  const mode = preview ? 'preview' : 'production'
+  let cacheKey = ['core', 'blog', mode, 'page', page.toString()]
 
   const cachedResult = await readFileSystem<BlogEntries>(cacheKey)
   if (cachedResult !== null) return cachedResult.data
 
-  const contentful = getContentfulClient()
+  const contentful = getContentfulClient(mode)
   const blogs =
     await contentful.withoutUnresolvableLinks.getEntries<BlogPostSkeleton>({
       content_type: 'blogPost',
@@ -25,6 +29,8 @@ export const getBlogs = async (page: number): Promise<BlogEntries> => {
       skip: (page - 1) * 10,
     })
 
-  writeFileSystem(cacheKey, blogs, 1000 * 60 * 5)
+  if (!preview)
+    writeFileSystem(cacheKey, blogs, 1000 * 60 * 5)
+
   return blogs
 }

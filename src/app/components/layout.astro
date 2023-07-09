@@ -4,6 +4,7 @@ import Header from './header.astro'
 
 import '../styles/tailwind.css'
 import '../styles/twemoji.css'
+import BlogPreview from './blogPreview.astro'
 
 export interface Props {
   noPadding?: boolean
@@ -30,6 +31,7 @@ const { noPadding = false } = Astro.props
     <script src="//unpkg.com/alpinejs" defer is:inline></script>
   </head>
   <body>
+    <BlogPreview />
     <main class={noPadding ? '' : 'pb-12 md:pb-20'}>
       <slot />
     </main>

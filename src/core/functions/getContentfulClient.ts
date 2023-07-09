@@ -1,9 +1,9 @@
 import { contentful } from '$core/constants/secrets/contentful'
 import contentfulLib from 'contentful'
 
-type Mode = 'production' | 'preview'
+import type { ContentfulMode } from '$core/@types/ContentfulMode'
 
-export const getContentfulClient = (mode: Mode = 'production') =>
+export const getContentfulClient = (mode: ContentfulMode = 'production') =>
   contentfulLib.createClient({
     space: contentful.spaceId,
     accessToken:

@@ -1,0 +1,30 @@
+---
+import { previewKey } from '$core/constants/secrets/previewKey'
+
+const action = Astro.url.searchParams.get('action')
+const slug = Astro.url.searchParams.get('slug')
+const requestedPreviewKey = Astro.url.searchParams.get('previewKey')
+
+if (action === null && (requestedPreviewKey !== previewKey || !slug))
+  return new Response('Not found', { status: 404 })
+
+Astro.cookies.set('preview', previewKey, {
+  maxAge: action === 'reset' ? 0 : 60 * 60, // 1 hours
+  httpOnly: true,
+  secure: import.meta.env.PROD,
+  path: '/',
+  sameSite: 'lax',
+})
+
+const targetUrl = action === 'reset' ? '/blog' : `/blog/${slug}`
+---
+
+<!DOCTYPE html>
+<html>
+  <head
+    ><meta http-equiv="Refresh" content={`0; url=${targetUrl}`} />
+    <script is:inline>
+      window.location.href = `${targetUrl}`
+    </script>
+  </head>
+</html>

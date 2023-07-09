@@ -1,0 +1,20 @@
+---
+import { previewKey } from '$core/constants/secrets/previewKey'
+
+const { pathname } = new URL(Astro.request.url)
+
+const isBlogPreview =
+  pathname.startsWith('/blog/') &&
+  Astro.cookies.get('preview').value === previewKey
+---
+
+{
+  isBlogPreview && (
+    <div class="flex justify-center space-x-1 border-b border-gray-400 bg-[#f4f4f4] py-1 text-sm font-medium">
+      <span>
+        Preview <span class="hidden md:inline">mode </span>enabled!
+      </span>
+      <a class="text-blue-500" href="/blog/preview?action=reset">Disable</a>
+    </div>
+  )
+}
