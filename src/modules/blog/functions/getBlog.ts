@@ -12,7 +12,10 @@ export const getBlog = async (slug: string, preview: boolean): Promise<BlogEntry
   let cacheKey = ['core', 'blog', mode, 'slug', slug]
 
   const cachedResult = await readFileSystem<BlogEntry>(cacheKey)
-  if (cachedResult !== null) return cachedResult.data
+  if (cachedResult !== null) {
+    console.timeEnd('blog listing')
+    return cachedResult.data
+  }
 
   const contentful = getContentfulClient(mode)
   const blog = await contentful.withoutUnresolvableLinks

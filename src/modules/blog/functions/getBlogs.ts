@@ -19,7 +19,10 @@ export const getBlogs = async (
   let cacheKey = ['core', 'blog', mode, 'page', page.toString()]
 
   const cachedResult = await readFileSystem<BlogEntries>(cacheKey)
-  if (cachedResult !== null) return cachedResult.data
+  if (cachedResult !== null) {
+    console.timeEnd('blog listing')
+    return cachedResult.data
+  }
 
   const contentful = getContentfulClient(mode)
   const blogs =
@@ -30,8 +33,7 @@ export const getBlogs = async (
       skip: (page - 1) * 10,
     })
 
-  if (!preview)
-    writeFileSystem(cacheKey, blogs, 1000 * 60 * 5)
+  if (!preview) writeFileSystem(cacheKey, blogs, 1000 * 60 * 5)
 
   console.timeEnd('blog listing')
   return blogs
