@@ -4,7 +4,7 @@ import fastifyStatic from '@fastify/static'
 import { fileURLToPath } from 'url'
 import { handler as ssrHandler } from './dist/server/entry.mjs'
 
-const app = Fastify({ logger: true })
+const app = Fastify({ logger: false })
 
 await app
   .register(fastifyStatic, {
