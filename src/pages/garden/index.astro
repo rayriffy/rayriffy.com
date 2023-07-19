@@ -3,37 +3,10 @@ import Layout from '$app/components/layout.astro'
 import SEO from '$core/components/seo.astro'
 
 import dayjs from 'dayjs'
-import { notion } from '$core/constants/notion'
 
-import type { PostItem } from '$modules/garden/@types/post'
-import type { QueryDatabaseResponse } from '@notionhq/client/build/src/api-endpoints'
-import { readFileSystem, writeFileSystem } from '$core/functions/fileSystem'
+import { getGardenPosts } from '$modules/garden/functions/getGardenPosts'
 
-const cacheKeys = ['garden', 'listing']
-let postItems = await readFileSystem<PostItem[]>(cacheKeys).then(o => o?.data)
-
-if (!postItems) {
-  const items = (await notion.databases.query({
-    database_id: '767256390e784c1794efee891777fabd',
-    filter: {
-      property: 'Publish',
-      checkbox: {
-        equals: true,
-      },
-    },
-    sorts: [
-      {
-        timestamp: 'created_time',
-        direction: 'descending',
-      },
-    ],
-    page_size: 100,
-  })) as unknown as Omit<QueryDatabaseResponse, 'results'> & {
-    results: PostItem[]
-  }
-  writeFileSystem<PostItem[]>(cacheKeys, items.results, 1000 * 60 * 5)
-  postItems = items.results
-}
+let postItems = await getGardenPosts()
 ---
 
 <Layout>

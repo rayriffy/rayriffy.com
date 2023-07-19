@@ -7,6 +7,7 @@ import type { BlogPostSkeleton } from '$core/@types/BlogPostSkeleton'
 type BlogEntry = Entry<BlogPostSkeleton, 'WITHOUT_UNRESOLVABLE_LINKS', string>
 
 export const getBlog = async (slug: string, preview: boolean): Promise<BlogEntry> => {
+  console.time('blog post ' + slug)
   const mode = preview ? 'preview' : 'production'
   let cacheKey = ['core', 'blog', mode, 'slug', slug]
 
@@ -25,5 +26,6 @@ export const getBlog = async (slug: string, preview: boolean): Promise<BlogEntry
   if (!preview)
     writeFileSystem(cacheKey, blog, 1000 * 60 * 5)
 
+  console.timeEnd('blog post ' + slug)
   return blog
 }

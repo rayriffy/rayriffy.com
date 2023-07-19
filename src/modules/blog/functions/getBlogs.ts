@@ -12,8 +12,9 @@ type BlogEntries = EntryCollection<
 
 export const getBlogs = async (
   page: number,
-  preview: boolean
+  preview: boolean = false
 ): Promise<BlogEntries> => {
+  console.time('blog listing')
   const mode = preview ? 'preview' : 'production'
   let cacheKey = ['core', 'blog', mode, 'page', page.toString()]
 
@@ -32,5 +33,6 @@ export const getBlogs = async (
   if (!preview)
     writeFileSystem(cacheKey, blogs, 1000 * 60 * 5)
 
+  console.timeEnd('blog listing')
   return blogs
 }

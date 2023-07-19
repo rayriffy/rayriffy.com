@@ -12,6 +12,7 @@ interface GardenPost {
 }
 
 export const getGardenPost = async (slug: string) => {
+  console.time('garden post ' + slug)
   const cacheKeys = ['garden', 'content', slug]
   let gardenPost = await readFileSystem<GardenPost>(cacheKeys).then(
     o => o?.data
@@ -56,11 +57,11 @@ export const getGardenPost = async (slug: string) => {
     gardenPost = payload
   }
 
+  console.timeEnd('garden post ' + slug)
   if (gardenPost)
     return {
       ...gardenPost,
       content: n2m.toMarkdownString(gardenPost.content).parent,
     }
-  else
-    return undefined
+  else return undefined
 }
