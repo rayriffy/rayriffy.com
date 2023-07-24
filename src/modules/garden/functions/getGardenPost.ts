@@ -53,7 +53,7 @@ export const getGardenPost = async (slug: string) => {
       date: targetPageDatabase.created_time,
       content: markdownBlocks,
     }
-    await writeFileSystem<GardenPost>(cacheKeys, payload)
+    await writeFileSystem<GardenPost>(cacheKeys, payload, 60 * 60 * 1000)
     gardenPost = payload
   }
 
