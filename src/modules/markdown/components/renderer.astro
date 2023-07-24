@@ -34,7 +34,4 @@ const renderedContent = await unified()
   )
 ---
 
-<article
-  set:html={renderedContent.value}
-  {...rest}
-/>
+<article set:html={renderedContent.value} {...rest} />

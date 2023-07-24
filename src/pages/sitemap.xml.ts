@@ -34,20 +34,31 @@ export const get: APIRoute = async () => {
         )
 
         res(
-          [firstPage, ...allPages].map(page =>
-            page.items.map(item => `/blog/${item.fields.slug}`)
-          ).flat()
+          [firstPage, ...allPages]
+            .map(page => page.items.map(item => `/blog/${item.fields.slug}`))
+            .flat()
         )
       } catch (e) {
         rej(e)
       }
     })
 
-    const gardenPromise = getGardenPosts().then(posts => posts.map(post => `/garden/${post.properties.Slug.rich_text[0].plain_text}`))
+    const gardenPromise = getGardenPosts().then(posts =>
+      posts.map(
+        post => `/garden/${post.properties.Slug.rich_text[0].plain_text}`
+      )
+    )
 
-    const [blogLinks, gardenLinks] = await Promise.all([blogLinksPromise, gardenPromise])
+    const [blogLinks, gardenLinks] = await Promise.all([
+      blogLinksPromise,
+      gardenPromise,
+    ])
 
-    const builtLinks: Link[] = [...staticLinks, ...blogLinks, ...gardenLinks].map(link => ({
+    const builtLinks: Link[] = [
+      ...staticLinks,
+      ...blogLinks,
+      ...gardenLinks,
+    ].map(link => ({
       url: link,
       changefreq: 'daily',
       priority: 0.5,

@@ -7,9 +7,7 @@ import type { PostItem } from '../@types/post'
 export const getGardenPosts = async () => {
   console.time('garden listing')
   const cacheKeys = ['garden', 'listing']
-  let postItems = await readFileSystem<PostItem[]>(cacheKeys).then(
-    o => o?.data
-  )
+  let postItems = await readFileSystem<PostItem[]>(cacheKeys).then(o => o?.data)
 
   if (!postItems) {
     const items = (await notion.databases.query({
