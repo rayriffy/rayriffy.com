@@ -67,6 +67,7 @@ const totalPage = Math.ceil(entryCollection.total / 10)
                       src={blog.fields.banner!.fields.file!.url}
                       transform={{ quality: 85 }}
                       class="h-auto w-full rounded-xl border shadow-md"
+                      transition:name={`cover-${blog.fields.slug}`}
                     />
                   </a>
                   <h3 class="mt-4 text-2xl font-bold leading-8 tracking-tight text-gray-900 xl:w-2/3">

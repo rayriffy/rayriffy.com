@@ -12,6 +12,9 @@ export default defineConfig({
   adapter: node({
     mode: 'middleware',
   }),
+  experimental: {
+   viewTransitions: true
+  },
   integrations: [
     tailwind({
       config: {

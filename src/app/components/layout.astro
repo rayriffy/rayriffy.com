@@ -1,4 +1,6 @@
 ---
+import { ViewTransitions } from 'astro:transitions'
+
 import SEO from '$core/components/seo.astro'
 import Header from './header.astro'
 
@@ -23,6 +25,8 @@ const { noPadding = false } = Astro.props
       content="width=device-width, initial-scale=1.0, viewport-fit=contain"
     />
     <link rel="icon" href="/favicon.png" />
+
+    <ViewTransitions />
 
     <slot name="seo">
       <SEO description="The front frontier of rayriffy.com!" />

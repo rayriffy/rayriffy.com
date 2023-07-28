@@ -41,7 +41,10 @@ let postItems = await getGardenPosts()
                   </time>
                 </dd>
               </dl>
-              <h3 class="mt-4 text-2xl font-bold leading-8 tracking-tight text-gray-900 xl:col-span-3">
+              <h3
+                class="mt-4 text-2xl font-bold leading-8 tracking-tight text-gray-900 xl:col-span-3"
+                transition:name={`garden-${item.properties.Slug.rich_text[0].plain_text}`}
+              >
                 <a
                   rel="prefetch"
                   href={`/garden/${item.properties.Slug.rich_text[0].plain_text}`}

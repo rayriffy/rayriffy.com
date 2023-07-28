@@ -44,6 +44,7 @@ if (!blog) {
       transform={{ quality: 85 }}
       fetchpriority="high"
       class="h-auto w-full rounded-b-xl border border-t-0 shadow-md"
+      transition:name={`cover-${blog.fields.slug}`}
     />
     <div class="mx-auto max-w-3xl pt-4 sm:px-6 xl:max-w-5xl xl:px-0 xl:pt-8">
       <h1
