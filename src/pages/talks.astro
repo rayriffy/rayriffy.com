@@ -1,9 +1,13 @@
 ---
-import SEO from '$core/components/seo.astro'
-import Layout from '../app/components/layout.astro'
-import Card from '$core/components/card.astro'
+import { Icon } from 'astro-icon'
 
-import { talks } from '../modules/talks/constants/talks'
+import SEO from '$core/components/seo.astro'
+import Card from '$core/components/card.astro'
+import CfImage from '$core/components/cfImage.astro'
+
+import Layout from '$app/components/layout.astro'
+
+import { talks } from '$modules/talks/constants/talks'
 ---
 
 <Layout>
@@ -24,24 +28,82 @@ import { talks } from '../modules/talks/constants/talks'
       </h1>
     </section>
 
-    <section class="mx-auto grid max-w-5xl grid-cols-2 gap-4">
+    <section class="mx-auto grid max-w-5xl md:grid-cols-2 gap-4">
       {
         talks.map(talk => (
-          <Card
-            heading={{
-              title: talk.title,
-              subHeading: {
-                left: talk.event,
-                right: talk.year,
-              },
-              links: talk.links.map(link => ({
-                label: link.label,
-                href: link.url,
-              })),
-            }}
-          >
-            {talk.description}
-          </Card>
+          <article class="flex h-full flex-col overflow-hidden rounded-md bg-white border border-gray-400 border-opacity-60 hover:border-gray-500 shadow">
+            {talk.image && (
+              <CfImage
+                src={talk.image.src}
+                ratio={talk.image.ratio}
+                width={720}
+                class="object-cover object-center md:h-36 lg:h-72"
+              />
+            )}
+            <div class="flex grow flex-col justify-between space-y-6 p-6">
+              <div class="space-y-3">
+                <>
+                  <h2 class="text-2xl font-bold leading-8 tracking-tight">
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href={talk.links[talk.href]}
+                      class="no-underline"
+                    >
+                      <span>
+                        {talk.title}
+                      </span>
+                    </a>
+                  </h2>
+                  <div class="max-w-none space-y-2 text-gray-500">
+                    <p>
+                      <span>{talk.event}</span>
+                      <span> · </span>
+                      <span class="font-semibold">{talk.year}</span>
+                    </p>
+                    <p>
+                      {talk.description}
+                    </p>
+                  </div>
+                </>
+              </div>
+              <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4"></div>
+                <div class="flex items-center space-x-1.5">
+                  {talk.links.keynote && (
+                    <a
+                      href={talk.links.keynote}
+                      target="_blank"
+                      rel="noreferrer"
+                      class="flex items-center space-x-1 no-underline"
+                    >
+                      <Icon name="ri:slideshow-2-fill" class="h-4 w-auto" />
+                    </a>
+                  )}
+                  {talk.links.github && (
+                    <a
+                      href={talk.links.github}
+                      target="_blank"
+                      rel="noreferrer"
+                      class="flex items-center space-x-1 no-underline"
+                    >
+                      <Icon name="logos:github" class="h-4 w-auto" />
+                    </a>
+                  )}
+                  {talk.links.youtube && (
+                    <a
+                      href={talk.links.youtube}
+                      target="_blank"
+                      rel="noreferrer"
+                      class="flex items-center space-x-1 no-underline"
+                    >
+                      <Icon name="logos:youtube" class="h-4 w-auto" />
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          </article>
         ))
       }
     </section>

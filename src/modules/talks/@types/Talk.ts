@@ -3,8 +3,14 @@ export interface Talk {
   event: string
   year: number
   description: string
+  href: keyof Talk['links']
+  image?: {
+    src: string
+    ratio: number
+  }
   links: {
-    label: string
-    url: string
-  }[]
+    youtube?: string
+    keynote?: string
+    github?: string
+  }
 }
