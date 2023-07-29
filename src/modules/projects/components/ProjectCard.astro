@@ -7,20 +7,12 @@ export interface Props {
   project: Project
 }
 
-const { title, year, active, links, description } = Astro.props.project
+const { title, year, active, links, description, href } = Astro.props.project
 ---
 
-<Card
-  heading={{
-    title,
-    subHeading: {
-      right: `${year}${active ? ' - Present' : ''}`,
-    },
-    links: links.map(link => ({
-      label: link.label,
-      href: link.url,
-    })),
-  }}
->
-  {description}
+<Card title={title} href={links[href]} bottom={links}>
+  <p class="text-gray-700">
+    <span class="font-semibold">{year} {active ? ' - Present' : ''}</span>
+  </p>
+  <p>{description}</p>
 </Card>

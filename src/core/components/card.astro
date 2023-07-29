@@ -1,50 +1,65 @@
 ---
-export interface Props {
-  heading?: {
-    title?: string
-    subHeading?: {
-      left?: string | number
-      right?: string | number
-    }
-    links?: {
-      label: string
-      href: string
-    }[]
-  }
-}
+import CfImage from '$core/components/cfImage.astro'
+import IconLink from './iconLink.astro'
 
-const { heading } = Astro.props
+import type { CardProps } from '../@types/CardProps'
+
+export type Props = CardProps
+
+const { image, title, href, bottom } = Astro.props
 ---
 
-<div
-  class="divide-y-2 divide-dotted divide-gray-300 rounded-xl border bg-white py-6 shadow-md"
+<article
+  class="flex h-full flex-col overflow-hidden rounded-md bg-white border border-gray-400 border-opacity-60 hover:border-gray-500 shadow"
 >
   {
-    heading && (
-      <div class="px-6 pb-6">
-        {heading.title && <h1 class="text-xl font-bold">{heading.title}</h1>}
-        {heading.subHeading && (
-          <p class="text-gray-700">
-            {heading.subHeading.left}
-            {heading.subHeading.left && heading.subHeading.right && (
-              <span> · </span>
-            )}
-            <span class="font-semibold">{heading.subHeading.right}</span>
-          </p>
-        )}
-        {heading.links && heading.links.length !== 0 && (
-          <div class="flex flex-wrap space-x-2">
-            {heading.links.map(link => (
-              <a href={link.href} class="my-1">
-                {link.label}
-              </a>
-            ))}
-          </div>
-        )}
-      </div>
+    image && (
+      <CfImage
+        src={image.src}
+        ratio={image.ratio}
+        width={660}
+        class="object-cover object-center md:h-36 lg:h-72"
+      />
     )
   }
-  <div class="px-6 pt-6 text-sm">
-    <slot />
+  <div class="flex grow flex-col justify-between space-y-6 p-6">
+    <div class="space-y-3">
+      <>
+        <h2 class="text-2xl font-bold leading-8 tracking-tight">
+          {
+            href ? (
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href={href}
+                class="no-underline"
+              >
+                {title}
+              </a>
+            ) : (
+              <span>{title}</span>
+            )
+          }
+        </h2>
+        <div class="max-w-none space-y-2 text-gray-500">
+          <slot />
+        </div>
+      </>
+    </div>
+    {
+      bottom && (
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-4">
+            <slot name="bottom-left" />
+          </div>
+          <div class="flex items-center space-x-2">
+            <IconLink name="dashicons:admin-site-alt2" href={bottom.web} />
+            <IconLink name="ri:slideshow-2-fill" href={bottom.keynote} />
+            <IconLink name="logos:github" href={bottom.github} />
+            <IconLink name="logos:youtube" href={bottom.youtube} />
+          </div>
+        </div>
+      )
+    }
   </div>
-</div>
+</article>

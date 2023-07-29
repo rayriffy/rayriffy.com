@@ -1,16 +1,14 @@
+import type { Links } from "$core/@types/Links"
+
 export interface Talk {
   title: string
   event: string
   year: number
   description: string
-  href: keyof Talk['links']
+  href: keyof Links
   image?: {
     src: string
     ratio: number
   }
-  links: {
-    youtube?: string
-    keynote?: string
-    github?: string
-  }
+  links: Links
 }

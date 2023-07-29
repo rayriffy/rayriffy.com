@@ -1,10 +1,10 @@
+import type { Links } from "$core/@types/Links"
+
 export interface Project {
   title: string
   description: string
   year: number
   active?: boolean
-  links: {
-    label: string
-    url: string
-  }[]
+  href: keyof Links
+  links: Links
 }

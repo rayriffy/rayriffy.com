@@ -44,6 +44,7 @@ export const talks: Talk[] = [
       "JavaScript is hell when trying to handle a site securely, especially when your codebase is shared with multiple developers. TypeScript is the future of JavaScript, you can prevent type conflict before it is pushed to production. And I'm here to tell you how.",
     href: 'keynote',
     links: {
+      web: 'https://www.facebook.com/rayriffy/posts/1291988020988611',
       keynote:
         'https://storage.rayriffy.com/files/ywcprogmeet-typescript-life.pdf',
     },
@@ -56,6 +57,7 @@ export const talks: Talk[] = [
       "Don't waste the user's precious data bandwidth to load very large JSON from REST API. Only choose what you need with GraphQL.",
     href: 'keynote',
     links: {
+      web: 'https://www.meetup.com/graphql-bangkok/events/267810446/',
       keynote:
         'https://storage.rayriffy.com/files/gqlbkk8-graphql-introduction.pdf',
       github: 'https://github.com/rayriffy/gql-bkk-8-demo',
