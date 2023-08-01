@@ -19,11 +19,12 @@ export const talks: Talk[] = [
     },
   },
   {
-    title: 'Say goodbye to password… permanently',
+    title: 'Rejecting client-side, embrace server-side',
     event: 'React Meetup 06/23',
     year: 2023,
     href: 'youtube',
-    description: 'Is it possible to write a React app without serving any JS to the client? Let’s find out.',
+    description:
+      'Is it possible to write a React app without serving any JS to the client? Let’s find out.',
     image: {
       src: '/static/talks/reject-client-side.jpg',
       ratio: 16 / 9,
