@@ -20,13 +20,30 @@ export const talks: Talk[] = [
   },
   {
     title: 'Say goodbye to password… permanently',
+    event: 'React Meetup 06/23',
+    year: 2023,
+    href: 'youtube',
+    description: 'Is it possible to write a React app without serving any JS to the client? Let’s find out.',
+    image: {
+      src: '/static/talks/reject-client-side.jpg',
+      ratio: 16 / 9,
+    },
+    links: {
+      youtube: 'https://youtu.be/47oIXnbQXps',
+      keynote:
+        'https://storage.rayriffy.com/files/react-meetup-rejecting-client-side.pdf',
+      github: 'https://github.com/rayriffy/mlth',
+    },
+  },
+  {
+    title: 'Say goodbye to password… permanently',
     event: 'BKK.JS Meetup #16',
     year: 2022,
     href: 'youtube',
     description:
       'Passwords are bad for people when the website required you to include at least capital and special case character. Why waste time remembering a hard password, or using a password manager and waiting for the time to be phished? Introducing WebAuthn, the password-less authentication method for the future.',
     image: {
-      src: '/static/talks/reject-client-side.jpg',
+      src: '/static/talks/passkeys.jpg',
       ratio: 16 / 9,
     },
     links: {
