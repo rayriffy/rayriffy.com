@@ -7,6 +7,8 @@ import { projects } from '../modules/projects/constants/projects'
 
 const activeProjects = projects.filter(o => o.active)
 const archivedProjects = projects.filter(o => !o.active)
+
+export const prerender = true
 ---
 
 <Layout>
