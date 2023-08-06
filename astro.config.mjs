@@ -21,7 +21,7 @@ export default defineConfig({
         applyBaseStyles: false,
       },
     }),
-    // prefetch(),
+    prefetch(),
     svelte(),
   ],
 })
