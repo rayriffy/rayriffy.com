@@ -1,8 +1,9 @@
 import { selectAll } from 'unist-util-select'
 
+import { prismMap } from '../constants/prismMap'
+
 import type { Plugin } from 'unified'
 import type { Data, Node } from 'unist'
-import { prismMap } from '../../blog/constants/prismMap'
 
 interface ExtendedNode extends Node<Data> {
   lang?: string
@@ -18,7 +19,7 @@ export const codeHighlight: Plugin = () => {
     nodes.forEach(node => {
       let [token, type] = node.properties?.className || []
       if (token === 'token') {
-        node.properties!.className = [prismMap[type]]
+        node.properties!.className = [prismMap[type as keyof typeof prismMap]]
       }
     })
   }
