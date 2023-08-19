@@ -18,7 +18,9 @@ const getProviderEndpoint = (url: string, providers: OembedProvider[]) => {
   let transformedEndpoint = undefined
 
   for (const provider of providers || []) {
+    if (typeof transformedEndpoint !== 'undefined') break
     for (const endpoint of provider.endpoints || []) {
+      if (typeof transformedEndpoint !== 'undefined') break
       for (let schema of endpoint.schemes || []) {
         if (transformedEndpoint === undefined) {
           schema = schema.replace('*', '.*')
@@ -27,6 +29,7 @@ const getProviderEndpoint = (url: string, providers: OembedProvider[]) => {
 
           if (isMatchingSchema) {
             transformedEndpoint = endpoint.url
+            break
           }
         }
       }
