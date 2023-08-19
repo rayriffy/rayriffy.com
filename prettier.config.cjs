@@ -11,16 +11,9 @@ module.exports = {
   endOfLine: 'lf',
   plugins: [
     'prettier-plugin-tailwindcss',
-    'prettier-plugin-svelte',
     'prettier-plugin-astro',
   ],
   overrides: [
-    {
-      files: '*.svelte',
-      options: {
-        parser: 'svelte',
-      },
-    },
     {
       files: '*.astro',
       options: {

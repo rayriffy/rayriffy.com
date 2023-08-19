@@ -1,7 +1,6 @@
 import { defineConfig } from 'astro/config'
 import tailwind from '@astrojs/tailwind'
 import prefetch from '@astrojs/prefetch'
-import svelte from '@astrojs/svelte'
 
 import node from '@astrojs/node'
 
@@ -12,6 +11,7 @@ export default defineConfig({
   adapter: node({
     mode: 'middleware',
   }),
+  compressHTML: true,
   experimental: {
    viewTransitions: true
   },
@@ -22,6 +22,5 @@ export default defineConfig({
       },
     }),
     prefetch(),
-    svelte(),
   ],
 })
