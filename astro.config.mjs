@@ -12,9 +12,6 @@ export default defineConfig({
     mode: 'middleware',
   }),
   compressHTML: true,
-  experimental: {
-   viewTransitions: true
-  },
   integrations: [
     tailwind({
       config: {

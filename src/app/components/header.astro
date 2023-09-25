@@ -10,7 +10,7 @@ const { pathname } = new URL(Astro.request.url)
 
 <header
   x-bind:class="! open ? 'h-12' : 'h-full'"
-  class="ease-header fixed bottom-0 z-50 h-12 w-full overflow-hidden border-t bg-white transition-all duration-500 md:h-20"
+  class="ease-header fixed bottom-0 z-40 h-12 w-full overflow-hidden border-t bg-white transition-all duration-500 md:h-20"
   x-data="{ open: false }"
 >
   <div class="justify-between md:flex md:px-8 md:py-6">

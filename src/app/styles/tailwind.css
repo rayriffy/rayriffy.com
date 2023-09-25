@@ -23,3 +23,7 @@ section a {
 .ease-header {
   transition-timing-function: cubic-bezier(1, 0, 0, 0.81);
 }
+
+body {
+  position: relative;
+}
