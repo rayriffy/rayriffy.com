@@ -5,7 +5,7 @@ const { pathname } = new URL(Astro.request.url)
 
 const isBlogPreview =
   pathname.startsWith('/blog/') &&
-  Astro.cookies.get('preview').value === previewKey
+  Astro.cookies.get('preview')?.value === previewKey
 ---
 
 {

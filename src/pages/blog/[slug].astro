@@ -12,7 +12,7 @@ import { previewKey } from '$core/constants/secrets/previewKey'
 
 const blog = await getBlog(
   Astro.params.slug ?? '',
-  Astro.cookies.get('preview').value === previewKey
+  Astro.cookies.get('preview')?.value === previewKey
 )
 
 if (!blog) {

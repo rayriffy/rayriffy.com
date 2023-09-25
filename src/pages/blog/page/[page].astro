@@ -19,7 +19,7 @@ let entryCollection:
 try {
   entryCollection = await getBlogs(
     Number(targetPage),
-    Astro.cookies.get('preview').value === previewKey
+    Astro.cookies.get('preview')?.value === previewKey
   )
 } catch (error) {}
 
