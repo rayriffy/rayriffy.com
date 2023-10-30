@@ -1,8 +1,13 @@
+import { fontFamily } from 'tailwindcss/defaultTheme'
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {
+      fontFamily: {
+        manrope: ["'Manrope Variable'", ...fontFamily['sans']]
+      },
       colors: {
         code: {
           green: '#b5f4a5',

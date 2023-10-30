@@ -36,6 +36,7 @@
     "@astrojs/node": "^6.0.3",
     "@astrojs/prefetch": "^0.4.1",
     "@astrojs/tailwind": "^5.0.2",
+    "@fontsource-variable/manrope": "^5.0.17",
     "@fullhuman/postcss-purgecss": "^5.0.0",
     "@tailwindcss/typography": "^0.5.10",
     "@types/node": "^20.8.9",
