@@ -4,7 +4,7 @@ import { readFileSystem, writeFileSystem } from '$core/functions/fileSystem'
 import type { EntryCollection } from 'contentful'
 import type { BlogPostSkeleton } from '$core/@types/BlogPostSkeleton'
 
-type BlogEntries = EntryCollection<
+export type BlogEntries = EntryCollection<
   BlogPostSkeleton,
   'WITHOUT_UNRESOLVABLE_LINKS',
   string

@@ -5,6 +5,7 @@ import type { APIRoute } from 'astro'
 import { paths } from '$app/constants/paths'
 import { getBlogs } from '$modules/blog/functions/getBlogs'
 import { getGardenPosts } from '$modules/garden/functions/getGardenPosts'
+import { getAllBlogs } from '$modules/feed/functions/getAllBlogs'
 
 interface Link {
   url: string
@@ -21,27 +22,7 @@ export const get: APIRoute = async () => {
 
     const staticLinks = paths.map(o => o.path)
 
-    const blogLinksPromise = new Promise<string[]>(async (res, rej) => {
-      try {
-        const firstPage = await getBlogs(1)
-
-        const pages = Math.ceil(firstPage.total / 10)
-
-        const allPages = await Promise.all(
-          Array.from({ length: pages - 1 }, (_, i) => i + 2).map(page =>
-            getBlogs(page)
-          )
-        )
-
-        res(
-          [firstPage, ...allPages]
-            .map(page => page.items.map(item => `/blog/${item.fields.slug}`))
-            .flat()
-        )
-      } catch (e) {
-        rej(e)
-      }
-    })
+    const blogLinksPromise = getAllBlogs().then(blogs => blogs.map(blog => `/blog/${blog}`))
 
     const gardenPromise = getGardenPosts().then(posts =>
       posts.map(

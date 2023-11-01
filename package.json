@@ -12,6 +12,7 @@
     "format": "prettier --write **/*"
   },
   "dependencies": {
+    "@astrojs/rss": "^3.0.0",
     "@fastify/middie": "^8.3.0",
     "@fastify/static": "^6.12.0",
     "@notionhq/client": "^2.2.13",
