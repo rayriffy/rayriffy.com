@@ -4,6 +4,7 @@ import SEO from '$core/components/seo.astro'
 import NewCard from '$core/components/card.astro'
 
 import { talks } from '$modules/talks/constants/talks'
+import PageHeader from '$core/components/pageHeader.astro'
 
 export const prerender = true
 ---
@@ -15,18 +16,15 @@ export const prerender = true
     description="I am an experienced public speaker who is able to deliver keynote talks, as well as participate in panels and networking."
   />
 
-  <div class="mx-auto mt-10 max-w-7xl px-4 pb-6 md:px-6">
-    <section class="my-8">
-      <h1 class="text-xl">
-        I am an experienced public speaker who is able to deliver keynote talks,
-        as well as participate in panels and networking. Furthermore, I also
-        joined the group of <a href="https://www.creatorsgarten.org/"
-          >Creatorsgarten</a
-        > to help organize various events in the past, and future.
-      </h1>
-    </section>
+  <div
+    class="mx-auto max-w-3xl space-y-4 px-3 py-12 sm:px-6 xl:max-w-5xl xl:px-0"
+  >
+    <PageHeader
+      title="Talks"
+      description="I am an experienced public speaker who is able to deliver keynote talks, as well as participate in panels and networking. Furthermore, I also joined the group of Creatorsgarten to help organize various events in the past, and future."
+    />
 
-    <section class="mx-auto grid max-w-5xl sm:grid-cols-2 gap-4">
+    <section class="mx-auto grid max-w-5xl sm:grid-cols-2 gap-4 py-12">
       {
         talks.map(talk => (
           <NewCard

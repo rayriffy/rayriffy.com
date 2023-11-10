@@ -49,6 +49,7 @@ if (!blog) {
     <div class="mx-auto max-w-3xl pt-4 sm:px-6 xl:max-w-5xl xl:px-0 xl:pt-8">
       <h1
         class="md:leading-14 text-3xl font-extrabold leading-10 tracking-tight text-gray-900 md:text-5xl lg:text-[54px] lg:leading-[64px]"
+        transition:name={`title-${blog.fields.slug}`}
       >
         {blog.fields.title}
       </h1>
@@ -60,6 +61,7 @@ if (!blog) {
             <time datetime="2023-03-11" class="flex items-center justify-center"
               ><i class="twa twa-calendar inline-block"></i><span
                 class="ml-1.5 md:ml-2"
+                transition:name={`time-${blog.fields.slug}`}
                 >{dayjs(blog.fields.date).format('D MMMM, YYYY')}</span
               ></time
             ><span class="mx-2"> •</span><div class="flex items-center">

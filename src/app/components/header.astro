@@ -65,7 +65,12 @@ const { pathname } = new URL(Astro.request.url)
       {
         paths.map(({ path, name }) => (
           <li>
-            <a rel="prefetch" href={path} class="no-underline">
+            <a
+              rel="prefetch"
+              href={path}
+              class="no-underline"
+              data-astro-prefetch="viewport"
+            >
               <p
                 class={[
                   'px-4 py-3',

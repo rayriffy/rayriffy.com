@@ -2,6 +2,8 @@
 import type { HTMLAttributes } from 'astro/types'
 
 export type Props = HTMLAttributes<'svg'>
+
+const svgProps = Astro.props
 ---
 
 <svg
@@ -11,7 +13,7 @@ export type Props = HTMLAttributes<'svg'>
   viewBox="0 0 416 416"
   fill="none"
   xmlns="http://www.w3.org/2000/svg"
-  {...Astro.props}
+  {...svgProps}
 >
   <circle
     cx="103"

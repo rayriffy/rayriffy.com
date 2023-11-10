@@ -1,6 +1,5 @@
 import { defineConfig } from 'astro/config'
 import tailwind from '@astrojs/tailwind'
-import prefetch from '@astrojs/prefetch'
 
 import node from '@astrojs/node'
 
@@ -11,6 +10,7 @@ export default defineConfig({
   adapter: node({
     mode: 'middleware',
   }),
+  prefetch: true,
   compressHTML: true,
   integrations: [
     tailwind({
@@ -18,6 +18,5 @@ export default defineConfig({
         applyBaseStyles: false,
       },
     }),
-    prefetch(),
   ],
 })

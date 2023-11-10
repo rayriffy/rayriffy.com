@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro dev --port 5173",
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
@@ -16,9 +16,9 @@
     "@fastify/middie": "^8.3.0",
     "@fastify/static": "^6.12.0",
     "@notionhq/client": "^2.2.13",
-    "astro": "^3.4.0",
+    "astro": "^3.5.0",
     "astro-icon": "^0.8.1",
-    "contentful": "^10.6.5",
+    "contentful": "^10.6.7",
     "dayjs": "^1.11.10",
     "fastify": "^4.24.3",
     "html-entities": "^2.4.0",
@@ -31,22 +31,21 @@
     "remark-parse": "^11.0.0",
     "sitemap": "^7.1.1",
     "unified": "^11.0.4",
-    "unist-util-select": "^5.0.0"
+    "unist-util-select": "^5.1.0"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.3.0",
+    "@astrojs/check": "^0.3.1",
     "@astrojs/node": "^6.0.3",
-    "@astrojs/prefetch": "^0.4.1",
     "@astrojs/tailwind": "^5.0.2",
     "@fontsource-variable/manrope": "^5.0.17",
     "@fullhuman/postcss-purgecss": "^5.0.0",
     "@tailwindcss/typography": "^0.5.10",
-    "@types/node": "^20.8.9",
-    "@types/unist": "^3.0.1",
+    "@types/node": "^20.9.0",
+    "@types/unist": "^3.0.2",
     "astro-seo": "^0.8.0",
     "prettier": "3.0.3",
     "prettier-plugin-astro": "^0.12.1",
-    "prettier-plugin-tailwindcss": "^0.5.6",
+    "prettier-plugin-tailwindcss": "^0.5.7",
     "tailwindcss": "^3.3.5",
     "typescript": "^5.2.2"
   }
