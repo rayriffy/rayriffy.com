@@ -15,7 +15,7 @@ export interface Props {
 const { noPadding = false } = Astro.props
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -41,5 +41,11 @@ const { noPadding = false } = Astro.props
     </main>
 
     <Header {...Astro.props} />
+
+    <script
+      is:inline
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token": "708f18418c744deb970085a97f1f9aba"}'></script>
   </body>
 </html>
