@@ -1,4 +1,5 @@
 ---
+import FrontImage from '$app/components/frontImage.astro';
 import CfImage from '$core/components/cfImage.astro'
 import Layout from '../app/components/layout.astro'
 
@@ -6,7 +7,11 @@ export const prerender = true
 ---
 
 <Layout noPadding>
-  <CfImage
+  <div class="snap-mandatory snap-x flex overflow-x-auto overflow-y-hidden">
+    <FrontImage src="/front/1.jpg" />
+    <FrontImage src="/front/2.jpg" />
+  </div>
+  <!-- <CfImage
     id="cover"
     src="./front.jpg"
     width={{
@@ -20,16 +25,17 @@ export const prerender = true
     fetchpriority="high"
     decoding="async"
     alt="cover"
-  />
+  /> -->
 </Layout>
 
 <style is:global>
   picture,
   img#cover {
     display: flex;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     max-height: -webkit-fill-available;
     object-fit: cover;
+    flex-shrink: 0;
   }
 </style>
