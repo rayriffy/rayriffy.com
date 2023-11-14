@@ -3,7 +3,6 @@ import { Readable } from 'stream'
 
 import type { APIRoute } from 'astro'
 import { paths } from '$app/constants/paths'
-import { getBlogs } from '$modules/blog/functions/getBlogs'
 import { getGardenPosts } from '$modules/garden/functions/getGardenPosts'
 import { getAllBlogs } from '$modules/feed/functions/getAllBlogs'
 
