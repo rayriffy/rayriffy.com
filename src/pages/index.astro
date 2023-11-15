@@ -1,30 +1,18 @@
 ---
-import FrontImage from '$app/components/frontImage.astro';
-import Layout from '../app/components/layout.astro'
+import HeroImage from '$modules/hero/components/HeroImage.astro'
+import Layout from '$app/components/layout.astro'
+import { heroItems } from '$modules/hero/constants'
 
 export const prerender = true
 ---
 
 <Layout noPadding>
-  <div id="frontImage" class="snap-mandatory snap-x flex overflow-x-auto overflow-y-hidden">
-    <FrontImage src="/front/1.jpg" />
-    <FrontImage src="/front/2.jpg" />
+  <div
+    id="frontImage"
+    class="snap-mandatory snap-x flex overflow-x-auto overflow-y-hidden"
+  >
+    {heroItems.map(item => <HeroImage {...item} />)}
   </div>
-  <!-- <CfImage
-    id="cover"
-    src="./front.jpg"
-    width={{
-      sm: 640,
-      md: 768,
-      lg: 1024,
-      xl: 1280,
-      max: 2000,
-    }}
-    ratio={1.33}
-    fetchpriority="high"
-    decoding="async"
-    alt="cover"
-  /> -->
 </Layout>
 
 <style>

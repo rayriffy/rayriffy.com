@@ -1,0 +1,22 @@
+import type { HeroItem } from '../@types/HeroItem'
+
+export const heroItems: HeroItem[] = [
+  {
+    src: '/front/1.jpg',
+    date: new Date('2023-11-10'),
+    camera: {
+      manufacturer: 'Sony',
+      model: 'ILCE-7M4',
+      lens: 'FE 24-70mm F2.8 GM II',
+    },
+  },
+  {
+    src: '/front/2.jpg',
+    date: new Date('2023-02-16'),
+    camera: {
+      manufacturer: 'Apple',
+      model: 'iPhone 14 Pro',
+      lens: 'Main Camera — 24 mm ƒ1.78',
+    },
+  },
+]

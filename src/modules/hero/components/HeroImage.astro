@@ -1,0 +1,51 @@
+---
+import CfImage from '$core/components/cfImage.astro'
+import dayjs from 'dayjs'
+
+import type { HeroItem } from '../@types/HeroItem'
+
+export type Props = HeroItem
+
+const { src, date, camera } = Astro.props
+---
+
+<section class="relative">
+  <CfImage
+    id="cover"
+    src={src}
+    width={{
+      sm: 640,
+      md: 768,
+      lg: 1024,
+      xl: 1280,
+      max: 2000,
+    }}
+    ratio={1.33}
+    fetchpriority="high"
+    decoding="async"
+    alt="cover"
+  />
+  <div class="absolute top-4 left-4 flex">
+    <div class="bg-black/70 px-4 py-3 rounded-xl font-mono text-xs text-white">
+      <p class="space-x-1">
+        <span class="font-bold">{camera.manufacturer}</span><span
+          >{camera.model}</span>
+      </p>
+      <p>{camera.lens}</p>
+      <p>{dayjs(date).format('DD MMM YYYY')}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    @apply w-screen shrink-0 snap-center;
+  }
+</style>
+
+<style is:global>
+  picture,
+  img#cover {
+    @apply h-screen w-screen object-cover;
+  }
+</style>
