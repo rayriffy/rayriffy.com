@@ -6,7 +6,7 @@ export const prerender = true
 ---
 
 <Layout noPadding>
-  <div class="snap-mandatory snap-x flex overflow-x-auto overflow-y-hidden">
+  <div id="frontImage" class="snap-mandatory snap-x flex overflow-x-auto overflow-y-hidden">
     <FrontImage src="/front/1.jpg" />
     <FrontImage src="/front/2.jpg" />
   </div>
@@ -27,14 +27,12 @@ export const prerender = true
   /> -->
 </Layout>
 
-<style is:global>
-  picture,
-  img#cover {
-    display: flex;
-    width: 100vw;
-    height: 100vh;
-    max-height: -webkit-fill-available;
-    object-fit: cover;
-    flex-shrink: 0;
+<style>
+  #frontImage {
+    scrollbar-width: none;
+  }
+
+  #frontImage::-webkit-scrollbar {
+    display: none;
   }
 </style>
