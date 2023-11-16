@@ -39,7 +39,7 @@ export const readFileSystem = async <T = unknown>(key: string[]) => {
     const files = await fs.promises.readdir(requestedDirectory)
 
     for (const file of files) {
-      const [maxAgeString, expireAtString, etag, extension] = file.split('.')
+      const [_maxAgeString, expireAtString, etag, _extension] = file.split('.')
       const filePath = path.join(requestedDirectory, file)
       const expireAt = Number(expireAtString)
 
