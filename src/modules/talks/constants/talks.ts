@@ -2,6 +2,22 @@ import type { Talk } from '../@types/Talk'
 
 export const talks: Talk[] = [
   {
+    title: 'Using GitHub as a database for rich content and video processing',
+    event: 'GitHub Community Meetup',
+    year: 2023,
+    href: 'youtube',
+    description:
+      'After more than 1 year of formally founded Creatorsgarten, we organize more than 30 events acrros multiple locations. This talk will take you behind the sinces on how we use GitHub to automate our workflow and managing our self-made wiki engine.',
+    image: {
+      src: '/static/talks/logistic.jpg',
+      ratio: 16 / 9,
+    },
+    links: {
+      youtube: 'https://youtu.be/47oIXnbQXps',
+      keynote: 'https://storage.rayriffy.com/files/logistic.pdf',
+    },
+  },
+  {
     title: 'Atomic cross-framework state manager with nanostores',
     event: 'Bkk.js #18',
     year: 2023,
