@@ -30,7 +30,9 @@ export const purgeFileSystem = async (key: string[]) => {
   } catch (e) {}
 }
 
-export const readFileSystem = async <T = unknown>(key: string[]) => {
+export const readFileSystem = async <T = unknown>(
+  key: (string | number | Buffer)[]
+) => {
   const hash = getHash(key)
   const requestedDirectory = path.join(cacheDirectory, hash)
 
@@ -61,7 +63,7 @@ export const readFileSystem = async <T = unknown>(key: string[]) => {
 }
 
 export const writeFileSystem = async <T = unknown>(
-  key: string[],
+  key: (string | number | Buffer)[],
   content: T,
   maxAgeInMs = 60 * 1000
 ) => {

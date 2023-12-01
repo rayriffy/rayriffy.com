@@ -1,6 +1,13 @@
 ---
+import { getPlaiceholder } from 'plaiceholder'
+import { clsx } from 'clsx'
 import { getOptimizedImageUrl } from '../functions/getOptimizedImageUrl'
 import type { OptimizedImageOption } from '../@types/OptimizedImageOption'
+import {
+  getHash,
+  readFileSystem,
+  writeFileSystem,
+} from '$core/functions/fileSystem'
 
 export interface Props extends Omit<astroHTML.JSX.ImgHTMLAttributes, 'width'> {
   src: string
@@ -19,7 +26,14 @@ export interface Props extends Omit<astroHTML.JSX.ImgHTMLAttributes, 'width'> {
   transform?: OptimizedImageOption
 }
 
-let { ratio, width, transform = {}, src, ...props } = Astro.props
+let {
+  ratio,
+  width,
+  transform = {},
+  src,
+  class: className,
+  ...props
+} = Astro.props
 let sources: astroHTML.JSX.SourceHTMLAttributes[] = []
 
 if (src.startsWith('//')) src = `https:${src}`
@@ -91,17 +105,51 @@ if (import.meta.env.PROD || true) {
 const mergedProps: astroHTML.JSX.ImgHTMLAttributes = {
   ...props,
   loading: props.loading ?? 'lazy',
-  class: `object-cover ${props.class ?? ''}`,
+}
+
+/**
+ * Image with placeholder
+ */
+type PlaiceholderCSS = Awaited<ReturnType<typeof getPlaiceholder>>['css']
+const plaiceholderSize = 10
+const plaiceholderKey = ['plaiceholder', src, plaiceholderSize]
+let plaiceholderCSS = await readFileSystem<PlaiceholderCSS>(
+  plaiceholderKey
+).then(o => o?.data)
+if (!plaiceholderCSS) {
+  try {
+    const buffer = await fetch(src).then(async o => {
+      if (o.ok) return Buffer.from(await o.arrayBuffer())
+      else throw Error('plaiceholder-fetch-failed')
+    })
+    const { css } = await getPlaiceholder(buffer, { size: plaiceholderSize })
+    plaiceholderCSS = css
+    await writeFileSystem<PlaiceholderCSS>(
+      plaiceholderKey,
+      css,
+      365 * 24 * 60 * 60 * 1000 // 1 year
+    )
+  } catch (e) {
+    console.log('plaiceholder failed for image: ', src)
+  }
 }
 ---
 
-<picture>
-  {sources.map(o => <source {...o} />)}
-  <img
-    src={src}
-    width={originalWidth}
-    height={originalHeight}
-    style={`aspect-ratio:${originalWidth}/${originalHeight};`}
-    {...mergedProps}
-  />
-</picture>
+<div class={clsx('relative overflow-hidden', className)}>
+  <div
+    style={plaiceholderCSS}
+    class="absolute inset-0 w-full h-screen scale-150 blur-2xl z-[-1]"
+  >
+  </div>
+  <picture>
+    {sources.map(o => <source {...o} />)}
+    <img
+      src={src}
+      width={originalWidth}
+      height={originalHeight}
+      style={`aspect-ratio:${originalWidth}/${originalHeight};`}
+      class="object-cover"
+      {...mergedProps}
+    />
+  </picture>
+</div>
