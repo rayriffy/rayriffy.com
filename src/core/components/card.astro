@@ -18,6 +18,7 @@ const { image, title, href, bottom } = Astro.props
         src={image.src}
         ratio={image.ratio}
         width={660}
+        alt={title}
         class="object-cover object-center md:h-36 lg:h-72"
       />
     )

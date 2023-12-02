@@ -63,6 +63,7 @@ const totalPage = Math.ceil(entryCollection.total / 10)
                       ratio={1500 / 788}
                       src={blog.fields.banner!.fields.file!.url}
                       transform={{ quality: 85 }}
+                      alt={blog.fields.slug}
                       class="h-auto w-full rounded-xl border shadow-md"
                       transition:name={`cover-${blog.fields.slug}`}
                     />
