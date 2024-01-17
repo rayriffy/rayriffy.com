@@ -13,7 +13,7 @@ export const talks: Talk[] = [
       ratio: 16 / 9,
     },
     links: {
-      youtube: 'https://youtu.be/47oIXnbQXps',
+      youtube: 'https://youtu.be/i58lEAFqDlw',
       keynote: 'https://storage.rayriffy.com/files/logistic.pdf',
     },
   },
