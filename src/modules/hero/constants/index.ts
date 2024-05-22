@@ -2,6 +2,15 @@ import type { HeroItem } from '../@types/HeroItem'
 
 export const heroItems: HeroItem[] = [
   {
+    src: '/front/3.jpg',
+    date: new Date('2024-02-26'),
+    camera: {
+      manufacturer: 'Apple',
+      model: 'iPhone 14 Pro',
+      lens: 'Main Camera — 24 mm ƒ1.78',
+    },
+  },
+  {
     src: '/front/1.jpg',
     date: new Date('2023-11-10'),
     camera: {
