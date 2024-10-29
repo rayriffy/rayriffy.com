@@ -5,7 +5,7 @@ export const projects: Project[] = [
     title: 'Mirai',
     year: 2022,
     description:
-      'A thesis project for my banchlor degree. This is a prototype of the new arcade token system for coins to be purchased, stored and used digitally.',
+      'A thesis project for my bachelor degree. This is a prototype of the new arcade token system for coins to be purchased, stored and used digitally.',
     href: 'web',
     links: {
       web: 'https://storage.rayriffy.com/files/SP2021-35.pdf',
@@ -13,15 +13,15 @@ export const projects: Project[] = [
     },
   },
   {
-    title: 'Svelte Automatic Image Optimization',
-    year: 2022,
+    title: 'Urami',
+    year: 2023,
     active: true,
     description:
-      "A recreation of NextJS's automatic image optimization feature for SvelteKit",
+      "Automatic image optimization that complies with standard Request, and Response API. Use them with any backend frameworks!",
     href: 'web',
     links: {
-      web: 'https://www.npmjs.com/package/svelte-aio',
-      github: 'https://github.com/rayriffy/svelte-aio',
+      web: 'https://www.npmjs.com/package/@urami/core',
+      github: 'https://github.com/rayriffy/urami',
     },
   },
   {
