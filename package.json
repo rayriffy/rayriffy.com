@@ -25,7 +25,7 @@
     "clsx": "^2.1.1",
     "contentful": "^10.6.19",
     "dayjs": "^1.11.13",
-    "fastify": "^4.25.2",
+    "fastify": "^5.0.0",
     "html-entities": "^2.5.2",
     "notion-to-md": "^3.1.1",
     "plaiceholder": "^3.0.0",
