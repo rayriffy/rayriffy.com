@@ -25,27 +25,25 @@ const { image, title, href, bottom } = Astro.props
   }
   <div class="flex grow flex-col justify-between space-y-6 p-6">
     <div class="space-y-3">
-      <>
-        <h2 class="text-2xl font-bold leading-8 tracking-tight">
-          {
-            href ? (
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href={href}
-                class="no-underline"
-              >
-                {title}
-              </a>
-            ) : (
-              <span>{title}</span>
-            )
-          }
-        </h2>
-        <div class="max-w-none space-y-2 text-gray-500">
-          <slot />
-        </div>
-      </>
+      <h2 class="text-2xl font-bold leading-8 tracking-tight">
+        {
+          href ? (
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={href}
+              class="no-underline"
+            >
+              {title}
+            </a>
+          ) : (
+            <span>{title}</span>
+          )
+        }
+      </h2>
+      <div class="max-w-none space-y-2 text-gray-500">
+        <slot />
+      </div>
     </div>
     {
       bottom && (

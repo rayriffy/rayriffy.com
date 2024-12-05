@@ -1,10 +1,10 @@
-import type contentful from 'contentful'
+import type {EntryFieldTypes} from 'contentful'
 
 export type CategorySkeleton = {
   contentTypeId: 'category'
   fields: {
-    key: contentful.EntryFieldTypes.Text
-    name: contentful.EntryFieldTypes.Text
-    desc: contentful.EntryFieldTypes.Text
+    key: EntryFieldTypes.Text
+    name: EntryFieldTypes.Text
+    desc: EntryFieldTypes.Text
   }
 }

@@ -1,4 +1,4 @@
-FROM node:20-alpine as deps-prod
+FROM node:22-alpine as deps-prod
 
 WORKDIR /app
 
@@ -7,7 +7,7 @@ RUN npx pnpm -r i --frozen-lockfile --prod
 
 # ? -------------------------
 
-FROM node:20-alpine as builder
+FROM node:22-alpine as builder
 
 WORKDIR /app
 
@@ -22,7 +22,7 @@ RUN npx pnpm build
 
 # ? -------------------------
 
-FROM gcr.io/distroless/nodejs20-debian12:nonroot as runner
+FROM gcr.io/distroless/nodejs22-debian12:nonroot as runner
 
 USER nonroot
 EXPOSE 8080
