@@ -1,18 +1,19 @@
-import { getAllBlogs } from '$modules/feed/functions/getAllBlogs'
 import rss from '@astrojs/rss'
+
+import { getCollection } from 'astro:content'
+import { getGardenPosts } from '$modules/garden/functions/getGardenPosts'
 
 import type { APIRoute } from 'astro'
 import type { RSSFeedItem } from '@astrojs/rss'
-import { getGardenPosts } from '$modules/garden/functions/getGardenPosts'
 
 export const GET: APIRoute = async context => {
-  const blogFeed = getAllBlogs().then(blogs =>
+  const blogFeed = getCollection('contentfulBlogs').then(blogs =>
     blogs.map(
       b =>
         ({
-          title: b.fields.title,
-          link: `/blog/${b.fields.slug}`,
-          pubDate: new Date(b.fields.date),
+          title: b.data.title,
+          link: `/blog/${b.id}`,
+          pubDate: b.data.date,
         }) satisfies RSSFeedItem
     )
   )

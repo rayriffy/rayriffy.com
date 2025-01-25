@@ -3,27 +3,24 @@ import BlogListing from '$modules/blog/components/listing.astro'
 import Layout from '$app/components/layout.astro'
 import SEO from '$core/components/seo.astro'
 
-import { getBlogs } from '$modules/blog/functions/getBlogs'
-import { previewKey } from '$core/constants/secrets/previewKey'
-
-import type { BlogPostSkeleton } from '$core/@types/BlogPostSkeleton'
-import type { EntryCollection } from 'contentful'
+import { getCollection } from 'astro:content'
 
 const { page } = Astro.params
 
 let targetPage = Number(page)
-let entryCollection:
-  | EntryCollection<BlogPostSkeleton, 'WITHOUT_UNRESOLVABLE_LINKS', string>
-  | undefined
 
-try {
-  entryCollection = await getBlogs(
-    Number(targetPage),
-    Astro.cookies.get('preview')?.value === previewKey
-  )
-} catch (error) {}
+const blogs = await getCollection('contentfulBlogs')
 
-if (!entryCollection || entryCollection.items.length === 0) {
+const blogsPerPage = 10
+
+const totalPage = Math.ceil(blogs.length / blogsPerPage)
+
+const paginatedBlogs = blogs.slice(
+  (targetPage - 1) * blogsPerPage,
+  targetPage * blogsPerPage
+)
+
+if (paginatedBlogs.length === 0) {
   return new Response(undefined, {
     status: 404,
   })
@@ -37,5 +34,5 @@ if (!entryCollection || entryCollection.items.length === 0) {
     description="Here's a list of all my blog posts."
     noindex
   />
-  <BlogListing page={targetPage} entryCollection={entryCollection!} />
+  <BlogListing page={targetPage} totalPage={totalPage} blogs={blogs} />
 </Layout>
