@@ -1,5 +1,5 @@
 /** @type {import("prettier").Options} */
-module.exports = {
+export default {
   semi: false,
   arrowParens: 'avoid',
   singleQuote: true,

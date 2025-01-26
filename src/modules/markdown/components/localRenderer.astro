@@ -1,0 +1,16 @@
+---
+import { getEntry, render } from 'astro:content'
+
+export interface Props extends astroHTML.JSX.HTMLAttributes {
+  slug: string
+}
+
+const { slug, ...rest } = Astro.props
+
+const localBlog = await getEntry('localBlogs', slug)
+const { Content } = await render(localBlog!)
+---
+
+<article {...rest}>
+  <Content />
+</article>

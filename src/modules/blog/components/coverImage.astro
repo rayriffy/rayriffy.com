@@ -1,0 +1,42 @@
+---
+import CFImage from "$core/components/cfImage.astro";
+import { Image } from 'astro:assets'
+
+export interface Props {
+  src: string | {
+    src: string;
+    height: number;
+    width: number;
+    format: "avif" | "png" | "webp" | "jpeg" | "jpg" | "svg" | "tiff" | "gif";
+  }
+  alt: string
+  class?: string
+}
+
+const { src, alt, type, class: className } = Astro.props
+---
+
+{typeof src !== 'string' ? (
+  <Image
+    src={src}
+    alt={alt}
+    class={className}
+  />
+) : (
+  <CFImage
+    src={src}
+    width={{
+      sm: 640,
+      md: 768,
+      lg: 1024,
+      xl: 1280,
+      max: 1280,
+    }}
+    ratio={1500 / 788}
+    alt={alt}
+    transform={{ quality: 85 }}
+    fetchpriority="high"
+    class={className}
+    transition:name={`cover-${alt}`}
+  />
+)}

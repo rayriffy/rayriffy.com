@@ -1,7 +1,16 @@
 import { defineCollection } from 'astro:content'
-import {blogSchema} from "$modules/blog/models/blogSchema.ts";
+import { contentfulBlogSchema, localBlogSchema } from "$modules/blog/models/blogSchema.ts";
 import {getContentfulClient} from "$core/functions/getContentfulClient.ts";
 import type {BlogPostSkeleton} from "$core/@types/BlogPostSkeleton.ts";
+import {glob} from "astro/loaders";
+
+const localBlogs = defineCollection({
+  loader: glob({
+    pattern: '**/*.md',
+    base: './src/data/blogs',
+  }),
+  schema: localBlogSchema,
+})
 
 const contentfulBlogs = defineCollection({
   loader: async () => {
@@ -23,11 +32,13 @@ const contentfulBlogs = defineCollection({
       categories: entry.fields.category.map(category => category?.fields.name),
       preview: entry.fields.featured,
       content: entry.fields.content ?? '',
+      type: 'contentful',
     }))
   },
-  schema: blogSchema
+  schema: contentfulBlogSchema
 })
 
 export const collections = {
+  localBlogs,
   contentfulBlogs,
 }

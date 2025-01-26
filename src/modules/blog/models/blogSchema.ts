@@ -1,15 +1,27 @@
-import { z } from 'astro:content'
+import {type SchemaContext, z} from 'astro:content'
 
-export type BlogSchema = z.infer<typeof blogSchema>
-
-export const blogSchema = z.object({
+const baseBlogSchema = z.object({
   id: z.string(),
   title: z.string(),
   subtitle: z.string(),
   featured: z.boolean(),
-  banner: z.string(),
   date: z.date(),
-  content: z.string(),
   categories: z.array(z.string()),
   preview: z.boolean(),
+  content: z.optional(z.string()),
 })
+
+export const contentfulBlogSchema = baseBlogSchema.merge(
+  z.object({
+    type: z.enum(['contentful']),
+    banner: z.string(),
+  })
+)
+
+export const localBlogSchema = ({ image }: SchemaContext) =>
+  baseBlogSchema.merge(
+    z.object({
+      type: z.enum(['local']),
+      banner: image(),
+    })
+  )

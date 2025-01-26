@@ -1,7 +1,7 @@
 import { selectAll } from 'unist-util-select'
 import { encode } from 'html-entities'
 
-import { getOptimizedImageUrl } from '$core/functions/getOptimizedImageUrl'
+import { getOptimizedImageUrl } from '../../../core/functions/getOptimizedImageUrl'
 
 import type { Plugin } from 'unified'
 import type { Node } from 'unist'

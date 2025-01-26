@@ -4,6 +4,9 @@ import icon from 'astro-icon'
 
 import node from '@astrojs/node'
 
+import {iframeParser} from "./src/modules/markdown/plugins/iframeParser";
+import {imageParser} from "./src/modules/markdown/plugins/imageParser";
+
 // https://astro.build/config
 export default defineConfig({
   output: 'server',
@@ -15,6 +18,11 @@ export default defineConfig({
     mode: 'middleware',
   }),
   prefetch: true,
+  markdown: {
+    remarkPlugins: [
+      iframeParser,
+    ]
+  },
   compressHTML: true,
   integrations: [
     icon({
