@@ -1,8 +1,8 @@
 import { defineConfig } from 'astro/config'
-import tailwind from '@astrojs/tailwind'
 import icon from 'astro-icon'
 
 import node from '@astrojs/node'
+import tailwindcss from "@tailwindcss/vite";
 
 import {iframeParser} from "./src/modules/markdown/plugins/iframeParser";
 import {imageParser} from "./src/modules/markdown/plugins/imageParser";
@@ -32,10 +32,10 @@ export default defineConfig({
         logos: ['github', 'youtube'],
       },
     }),
-    tailwind({
-      config: {
-        applyBaseStyles: false,
-      },
-    }),
   ],
+  vite: {
+    plugins: [
+      tailwindcss(),
+    ],
+  },
 })

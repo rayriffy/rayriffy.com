@@ -42,10 +42,10 @@ const getProviderEndpoint = (url: string, providers: OembedProvider[]) => {
 const createIframe = (node: ExtendedNode, url: string) => {
   node.type = 'html'
   node.value = `
-    <div class="w-full aspect-[16/9]">
+    <div class="w-full aspect-16/9">
       <iframe
         src="${url}"
-        class="w-full aspect-[16/9]"
+        class="w-full aspect-16/9"
         style="border:0"
         loading="lazy"
         allowfullscreen

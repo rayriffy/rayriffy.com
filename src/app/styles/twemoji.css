@@ -1,5 +1,3 @@
-@tailwind base;
-
 @layer base {
   .twa {
     display: inline-block;
