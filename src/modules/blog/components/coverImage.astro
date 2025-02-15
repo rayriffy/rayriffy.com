@@ -13,7 +13,7 @@ export interface Props {
   class?: string
 }
 
-const { src, alt, type, class: className } = Astro.props
+const { src, alt, class: className } = Astro.props
 ---
 
 {typeof src !== 'string' ? (
