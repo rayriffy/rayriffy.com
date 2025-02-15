@@ -3,6 +3,7 @@ import { contentfulBlogSchema, localBlogSchema } from "$modules/blog/models/blog
 import {getContentfulClient} from "$core/functions/getContentfulClient.ts";
 import type {BlogPostSkeleton} from "$core/@types/BlogPostSkeleton.ts";
 import {glob} from "astro/loaders";
+import {contentful as contentfulSecrets} from "$core/constants/secrets/contentful.ts";
 
 const localBlogs = defineCollection({
   loader: glob({
@@ -14,6 +15,9 @@ const localBlogs = defineCollection({
 
 const contentfulBlogs = defineCollection({
   loader: async () => {
+    if (!contentfulSecrets.deliveryToken && !contentfulSecrets.previewToken)
+      return []
+
     const contentful =  getContentfulClient('production')
 
     const blogsEntries =
