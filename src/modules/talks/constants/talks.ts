@@ -2,6 +2,22 @@ import type { Talk } from '../@types/Talk'
 
 export const talks: Talk[] = [
   {
+    title: 'Web can be fun!',
+    event: 'JSConf JP',
+    year: 2024,
+    href: 'youtube',
+    description:
+      'Web APIs is capable of way more than we might think. There\'re so many unusual Web APIs to explore. We\'ll explore parts of the web that we might not known before. Did you know you can send Bluetooth signal directly to the web? or did you know you can control web by using synthesizer via Web MIDI? In this session, we will play something fun together, by controlling my jacket, and synthesizer, and explore ranges of strange Web APIs.',
+    image: {
+      src: '/static/talks/webfun.jpg',
+      ratio: 16 / 9,
+    },
+    links: {
+      youtube: 'https://youtu.be/2G_tdfSTDcE',
+      keynote: 'https://storage.rayriffy.com/files/jsconf-web-can-be-fun.pdf',
+    },
+  },
+  {
     title: 'Using GitHub as a database for rich content and video processing',
     event: 'GitHub Community Meetup',
     year: 2023,
@@ -33,6 +49,23 @@ export const talks: Talk[] = [
       keynote: 'https://storage.rayriffy.com/files/atomic-nanostores.pdf',
       github: 'https://github.com/rayriffy/nanostores-demo',
     },
+  },
+  {
+    title: 'Easily publishing fully-typed dependency with confidence',
+    event: 'TypeScript Community Meetup',
+    year: 2023,
+    href: 'youtube',
+    description:
+      'มาเรียนรู้เกี่ยวกับการ Publish Dependency แบบง่าย ๆ ด้วย GitHub Actions และสร้าง Provenance สำหรับแพ็คเกจด้วย npm',
+    image: {
+      src: '/static/talks/npm.jpg',
+      ratio: 16 / 9,
+    },
+    links: {
+      youtube: 'https://youtu.be/Gaa3Te6bqrw',
+      keynote: 'https://storage.rayriffy.com/files/typescript1-easily-publishing-fully-typed-dependency-with-confidence.pdf',
+      github: 'https://l.rayriffy.com/changesets-keynote'
+    }
   },
   {
     title: 'Rejecting client-side, embrace server-side',
