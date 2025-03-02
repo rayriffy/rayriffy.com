@@ -1,6 +1,6 @@
 ---
-import BlogListing from '$modules/blog/components/listing.astro'
 import Layout from '$app/components/layout.astro'
+import BlogListing from '$modules/blog/components/listing.astro'
 import SEO from '$core/components/seo.astro'
 
 import { getBlogs } from '$modules/blog/functions/getBlogs'
@@ -9,9 +9,7 @@ import { previewKey } from '$core/constants/secrets/previewKey'
 import type { BlogPostSkeleton } from '$core/@types/BlogPostSkeleton'
 import type { EntryCollection } from 'contentful'
 
-const { page } = Astro.params
-
-let targetPage = Number(page)
+let targetPage = 1
 let entryCollection:
   | EntryCollection<BlogPostSkeleton, 'WITHOUT_UNRESOLVABLE_LINKS', string>
   | undefined
@@ -35,7 +33,6 @@ if (!entryCollection || entryCollection.items.length === 0) {
     slot="seo"
     title="Blog"
     description="Here's a list of all my blog posts."
-    noindex
   />
   <BlogListing page={targetPage} entryCollection={entryCollection!} />
 </Layout>

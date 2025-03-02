@@ -1,10 +1,10 @@
 import { SitemapStream, streamToPromise } from 'sitemap'
 import { Readable } from 'stream'
-import { paths } from '$app/constants/paths'
-import { getGardenPosts } from '$modules/garden/functions/getGardenPosts'
-import { getCollection } from 'astro:content'
 
 import type { APIRoute } from 'astro'
+import { paths } from '$app/constants/paths'
+import { getGardenPosts } from '$modules/garden/functions/getGardenPosts'
+import { getAllBlogs } from '$modules/feed/functions/getAllBlogs'
 
 interface Link {
   url: string
@@ -21,10 +21,7 @@ export const get: APIRoute = async () => {
 
     const staticLinks = paths.map(o => o.path)
 
-    const blogLinksPromise = getCollection('contentfulBlogs')
-      .then(blogs =>
-        blogs.map(blog => `/blog/${blog.id}`)
-      )
+    const blogLinksPromise = getAllBlogs().then(blogs => blogs.map(blog => `/blog/${blog}`))
 
     const gardenPromise = getGardenPosts().then(posts =>
       posts.map(

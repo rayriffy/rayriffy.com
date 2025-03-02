@@ -6,9 +6,14 @@ import CFImage from '$core/components/cfImage.astro'
 
 import dayjs from 'dayjs'
 import getReadingTime from 'reading-time'
-import { getEntry } from 'astro:content'
 
-const blog = await getEntry('contentfulBlogs', Astro.params.slug!)
+import { getBlog } from '$modules/blog/functions/getBlog'
+import { previewKey } from '$core/constants/secrets/previewKey'
+
+const blog = await getBlog(
+  Astro.params.slug ?? '',
+  Astro.cookies.get('preview')?.value === previewKey
+)
 
 if (!blog) {
   return new Response(undefined, {
@@ -20,13 +25,13 @@ if (!blog) {
 <Layout>
   <SEO
     slot="seo"
-    title={blog.data.title}
-    description={blog.data.subtitle}
-    image={blog.data.banner}
+    title={blog.fields.title}
+    description={blog.fields.subtitle}
+    image={blog.fields.banner!.fields.file!.url}
   />
   <div class="mx-auto max-w-3xl px-3 sm:px-6 xl:max-w-5xl xl:px-0">
     <CFImage
-      src={blog.data.banner}
+      src={blog.fields.banner!.fields.file!.url}
       width={{
         sm: 640,
         md: 768,
@@ -35,19 +40,19 @@ if (!blog) {
         max: 1280,
       }}
       ratio={1500 / 788}
-      src={blog.data.banner}
-      alt={blog.id}
+      src={blog.fields.banner!.fields.file!.url}
+      alt={blog.fields.slug}
       transform={{ quality: 85 }}
       fetchpriority="high"
       class="h-auto w-full rounded-b-xl border border-t-0 shadow-md"
-      transition:name={`cover-${blog.id}`}
+      transition:name={`cover-${blog.fields.slug}`}
     />
     <div class="mx-auto max-w-3xl pt-4 sm:px-6 xl:max-w-5xl xl:px-0 xl:pt-8">
       <h1
         class="md:leading-14 text-3xl font-extrabold leading-10 tracking-tight text-gray-900 md:text-5xl lg:text-[54px] lg:leading-[64px]"
-        transition:name={`title-${blog.id}`}
+        transition:name={`title-${blog.fields.slug}`}
       >
-        {blog.data.title}
+        {blog.fields.title}
       </h1>
       <dl class="mb-6 mt-4">
         <div>
@@ -57,15 +62,15 @@ if (!blog) {
             <time datetime="2023-03-11" class="flex items-center justify-center"
               ><i class="twa twa-calendar inline-block"></i><span
                 class="ml-1.5 md:ml-2"
-                transition:name={`time-${blog.id}`}
-                >{dayjs(blog.data.date).format('D MMMM, YYYY')}</span
+                transition:name={`time-${blog.fields.slug}`}
+                >{dayjs(blog.fields.date).format('D MMMM, YYYY')}</span
               ></time
             ><span class="mx-2"> •</span><div class="flex items-center">
               <i class="twa twa-hourglass-not-done inline-block"></i><span
                 class="ml-1.5 md:ml-2"
                 >{
                   Math.ceil(
-                    getReadingTime(blog.data.content, {
+                    getReadingTime(blog.fields.content, {
                       wordsPerMinute: 150,
                     }).minutes
                   )
@@ -77,7 +82,7 @@ if (!blog) {
       </dl>
       <Renderer
         class="prose prose-lg prose-blue max-w-none"
-        content={blog.data.content}
+        content={blog.fields.content}
       />
     </div>
   </div>
