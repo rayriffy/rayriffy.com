@@ -15,7 +15,6 @@ const localBlogs = defineCollection({
 
 const contentfulBlogs = defineCollection({
   loader: async () => {
-    console.log(contentfulSecrets)
     if (!contentfulSecrets.deliveryToken && !contentfulSecrets.previewToken)
       return []
 
@@ -26,8 +25,6 @@ const contentfulBlogs = defineCollection({
         content_type: 'blogPost',
         order: ['-fields.date'],
       })
-
-    console.log('blogsEntries', blogsEntries.items.length)
 
     return blogsEntries.items.map(entry => ({
       id: entry.fields.slug,
