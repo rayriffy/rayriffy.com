@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  web:
+    container_name: "rayriffy-com"
+    ports:
+      - 8080:8080
+    restart: unless-stopped
+    env_file:
+      - .env
+    build:
+      context: ./
+      dockerfile: Dockerfile
