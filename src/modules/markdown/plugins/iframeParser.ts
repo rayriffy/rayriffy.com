@@ -1,6 +1,6 @@
 import { selectAll } from 'unist-util-select'
 
-import { readFileSystem, writeFileSystem } from '../../../core/functions/fileSystem'
+import { readFileSystem, writeFileSystem } from '$core/functions/fileSystem'
 
 import type { Plugin } from 'unified'
 import type { Node } from 'unist'

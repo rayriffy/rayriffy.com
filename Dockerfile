@@ -14,7 +14,7 @@ WORKDIR /app
 COPY package.json pnpm-lock.yaml* ./
 RUN npx pnpm -r i --frozen-lockfile
 
-COPY astro.config.mjs tailwind.config.mjs tsconfig.json ./
+COPY astro.config.mjs tailwind.config.cjs tsconfig.json ./
 COPY public ./public
 COPY src ./src
 

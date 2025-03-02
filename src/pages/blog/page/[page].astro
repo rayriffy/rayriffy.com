@@ -3,13 +3,13 @@ import BlogListing from '$modules/blog/components/listing.astro'
 import Layout from '$app/components/layout.astro'
 import SEO from '$core/components/seo.astro'
 
-import { loadContents } from "$modules/blog/loader";
+import { getCollection } from 'astro:content'
 
 const { page } = Astro.params
 
 let targetPage = Number(page)
 
-const blogs = await loadContents()
+const blogs = await getCollection('contentfulBlogs')
 
 const blogsPerPage = 10
 

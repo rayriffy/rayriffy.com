@@ -1,16 +1,17 @@
 ---
-import PageHeader from '$core/components/pageHeader.astro'
+import CFImage from '$core/components/cfImage.astro'
+
 import Link from './link.astro'
-import CoverImage from "./coverImage.astro";
 
 import dayjs from 'dayjs'
 
-import type { Content } from "../loader";
+import PageHeader from '$core/components/pageHeader.astro'
+import type { CollectionEntry } from "astro:content";
 
 export interface Props {
   page: number
   totalPage: number
-  blogs: Content[]
+  blogs: CollectionEntry<'contentfulBlogs'>[]
 }
 
 const { page, totalPage, blogs } = Astro.props
@@ -41,24 +42,25 @@ const { page, totalPage, blogs } = Astro.props
                     </time>
                   </dd>
                 </dl>
-                {blog.data.type === 'local' ? (
-                  <span class="rounded-full border-2 border-sky-700 bg-sky-100 px-2 text-sm font-semibold text-sky-700">
-                    LOCAL
-                  </span>
-                ) : blog.data.featured ? (
+                {blog.data.featured && (
                   <span class="rounded-full border-2 border-orange-700 bg-orange-100 px-2 text-sm font-semibold text-orange-700">
                     FEATURED
                   </span>
-                ) : null}
+                )}
               </div>
               <div class="space-y-3 xl:col-span-3">
                 <div>
                   <a rel="prefetch" href={`/blog/${blog.id}`}>
-                      <CoverImage
-                        src={blog.data.banner}
-                        alt={blog.id}
-                        class="h-auto w-full rounded-xl border shadow-md"
-                      />
+                    <CFImage
+                      src={blog.data.banner}
+                      width={800}
+                      ratio={1500 / 788}
+                      src={blog.data.banner}
+                      transform={{ quality: 85 }}
+                      alt={blog.id}
+                      class="h-auto w-full rounded-xl border shadow-md"
+                      transition:name={`cover-${blog.id}`}
+                    />
                   </a>
                   <h3 class="mt-4 text-2xl font-bold leading-8 tracking-tight text-gray-900 xl:w-2/3">
                     <a

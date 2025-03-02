@@ -1,23 +1,20 @@
 ---
 import Layout from '$app/components/layout.astro'
-import ContentfulRenderer from '$modules/markdown/components/contentfulRenderer.astro'
-import LocalRenderer from "$modules/markdown/components/localRenderer.astro";
-import CoverImage from "$modules/blog/components/coverImage.astro";
+import Renderer from '$modules/markdown/components/renderer.astro'
 import SEO from '$core/components/seo.astro'
+import CFImage from '$core/components/cfImage.astro'
 
 import dayjs from 'dayjs'
 import getReadingTime from 'reading-time'
-import { loadContent } from "$modules/blog/loader";
+import { getEntry } from 'astro:content'
 
-const blog = await loadContent(Astro.params.slug!)
+const blog = await getEntry('contentfulBlogs', Astro.params.slug!)
 
 if (!blog) {
   return new Response(undefined, {
     status: 404,
   })
 }
-
-const content = blog.data.content ?? blog.body ?? ''
 ---
 
 <Layout>
@@ -25,13 +22,25 @@ const content = blog.data.content ?? blog.body ?? ''
     slot="seo"
     title={blog.data.title}
     description={blog.data.subtitle}
-    image={blog.data.type === 'contentful' ? blog.data.banner : blog.data.banner.src}
+    image={blog.data.banner}
   />
   <div class="mx-auto max-w-3xl px-3 sm:px-6 xl:max-w-5xl xl:px-0">
-    <CoverImage
+    <CFImage
+      src={blog.data.banner}
+      width={{
+        sm: 640,
+        md: 768,
+        lg: 1024,
+        xl: 1280,
+        max: 1280,
+      }}
+      ratio={1500 / 788}
       src={blog.data.banner}
       alt={blog.id}
+      transform={{ quality: 85 }}
+      fetchpriority="high"
       class="h-auto w-full rounded-b-xl border border-t-0 shadow-md"
+      transition:name={`cover-${blog.id}`}
     />
     <div class="mx-auto max-w-3xl pt-4 sm:px-6 xl:max-w-5xl xl:px-0 xl:pt-8">
       <h1
@@ -56,7 +65,7 @@ const content = blog.data.content ?? blog.body ?? ''
                 class="ml-1.5 md:ml-2"
                 >{
                   Math.ceil(
-                    getReadingTime(content, {
+                    getReadingTime(blog.data.content, {
                       wordsPerMinute: 150,
                     }).minutes
                   )
@@ -66,17 +75,10 @@ const content = blog.data.content ?? blog.body ?? ''
           </dd>
         </div>
       </dl>
-      {blog.data.type === 'local' ? (
-        <LocalRenderer
-          slug={Astro.params.slug!}
-          class="prose prose-lg prose-blue max-w-none"
-        />
-      ) : (
-        <ContentfulRenderer
-          class="prose prose-lg prose-blue max-w-none"
-          content={content}
-        />
-      )}
+      <Renderer
+        class="prose prose-lg prose-blue max-w-none"
+        content={blog.data.content}
+      />
     </div>
   </div>
   <div class="pb-12"></div>
