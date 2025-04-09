@@ -4,20 +4,8 @@ import fs from 'fs/promises'
 import path from 'path'
 import matter from 'gray-matter'
 import { mapEntryToBlog } from '../models/Blog'
-
-import type { Asset, AssetSys } from 'contentful'
 import type { BlogPostSkeleton } from '$core/@types/BlogPostSkeleton'
 import type { BlogEntry, Blog } from '../models/Blog'
-
-// Format date to match Contentful's date format
-const formatDate = (date: string): string => {
-  // If already in correct ISO format, return as is
-  if (/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/.test(date)) {
-    return date;
-  }
-  // Otherwise convert to ISO format
-  return new Date(date).toISOString();
-};
 
 // Internal helper function to get a local blog post as a simplified Blog object
 const getLocalBlog = async (slug: string): Promise<Blog | null> => {
