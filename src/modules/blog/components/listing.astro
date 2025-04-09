@@ -1,5 +1,7 @@
 ---
 import CFImage from '$core/components/cfImage.astro'
+import CoverImage from '$modules/blog/components/coverImage.astro'
+import path from 'path'
 
 import Link from './link.astro'
 
@@ -33,6 +35,41 @@ const totalPage = Math.ceil(entryCollection.total / 10)
   <ul class="space-y-10 py-12">
     {
       entryCollection.items.map(blog => {
+        // Check if this is a local blog post
+        const isLocalBlog = blog.sys.space.sys.id === 'local';
+
+        // For local blog posts, we'll need to get the image dimensions
+        let bannerImageProps;
+        if (isLocalBlog && blog.fields.banner && blog.fields.banner.fields.file) {
+          const bannerUrl = blog.fields.banner.fields.file.url;
+          // Make sure the path starts with 'src/' for Astro's image handling
+          const bannerPath = bannerUrl.startsWith('/src/') 
+            ? bannerUrl.substring(1) // Remove leading slash
+            : bannerUrl.startsWith('/') 
+              ? `src${bannerUrl}` // Add 'src' prefix to path
+              : `src/${bannerUrl}`; // Add 'src/' prefix to path
+          
+          try {
+            // We need to get the image dimensions to use with astro:assets
+            // We'll use a standard 1500x788 aspect ratio if we can't get the dimensions
+            const imageSize = {
+              width: 1500,
+              height: 788,
+              format: path.extname(bannerPath).replace('.', '') as 'jpg' | 'jpeg' | 'png' | 'webp' | 'avif'
+            };
+            
+            bannerImageProps = {
+              src: bannerPath,
+              width: imageSize.width,
+              height: imageSize.height,
+              format: imageSize.format
+            };
+          } catch (error) {
+            console.error('Error loading local image:', error);
+            // If there's an error, we'll fall back to using the URL directly
+          }
+        }
+
         return (
           <li>
             <article class="space-y-2 xl:grid xl:grid-cols-4 xl:items-start xl:space-y-0">
@@ -57,16 +94,33 @@ const totalPage = Math.ceil(entryCollection.total / 10)
               <div class="space-y-3 xl:col-span-3">
                 <div>
                   <a rel="prefetch" href={`/blog/${blog.fields.slug}`}>
-                    <CFImage
-                      src={blog.fields.banner!.fields.file!.url}
-                      width={800}
-                      ratio={1500 / 788}
-                      src={blog.fields.banner!.fields.file!.url}
-                      transform={{ quality: 85 }}
-                      alt={blog.fields.slug}
-                      class="h-auto w-full rounded-xl border shadow-md"
-                      transition:name={`cover-${blog.fields.slug}`}
-                    />
+                    {isLocalBlog && blog.fields.banner && blog.fields.banner.fields.file ? (
+                      bannerImageProps ? (
+                        <CoverImage
+                          src={bannerImageProps}
+                          alt={blog.fields.slug}
+                          class="h-auto w-full rounded-xl border shadow-md"
+                          transition:name={`cover-${blog.fields.slug}`}
+                        />
+                      ) : (
+                        <img
+                          src={blog.fields.banner.fields.file.url}
+                          alt={blog.fields.slug}
+                          class="h-auto w-full rounded-xl border shadow-md object-cover"
+                          transition:name={`cover-${blog.fields.slug}`}
+                        />
+                      )
+                    ) : blog.fields.banner && blog.fields.banner.fields.file ? (
+                      <CFImage
+                        src={blog.fields.banner.fields.file.url}
+                        width={800}
+                        ratio={1500 / 788}
+                        transform={{ quality: 85 }}
+                        alt={blog.fields.slug}
+                        class="h-auto w-full rounded-xl border shadow-md"
+                        transition:name={`cover-${blog.fields.slug}`}
+                      />
+                    ) : null}
                   </a>
                   <h3 class="mt-4 text-2xl font-bold leading-8 tracking-tight text-gray-900 xl:w-2/3">
                     <a

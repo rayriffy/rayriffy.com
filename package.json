@@ -26,6 +26,8 @@
     "contentful": "^11.4.6",
     "dayjs": "^1.11.13",
     "fastify": "^5.2.1",
+    "glob": "^11.0.1",
+    "gray-matter": "^4.0.3",
     "html-entities": "^2.5.2",
     "notion-to-md": "^3.1.5",
     "plaiceholder": "^3.0.0",
