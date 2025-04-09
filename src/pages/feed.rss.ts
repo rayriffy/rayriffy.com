@@ -4,15 +4,16 @@ import rss from '@astrojs/rss'
 import type { APIRoute } from 'astro'
 import type { RSSFeedItem } from '@astrojs/rss'
 import { getGardenPosts } from '$modules/garden/functions/getGardenPosts'
+import type { Blog } from '$modules/blog/models/Blog'
 
 export const GET: APIRoute = async context => {
   const blogFeed = getAllBlogs().then(blogs =>
     blogs.map(
-      b =>
+      (b: Blog) =>
         ({
-          title: b.fields.title,
-          link: `/blog/${b.fields.slug}`,
-          pubDate: new Date(b.fields.date),
+          title: b.title,
+          link: `/blog/${b.slug}`,
+          pubDate: new Date(b.date),
         }) satisfies RSSFeedItem
     )
   )

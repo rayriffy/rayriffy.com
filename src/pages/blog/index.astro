@@ -6,22 +6,19 @@ import SEO from '$core/components/seo.astro'
 import { getBlogs } from '$modules/blog/functions/getBlogs'
 import { previewKey } from '$core/constants/secrets/previewKey'
 
-import type { BlogPostSkeleton } from '$core/@types/BlogPostSkeleton'
-import type { EntryCollection } from 'contentful'
+import type { BlogCollection } from '$modules/blog/models/Blog'
 
 let targetPage = 1
-let entryCollection:
-  | EntryCollection<BlogPostSkeleton, 'WITHOUT_UNRESOLVABLE_LINKS', string>
-  | undefined
+let blogCollection: BlogCollection | undefined
 
 try {
-  entryCollection = await getBlogs(
+  blogCollection = await getBlogs(
     Number(targetPage),
     Astro.cookies.get('preview')?.value === previewKey
   )
 } catch (error) {}
 
-if (!entryCollection || entryCollection.items.length === 0) {
+if (!blogCollection || blogCollection.items.length === 0) {
   return new Response(undefined, {
     status: 404,
   })
@@ -34,5 +31,5 @@ if (!entryCollection || entryCollection.items.length === 0) {
     title="Blog"
     description="Here's a list of all my blog posts."
   />
-  <BlogListing page={targetPage} entryCollection={entryCollection!} />
+  <BlogListing page={targetPage} collection={blogCollection} />
 </Layout>

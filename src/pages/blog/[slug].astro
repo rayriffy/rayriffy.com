@@ -3,13 +3,11 @@ import Layout from '$app/components/layout.astro'
 import Renderer from '$modules/markdown/components/renderer.astro'
 import SEO from '$core/components/seo.astro'
 import CFImage from '$core/components/cfImage.astro'
-import CoverImage from '$modules/blog/components/coverImage.astro'
 import { Image } from 'astro:assets'
+import { processLocalImage } from '$modules/blog/utils/imageHelpers'
 
 import dayjs from 'dayjs'
 import getReadingTime from 'reading-time'
-import path from 'path'
-import fs from 'fs/promises'
 
 import { getBlog } from '$modules/blog/functions/getBlog'
 import { previewKey } from '$core/constants/secrets/previewKey'
@@ -25,90 +23,67 @@ if (!blog) {
   })
 }
 
-// Check if this is a local blog post
-const isLocalBlog = blog.sys.space.sys.id === 'local'
-
-// For local blog posts, we'll need to get the image dimensions
-let bannerImageProps;
-if (isLocalBlog && blog.fields.banner && blog.fields.banner.fields.file) {
-  const bannerUrl = blog.fields.banner.fields.file.url;
-  // Make sure the path starts with 'src/' for Astro's image handling
-  const bannerPath = bannerUrl.startsWith('/src/') 
-    ? bannerUrl.substring(1) // Remove leading slash
-    : bannerUrl.startsWith('/') 
-      ? `src${bannerUrl}` // Add 'src' prefix to path
-      : `src/${bannerUrl}`; // Add 'src/' prefix to path
-  
-  try {
-    // We need to get the image dimensions to use with astro:assets
-    // We'll use a standard 1500x788 aspect ratio if we can't get the dimensions
-    const imageSize = {
-      width: 1500,
-      height: 788,
-      format: path.extname(bannerPath).replace('.', '') as 'jpg' | 'jpeg' | 'png' | 'webp' | 'avif'
-    };
-    
-    bannerImageProps = {
-      src: bannerPath,
-      width: imageSize.width,
-      height: imageSize.height,
-      format: imageSize.format
-    };
-  } catch (error) {
-    console.error('Error loading local image:', error);
-    // If there's an error, we'll fall back to using the URL directly
+// Process image if it's a local blog
+const imageProps = blog.isLocal && blog.banner ? processLocalImage({
+  fields: {
+    file: {
+      url: blog.banner.url,
+      contentType: blog.banner.contentType
+    }
   }
-}
+} as any) : null;
 ---
 
 <Layout>
   <SEO
     slot="seo"
-    title={blog.fields.title}
-    description={blog.fields.subtitle}
-    image={blog.fields.banner?.fields.file?.url}
+    title={blog.title}
+    description={blog.subtitle}
+    image={blog.banner?.url}
   />
   <div class="mx-auto max-w-3xl px-3 sm:px-6 xl:max-w-5xl xl:px-0">
-    {isLocalBlog && blog.fields.banner && blog.fields.banner.fields.file ? (
-      bannerImageProps ? (
-        <CoverImage
-          src={bannerImageProps}
-          alt={blog.fields.slug}
-          class="h-auto w-full rounded-b-xl border border-t-0 shadow-md"
-          transition:name={`cover-${blog.fields.slug}`}
-        />
+    {blog.banner && (
+      blog.isLocal ? (
+        imageProps ? (
+          <Image
+            src={imageProps}
+            alt={blog.slug}
+            class="h-auto w-full rounded-b-xl border border-t-0 shadow-md"
+            transition:name={`cover-${blog.slug}`}
+          />
+        ) : (
+          <img
+            src={blog.banner.url}
+            alt={blog.slug}
+            class="h-auto w-full rounded-b-xl border border-t-0 shadow-md object-cover"
+            transition:name={`cover-${blog.slug}`}
+          />
+        )
       ) : (
-        <img
-          src={blog.fields.banner.fields.file.url}
-          alt={blog.fields.slug}
-          class="h-auto w-full rounded-b-xl border border-t-0 shadow-md object-cover"
-          transition:name={`cover-${blog.fields.slug}`}
+        <CFImage
+          src={blog.banner.url}
+          width={{
+            sm: 640,
+            md: 768,
+            lg: 1024,
+            xl: 1280,
+            max: 1280,
+          }}
+          ratio={1500 / 788}
+          alt={blog.slug}
+          transform={{ quality: 85 }}
+          fetchpriority="high"
+          class="h-auto w-full rounded-b-xl border border-t-0 shadow-md"
+          transition:name={`cover-${blog.slug}`}
         />
       )
-    ) : blog.fields.banner && blog.fields.banner.fields.file ? (
-      <CFImage
-        src={blog.fields.banner.fields.file.url}
-        width={{
-          sm: 640,
-          md: 768,
-          lg: 1024,
-          xl: 1280,
-          max: 1280,
-        }}
-        ratio={1500 / 788}
-        alt={blog.fields.slug}
-        transform={{ quality: 85 }}
-        fetchpriority="high"
-        class="h-auto w-full rounded-b-xl border border-t-0 shadow-md"
-        transition:name={`cover-${blog.fields.slug}`}
-      />
-    ) : null}
+    )}
     <div class="mx-auto max-w-3xl pt-4 sm:px-6 xl:max-w-5xl xl:px-0 xl:pt-8">
       <h1
         class="md:leading-14 text-3xl font-extrabold leading-10 tracking-tight text-gray-900 md:text-5xl lg:text-[54px] lg:leading-[64px]"
-        transition:name={`title-${blog.fields.slug}`}
+        transition:name={`title-${blog.slug}`}
       >
-        {blog.fields.title}
+        {blog.title}
       </h1>
       <dl class="mb-6 mt-4">
         <div>
@@ -118,15 +93,15 @@ if (isLocalBlog && blog.fields.banner && blog.fields.banner.fields.file) {
             <time datetime="2023-03-11" class="flex items-center justify-center"
               ><i class="twa twa-calendar inline-block"></i><span
                 class="ml-1.5 md:ml-2"
-                transition:name={`time-${blog.fields.slug}`}
-                >{dayjs(blog.fields.date).format('D MMMM, YYYY')}</span
+                transition:name={`time-${blog.slug}`}
+                >{dayjs(blog.date).format('D MMMM, YYYY')}</span
               ></time
             ><span class="mx-2"> •</span><div class="flex items-center">
               <i class="twa twa-hourglass-not-done inline-block"></i><span
                 class="ml-1.5 md:ml-2"
                 >{
                   Math.ceil(
-                    getReadingTime(blog.fields.content, {
+                    getReadingTime(blog.content, {
                       wordsPerMinute: 150,
                     }).minutes
                   )
@@ -138,7 +113,7 @@ if (isLocalBlog && blog.fields.banner && blog.fields.banner.fields.file) {
       </dl>
       <Renderer
         class="prose prose-lg prose-blue max-w-none"
-        content={blog.fields.content}
+        content={blog.content}
       />
     </div>
   </div>

@@ -1,0 +1,66 @@
+---
+import CFImage from "$core/components/cfImage.astro";
+import { Image } from 'astro:assets';
+import { processLocalImage, isLocalBlog } from '../utils/imageHelpers';
+
+import type { Asset } from 'contentful';
+
+export interface Props {
+  banner: Asset | null | undefined;
+  slug: string;
+  className?: string;
+  blog: any;
+}
+
+const { banner, slug, className = "", blog } = Astro.props;
+
+// Check if this is a local blog post
+const isLocal = isLocalBlog(blog);
+const imageProps = isLocal && banner ? processLocalImage(banner) : null;
+
+// Safely extract URL (handle both string and AssetFile types)
+const getAssetUrl = (asset: Asset | null | undefined): string | null => {
+  if (!asset?.fields?.file) return null;
+  const file = asset.fields.file;
+  return typeof file.url === 'string' ? file.url : null;
+};
+
+const bannerUrl = getAssetUrl(banner);
+---
+
+{!bannerUrl ? null : (
+  isLocal ? (
+    imageProps ? (
+      <Image
+        src={imageProps}
+        alt={slug}
+        class={className}
+        transition:name={`cover-${slug}`}
+      />
+    ) : (
+      <img
+        src={bannerUrl}
+        alt={slug}
+        class={className}
+        transition:name={`cover-${slug}`}
+      />
+    )
+  ) : (
+    <CFImage
+      src={bannerUrl}
+      width={{
+        sm: 640,
+        md: 768,
+        lg: 1024,
+        xl: 1280,
+        max: 1280,
+      }}
+      ratio={1500 / 788}
+      alt={slug}
+      transform={{ quality: 85 }}
+      fetchpriority="high"
+      class={className}
+      transition:name={`cover-${slug}`}
+    />
+  )
+)} 
