@@ -6,11 +6,11 @@ import remarkGfm from 'remark-gfm'
 
 import { rehype } from 'rehype'
 import rehypePrism from 'rehype-prism-plus'
+import { esmDynamic } from '@rayriffy/remark-esm'
 
 import { iframeParser } from '../plugins/iframeParser'
 import { imageParser } from '../plugins/imageParser'
 import { codeHighlight } from '../plugins/codeHighlight'
-import { esmDynamic } from '../plugins/esmDynamic'
 
 export interface Props extends astroHTML.JSX.HTMLAttributes {
   content: string
