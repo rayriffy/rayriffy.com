@@ -42,7 +42,7 @@ export const esmDynamic: Plugin = () => {
         <script type="module" src="https://esm.sh/tsx"></script>
         <div id="${rootId}"></div>
         <script type="text/jsx">
-          ${node.value.split('\n').slice(1).join('\n')}
+          ${node.value.replace(/^\/\/.*$/gm, '').replace(/^\s*$/gm, '')}
         </script>
       `
     })
