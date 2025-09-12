@@ -22,29 +22,29 @@ export const esmDynamic: Plugin = () => {
       const rootId = node.value.match(/\!esm\s?-\s?(\w+)/)?.[1]
       if (!rootId) return
 
-      console.log(rootId)
-
-      // // if not jsx, then skip process
-      // if (!node.properties?.className?.includes('[language-jsx]')) return
-      
-      // // read all text lines
-      // const readLines = extractTextContent(node)
-      // console.log('Extracted text:', readLines)
+      // optionally, there might be import map in following format
+      // !imports - react/jsx-runtime https://esm.sh/preact@1.19.0/jsx-runtime
+      const importMatches = [...node.value.matchAll(/!imports\s+-\s+([^\s]+)\s+([^\s]+)/g)]
+      const imports = importMatches.reduce((acc, match) => {
+        return {
+          ...acc,
+          [match[1]]: match[2]
+        }
+      }, {} as Record<string, string>)
 
       node.type = 'html'
       node.value = `
+        <script type="importmap">
+          {
+            "imports": ${JSON.stringify(imports)}
+          }
+        </script>
         <script type="module" src="https://esm.sh/tsx"></script>
         <div id="${rootId}"></div>
         <script type="text/jsx">
           ${node.value.split('\n').slice(1).join('\n')}
         </script>
       `
-
-      // delete node.tagName
-      // delete node.children
-      // delete node.properties
-
-      // console.log(node)
     })
   }
 }
