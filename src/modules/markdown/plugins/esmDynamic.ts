@@ -12,7 +12,7 @@ interface CodeBlockNode extends Node {
 export const esmDynamic: Plugin = () => {
   return markdownAST => {
     // locate root of code blocks
-    const codeBlocks = selectAll('[type=code][lang=jsx]', markdownAST) as unknown as CodeBlockNode[]
+    const codeBlocks = selectAll('[type=code]', markdownAST) as unknown as CodeBlockNode[]
 
     codeBlocks.forEach(node => {
       // do transform process if were specified to use esm
