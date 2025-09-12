@@ -10,6 +10,7 @@ import rehypePrism from 'rehype-prism-plus'
 import { iframeParser } from '../plugins/iframeParser'
 import { imageParser } from '../plugins/imageParser'
 import { codeHighlight } from '../plugins/codeHighlight'
+import { esmDynamic } from '../plugins/esmDynamic'
 
 export interface Props extends astroHTML.JSX.HTMLAttributes {
   content: string
@@ -24,6 +25,7 @@ const renderedContent = await unified()
     sanitize: false,
   })
   .use(iframeParser)
+  .use(esmDynamic)
   .use(imageParser)
   .process(Astro.props.content)
   .then(vFile =>

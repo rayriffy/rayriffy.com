@@ -41,3 +41,7 @@
 body {
   position: relative;
 }
+
+.input {
+  @apply shadow-sm focus:ring-blue-500 focus:border-blue-500 block sm:text-sm border-gray-300 rounded-md;
+}

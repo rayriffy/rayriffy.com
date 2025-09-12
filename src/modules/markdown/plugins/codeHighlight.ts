@@ -3,7 +3,7 @@ import { selectAll } from 'unist-util-select'
 import { prismMap } from '../constants/prismMap'
 
 import type { Plugin } from 'unified'
-import type { } from 'unist'
+import type { Node } from 'unist'
 
 interface ExtendedNode extends Node {
   lang?: string

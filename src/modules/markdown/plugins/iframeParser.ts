@@ -24,6 +24,7 @@ const getProviderEndpoint = (url: string, providers: OembedProvider[]) => {
       for (let schema of endpoint.schemes || []) {
         if (transformedEndpoint === undefined) {
           schema = schema.replace('*', '.*')
+          schema = schema.replace('**', '*')
           const regExp = new RegExp(schema)
           const isMatchingSchema = regExp.test(url)
 
