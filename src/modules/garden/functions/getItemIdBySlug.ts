@@ -12,8 +12,8 @@ export const getItemIdBySlug = async (slug: string): Promise<string | null> => {
   if (!targetId) {
     const notionItem = (
       (
-        await notion.databases.query({
-          database_id: '767256390e784c1794efee891777fabd',
+        await notion.dataSources.query({
+          data_source_id: 'c6962c59-0bb7-4d71-b99b-3501cf06bc99',
           filter: {
             and: [
               {

@@ -1,7 +1,7 @@
 import { notion } from '$core/constants/notion'
 import { readFileSystem, writeFileSystem } from '$core/functions/fileSystem'
 
-import type { QueryDatabaseResponse } from '@notionhq/client/build/src/api-endpoints'
+import type { QueryDataSourceResponse } from '@notionhq/client/build/src/api-endpoints'
 import type { PostItem } from '../@types/post'
 
 export const getGardenPosts = async () => {
@@ -10,8 +10,8 @@ export const getGardenPosts = async () => {
   let postItems = await readFileSystem<PostItem[]>(cacheKeys).then(o => o?.data)
 
   if (!postItems) {
-    const items = (await notion.databases.query({
-      database_id: '767256390e784c1794efee891777fabd',
+    const items = (await notion.dataSources.query({
+      data_source_id: 'c6962c59-0bb7-4d71-b99b-3501cf06bc99',
       filter: {
         property: 'Publish',
         checkbox: {
@@ -25,7 +25,7 @@ export const getGardenPosts = async () => {
         },
       ],
       page_size: 100,
-    })) as unknown as Omit<QueryDatabaseResponse, 'results'> & {
+    })) as unknown as Omit<QueryDataSourceResponse, 'results'> & {
       results: PostItem[]
     }
     writeFileSystem<PostItem[]>(cacheKeys, items.results, 1000 * 60 * 5)
