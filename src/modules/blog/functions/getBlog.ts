@@ -1,5 +1,5 @@
 import { getContentfulClient } from '$core/functions/getContentfulClient'
-import { readFileSystem, writeFileSystem } from '$core/functions/fileSystem'
+import { cache } from '$core/functions/cache'
 import fs from 'fs/promises'
 import path from 'path'
 import matter from 'gray-matter'
@@ -74,7 +74,7 @@ export const getBlog = async (
   let cacheKey = ['core', 'blog', mode, 'slug', slug]
 
   // Try to get from cache first
-  const cachedResult = await readFileSystem<Blog>(cacheKey)
+  const cachedResult = await cache.read<Blog>(cacheKey)
   if (cachedResult !== null) {
     console.timeEnd('blog post ' + slug)
     return cachedResult.data
@@ -86,7 +86,7 @@ export const getBlog = async (
     console.timeEnd('blog post ' + slug)
     
     // Cache the local blog
-    if (!preview) writeFileSystem(cacheKey, localBlog, 1000 * 60 * 5)
+    if (!preview) cache.write(cacheKey, localBlog, 1000 * 60 * 5)
     return localBlog
   }
 
@@ -108,7 +108,7 @@ export const getBlog = async (
   const simplifiedBlog = mapEntryToBlog(blog);
   
   // Cache the simplified blog
-  if (!preview) writeFileSystem(cacheKey, simplifiedBlog, 1000 * 60 * 5)
+  if (!preview) cache.write(cacheKey, simplifiedBlog, 1000 * 60 * 5)
 
   console.timeEnd('blog post ' + slug)
   return simplifiedBlog

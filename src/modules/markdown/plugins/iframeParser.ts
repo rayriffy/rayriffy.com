@@ -1,6 +1,6 @@
 import { selectAll } from 'unist-util-select'
 
-import { readFileSystem, writeFileSystem } from '$core/functions/fileSystem'
+import { cache } from '$core/functions/cache'
 
 import type { Plugin } from 'unified'
 import type { Node } from 'unist'
@@ -60,14 +60,14 @@ export const iframeParser: Plugin = () => {
     // get oembed providers into cache
     let oembedKey = ['core', 'oembed', 'providers']
 
-    if ((await readFileSystem(oembedKey)) === null) {
+    if ((await cache.read(oembedKey)) === null) {
       const providersRemote = await fetch(
         'https://oembed.com/providers.json'
       ).then(o => {
         if (o.ok) return o.json()
         else throw o
       })
-      await writeFileSystem(
+      await cache.write(
         oembedKey,
         providersRemote,
         1000 * 60 * 60 * 24 * 30
@@ -95,7 +95,7 @@ export const iframeParser: Plugin = () => {
               createIframe(node, `https://www.youtube.com/embed/${targetValue}`)
               break
             case 'oembed':
-              const providers = await readFileSystem<OembedProvider[]>(
+              const providers = await cache.read<OembedProvider[]>(
                 oembedKey
               )
               const extractedUrl = node.value.slice('oembed: '.length)
@@ -114,7 +114,7 @@ export const iframeParser: Plugin = () => {
                   extractedUrl,
                 ]
 
-                const cachedOembedResult = await readFileSystem<OembedResult>(
+                const cachedOembedResult = await cache.read<OembedResult>(
                   oembedEndpointKey
                 )
 
@@ -136,7 +136,7 @@ export const iframeParser: Plugin = () => {
                       else throw o
                     })
 
-                    writeFileSystem(
+                    cache.write(
                       oembedEndpointKey,
                       oembedResult,
                       1000 * 60 * 60

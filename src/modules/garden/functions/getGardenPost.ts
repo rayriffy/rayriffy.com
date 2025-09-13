@@ -1,6 +1,6 @@
 import { n2m } from '$core/constants/n2m'
 import { notion } from '$core/constants/notion'
-import { readFileSystem, writeFileSystem } from '$core/functions/fileSystem'
+import { cache } from '$core/functions/cache'
 
 import { getItemIdBySlug } from './getItemIdBySlug'
 
@@ -16,7 +16,7 @@ interface GardenPost {
 export const getGardenPost = async (slug: string) => {
   console.time('garden post ' + slug)
   const cacheKeys = ['garden', 'content', slug]
-  let gardenPost = await readFileSystem<GardenPost>(cacheKeys).then(
+  let gardenPost = await cache.read<GardenPost>(cacheKeys).then(
     o => o?.data
   )
 
@@ -37,7 +37,7 @@ export const getGardenPost = async (slug: string) => {
       date: page.created_time,
       content: markdownBlocks,
     }
-    await writeFileSystem<GardenPost>(cacheKeys, payload)
+    await cache.write<GardenPost>(cacheKeys, payload)
     gardenPost = payload
   }
 

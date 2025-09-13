@@ -11,7 +11,7 @@
         "@iconify-json/logos": "^1.2.4",
         "@iconify-json/ri": "^1.2.5",
         "@notionhq/client": "^5.0.0",
-        "@rayriffy/filesystem": "^1.0.0",
+        "@rayriffy/filesystem": "^1.0.1",
         "@rayriffy/remark-esm": "^1.0.1",
         "astro": "^5.3.0",
         "astro-icon": "^1.1.5",
@@ -272,7 +272,7 @@
 
     "@oslojs/encoding": ["@oslojs/encoding@1.1.0", "", {}, "sha512-70wQhgYmndg4GCPxPPxPGevRKqTIJ2Nh4OkiMWmDAVYsTQ+Ta7Sq+rPevXyXGdzr30/qZBnyOalCszoMxlyldQ=="],
 
-    "@rayriffy/filesystem": ["@rayriffy/filesystem@1.0.0", "", {}, "sha512-6YoCkppxcjY0VLBMgt5r8t6znKBNAdtTf6oUo8ORWlriJGs3vQWOXNa140IrFZ8VGrbEDwShJ1xUBaMhbdCX5A=="],
+    "@rayriffy/filesystem": ["@rayriffy/filesystem@1.0.1", "", {}, "sha512-KS0TypjOn8gn7E8Wxrh2NfU0tJq5leyKgn8GIECfgOMCw++SxzOo403LUP0Z9SDUMK4ZQtneTAWMokO/xzaHWA=="],
 
     "@rayriffy/remark-esm": ["@rayriffy/remark-esm@1.0.1", "", { "dependencies": { "unist-util-select": "^5.1.0" } }, "sha512-PhaAWBb7AlLedTqBMioKTMMthXua/Rqq1fcmw0H9Bz3cSyrBpsECUb4mdINeq1+WPRKAGeddDol5HFMHRQ7IKA=="],
 

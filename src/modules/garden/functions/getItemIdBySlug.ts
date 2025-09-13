@@ -1,5 +1,5 @@
 import { notion } from '$core/constants/notion'
-import { readFileSystem, writeFileSystem } from '$core/functions/fileSystem'
+import { cache } from '$core/functions/cache'
 
 import type { PostItem } from '../@types/post'
 
@@ -7,7 +7,7 @@ export const getItemIdBySlug = async (slug: string): Promise<string | null> => {
   const cacheKeys = ['garden', 'slug', slug]
 
   let targetId =
-    (await readFileSystem<string>(cacheKeys).then(o => o?.data)) ?? null
+    (await cache.read<string>(cacheKeys).then(o => o?.data)) ?? null
 
   if (!targetId) {
     const notionItem = (
@@ -36,7 +36,7 @@ export const getItemIdBySlug = async (slug: string): Promise<string | null> => {
     )[0]
 
     if (notionItem) {
-      await writeFileSystem<string>(
+      await cache.write<string>(
         cacheKeys,
         notionItem.id,
         1000 * 60 * 60 * 24 * 30

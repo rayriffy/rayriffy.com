@@ -1,5 +1,5 @@
 import { getContentfulClient } from '$core/functions/getContentfulClient'
-import { readFileSystem, writeFileSystem } from '$core/functions/fileSystem'
+import { cache } from '$core/functions/cache'
 import { glob } from 'glob'
 import fs from 'fs/promises'
 import path from 'path'
@@ -155,7 +155,7 @@ export const getAllMergedBlogs = async (
   const mode = preview ? 'preview' : 'production'
   const cacheKey = ['core', 'blog', mode, 'all']
   
-  const cachedResult = await readFileSystem<Blog[]>(cacheKey)
+  const cachedResult = await cache.read<Blog[]>(cacheKey)
   if (cachedResult !== null) {
     console.timeEnd('all blogs')
     return cachedResult.data
@@ -171,7 +171,7 @@ export const getAllMergedBlogs = async (
   const allBlogs = mergeAndSortBlogs(contentfulResult.blogs, localBlogs)
   
   // Cache result
-  if (!preview) writeFileSystem(cacheKey, allBlogs, 1000 * 60 * 5)
+  if (!preview) cache.write(cacheKey, allBlogs, 1000 * 60 * 5)
   
   console.timeEnd('all blogs')
   return allBlogs
