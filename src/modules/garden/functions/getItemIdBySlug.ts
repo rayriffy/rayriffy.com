@@ -3,11 +3,16 @@ import { cache } from '$core/functions/cache'
 
 import type { PostItem } from '../@types/post'
 
-export const getItemIdBySlug = async (slug: string): Promise<string | null> => {
-  const cacheKeys = ['garden', 'slug', slug]
+interface Item {
+  id: string
+  published: boolean
+}
+
+export const getItemIdBySlug = async (slug: string): Promise<Item | null> => {
+  const cacheKeys = ['garden', 'slug-v2', slug]
 
   let targetId =
-    (await cache.read<string>(cacheKeys).then(o => o?.data)) ?? null
+    (await cache.read<Item>(cacheKeys).then(o => o?.data)) ?? null
 
   if (!targetId) {
     const notionItem = (
@@ -16,12 +21,6 @@ export const getItemIdBySlug = async (slug: string): Promise<string | null> => {
           data_source_id: 'c6962c59-0bb7-4d71-b99b-3501cf06bc99',
           filter: {
             and: [
-              {
-                property: 'Publish',
-                checkbox: {
-                  equals: true,
-                },
-              },
               {
                 property: 'Slug',
                 rich_text: {
@@ -36,12 +35,17 @@ export const getItemIdBySlug = async (slug: string): Promise<string | null> => {
     )[0]
 
     if (notionItem) {
-      await cache.write<string>(
+      const item: Item = {
+        id: notionItem.id,
+        published: notionItem.properties.Publish.checkbox,
+      }
+
+      await cache.write<Item>(
         cacheKeys,
-        notionItem.id,
+        item,
         1000 * 60 * 60 * 24 * 30
       )
-      targetId = notionItem.id
+      targetId = item
     }
   }
 

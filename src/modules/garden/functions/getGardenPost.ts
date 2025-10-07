@@ -11,6 +11,7 @@ interface GardenPost {
   title: string
   date: string
   content: MdBlock[]
+  published: boolean
 }
 
 export const getGardenPost = async (slug: string) => {
@@ -22,20 +23,21 @@ export const getGardenPost = async (slug: string) => {
 
   if (!gardenPost) {
     // find page id by slug
-    const pageId = await getItemIdBySlug(slug)
-    if (!pageId) return undefined
+    const pageItem = await getItemIdBySlug(slug)
+    if (!pageItem) return undefined
 
     const [page, markdownBlocks] = await Promise.all([
       notion.pages.retrieve({
-        page_id: pageId,
+        page_id: pageItem.id,
       }) as Promise<PostItem>,
-      n2m.pageToMarkdown(pageId),
+      n2m.pageToMarkdown(pageItem.id),
     ])
 
     const payload: GardenPost = {
       title: page.properties.Topic.title[0].plain_text,
       date: page.created_time,
       content: markdownBlocks,
+      published: pageItem.published
     }
     await cache.write<GardenPost>(cacheKeys, payload)
     gardenPost = payload
@@ -46,6 +48,7 @@ export const getGardenPost = async (slug: string) => {
     return {
       ...gardenPost,
       content: n2m.toMarkdownString(gardenPost.content).parent,
+      published: gardenPost.published
     }
   else return undefined
 }
