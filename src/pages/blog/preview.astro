@@ -19,7 +19,7 @@ Astro.cookies.set('preview', previewKey, {
 const targetUrl = action === 'reset' ? '/blog' : `/blog/${slug}`
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head
     ><meta http-equiv="Refresh" content={`0; url=${targetUrl}`} />

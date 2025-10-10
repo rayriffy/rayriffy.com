@@ -12,23 +12,23 @@ import type { BlogEntries, BlogCollection, Blog } from '../models/Blog'
 // Internal function to get local blogs as simplified Blog objects
 const getLocalBlogs = async (): Promise<Blog[]> => {
   const blogFolders = await glob('src/data/blogs/*')
-  
+
   const localBlogs: Blog[] = []
-  
+
   for (const folder of blogFolders) {
     try {
       const indexPath = path.join(folder, 'index.md')
       const fileContent = await fs.readFile(indexPath, 'utf-8')
       const { data, content } = matter(fileContent)
-      
+
       // Only process if it has the local type flag
       if (data.type !== 'local') {
         continue
       }
-      
+
       const folderName = path.basename(folder)
       const bannerPath = path.join(folder, data.banner || 'cover.jpg')
-      
+
       // Check if banner exists
       let bannerExists = false
       try {
@@ -37,7 +37,7 @@ const getLocalBlogs = async (): Promise<Blog[]> => {
       } catch (e) {
         // Banner doesn't exist
       }
-      
+
       // Create a simplified Blog object directly
       const blog: Blog = {
         id: data.id || folderName,
@@ -47,21 +47,23 @@ const getLocalBlogs = async (): Promise<Blog[]> => {
         date: data.date,
         content: content,
         featured: data.featured || false,
-        banner: bannerExists ? {
-          url: `/${bannerPath.replace(/^src\//, '')}`,
-          title: data.title,
-          contentType: 'image/jpeg'
-        } : null,
+        banner: bannerExists
+          ? {
+              url: `/${bannerPath.replace(/^src\//, '')}`,
+              title: data.title,
+              contentType: 'image/jpeg',
+            }
+          : null,
         categories: [], // Local blogs don't have categories yet
-        isLocal: true
-      };
-      
-      localBlogs.push(blog);
+        isLocal: true,
+      }
+
+      localBlogs.push(blog)
     } catch (error) {
       console.error(`Error processing local blog at ${folder}:`, error)
     }
   }
-  
+
   return localBlogs
 }
 
@@ -69,53 +71,61 @@ const getLocalBlogs = async (): Promise<Blog[]> => {
 const getContentfulBlogs = async (
   limit: number,
   preview: boolean = false
-): Promise<{ blogs: Blog[], total: number }> => {
+): Promise<{ blogs: Blog[]; total: number }> => {
   const mode = preview ? 'preview' : 'production'
   const contentful = getContentfulClient(mode)
-  
+
   // Get Contentful entries
-  const contentfulEntries = 
+  const contentfulEntries =
     await contentful.withoutUnresolvableLinks.getEntries<BlogPostSkeleton>({
       content_type: 'blogPost',
       limit: Math.min(limit, 1000), // Contentful has a hard limit of 1000
       order: ['-fields.date'],
     })
-  
+
   // Convert Contentful entries to Blog objects
-  const contentfulBlogs = contentfulEntries.items.map(entry => mapEntryToBlog(entry))
-  
+  const contentfulBlogs = contentfulEntries.items.map(entry =>
+    mapEntryToBlog(entry)
+  )
+
   return {
     blogs: contentfulBlogs,
-    total: contentfulEntries.total
+    total: contentfulEntries.total,
   }
 }
 
 // Get the total count from Contentful
-const getContentfulTotalCount = async (preview: boolean = false): Promise<number> => {
+const getContentfulTotalCount = async (
+  preview: boolean = false
+): Promise<number> => {
   const mode = preview ? 'preview' : 'production'
   const contentful = getContentfulClient(mode)
-  
+
   // Make a minimal query just to get the total count
-  const result = await contentful.withoutUnresolvableLinks.getEntries<BlogPostSkeleton>({
-    content_type: 'blogPost',
-    limit: 1,
-    order: ['-fields.date'],
-  })
-  
+  const result =
+    await contentful.withoutUnresolvableLinks.getEntries<BlogPostSkeleton>({
+      content_type: 'blogPost',
+      limit: 1,
+      order: ['-fields.date'],
+    })
+
   return result.total
 }
 
 // Merge and sort blogs from different sources
-const mergeAndSortBlogs = (contentfulBlogs: Blog[], localBlogs: Blog[]): Blog[] => {
+const mergeAndSortBlogs = (
+  contentfulBlogs: Blog[],
+  localBlogs: Blog[]
+): Blog[] => {
   const allBlogs = [...contentfulBlogs, ...localBlogs]
-  
+
   // Sort by date in descending order
   allBlogs.sort((a, b) => {
     const dateA = new Date(a.date).getTime()
     const dateB = new Date(b.date).getTime()
     return dateB - dateA
   })
-  
+
   return allBlogs
 }
 
@@ -129,19 +139,19 @@ const createBlogCollection = (
 ): BlogCollection => {
   const totalItems = totalContentfulItems + totalLocalItems
   const totalPages = Math.ceil(totalItems / itemsPerPage)
-  
+
   // Apply pagination to the merged list
   const startIndex = (page - 1) * itemsPerPage
   const endIndex = startIndex + itemsPerPage
   const paginatedBlogs = allBlogs.slice(startIndex, endIndex)
-  
+
   return {
     items: paginatedBlogs,
     total: totalItems,
     skip: startIndex,
     limit: itemsPerPage,
     currentPage: page,
-    totalPages: totalPages
+    totalPages: totalPages,
   }
 }
 
@@ -150,29 +160,29 @@ export const getAllMergedBlogs = async (
   preview: boolean = false
 ): Promise<Blog[]> => {
   console.time('all blogs')
-  
+
   // Check cache first
   const mode = preview ? 'preview' : 'production'
   const cacheKey = ['core', 'blog', mode, 'all']
-  
+
   const cachedResult = await cache.read<Blog[]>(cacheKey)
   if (cachedResult !== null) {
     console.timeEnd('all blogs')
     return cachedResult.data
   }
-  
+
   // Get all blogs from both sources
   const [localBlogs, contentfulResult] = await Promise.all([
     getLocalBlogs(),
-    getContentfulBlogs(1000, preview) // Get as many as possible
+    getContentfulBlogs(1000, preview), // Get as many as possible
   ])
-  
+
   // Merge and sort
   const allBlogs = mergeAndSortBlogs(contentfulResult.blogs, localBlogs)
-  
+
   // Cache result
   if (!preview) cache.write(cacheKey, allBlogs, 1000 * 60 * 5)
-  
+
   console.timeEnd('all blogs')
   return allBlogs
 }
@@ -187,16 +197,16 @@ export const getBlogs = async (
 ): Promise<BlogCollection> => {
   console.time('blog listing')
   const itemsPerPage = 10
-  
+
   // Get all blogs - this will use cache if available
   const allBlogs = await getAllMergedBlogs(preview)
-  
+
   // Get total counts for pagination calculation
   const [localBlogs, contentfulTotal] = await Promise.all([
     getLocalBlogs(),
-    getContentfulTotalCount(preview)
+    getContentfulTotalCount(preview),
   ])
-  
+
   // Create the collection with pagination
   const collection = createBlogCollection(
     allBlogs,
@@ -205,7 +215,7 @@ export const getBlogs = async (
     localBlogs.length,
     itemsPerPage
   )
-  
+
   console.timeEnd('blog listing')
   return collection
 }
@@ -221,7 +231,7 @@ export const getRawBlogEntries = async (
 ): Promise<BlogEntries> => {
   console.time('raw blog listing')
   const mode = preview ? 'preview' : 'production'
-  
+
   // Only fetch from Contentful - local blogs don't have proper Contentful entries
   const contentful = getContentfulClient(mode)
   const blogs =

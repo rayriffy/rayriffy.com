@@ -43,5 +43,5 @@ body {
 }
 
 .input {
-  @apply shadow-sm focus:ring-blue-500 focus:border-blue-500 block sm:text-sm border-gray-300 rounded-md;
+  @apply block rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm;
 }

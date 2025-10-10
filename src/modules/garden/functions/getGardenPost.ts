@@ -17,9 +17,7 @@ interface GardenPost {
 export const getGardenPost = async (slug: string) => {
   console.time('garden post ' + slug)
   const cacheKeys = ['garden', 'content', slug]
-  let gardenPost = await cache.read<GardenPost>(cacheKeys).then(
-    o => o?.data
-  )
+  let gardenPost = await cache.read<GardenPost>(cacheKeys).then(o => o?.data)
 
   if (!gardenPost) {
     // find page id by slug
@@ -37,7 +35,7 @@ export const getGardenPost = async (slug: string) => {
       title: page.properties.Topic.title[0].plain_text,
       date: page.created_time,
       content: markdownBlocks,
-      published: pageItem.published
+      published: pageItem.published,
     }
     await cache.write<GardenPost>(cacheKeys, payload)
     gardenPost = payload
@@ -48,7 +46,7 @@ export const getGardenPost = async (slug: string) => {
     return {
       ...gardenPost,
       content: n2m.toMarkdownString(gardenPost.content).parent,
-      published: gardenPost.published
+      published: gardenPost.published,
     }
   else return undefined
 }

@@ -10,9 +10,7 @@ export type BlogPostSkeleton = {
     subtitle: EntryFieldTypes.Text
     date: EntryFieldTypes.Date
     featured: EntryFieldTypes.Boolean
-    category: EntryFieldTypes.Array<
-      EntryFieldTypes.EntryLink<CategorySkeleton>
-    >
+    category: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<CategorySkeleton>>
     content: EntryFieldTypes.Text
   }
 }

@@ -33,7 +33,8 @@ const { src, date, camera } = Astro.props
     <div class="bg-black/70 px-4 py-3 rounded-xl font-mono text-xs text-white">
       <p class="space-x-1">
         <span class="font-bold">{camera.manufacturer}</span><span
-          >{camera.model}</span>
+          >{camera.model}</span
+        >
       </p>
       <p>{camera.lens}</p>
       <p>{dayjs(date).format('DD MMM YYYY')}</p>

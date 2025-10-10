@@ -1,4 +1,4 @@
-import type {EntryFieldTypes} from 'contentful'
+import type { EntryFieldTypes } from 'contentful'
 
 export type CategorySkeleton = {
   contentTypeId: 'category'

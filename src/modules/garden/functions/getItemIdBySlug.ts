@@ -11,8 +11,7 @@ interface Item {
 export const getItemIdBySlug = async (slug: string): Promise<Item | null> => {
   const cacheKeys = ['garden', 'slug-v2', slug]
 
-  let targetId =
-    (await cache.read<Item>(cacheKeys).then(o => o?.data)) ?? null
+  let targetId = (await cache.read<Item>(cacheKeys).then(o => o?.data)) ?? null
 
   if (!targetId) {
     const notionItem = (
@@ -40,11 +39,7 @@ export const getItemIdBySlug = async (slug: string): Promise<Item | null> => {
         published: notionItem.properties.Publish.checkbox,
       }
 
-      await cache.write<Item>(
-        cacheKeys,
-        item,
-        1000 * 60 * 60 * 24 * 30
-      )
+      await cache.write<Item>(cacheKeys, item, 1000 * 60 * 60 * 24 * 30)
       targetId = item
     }
   }

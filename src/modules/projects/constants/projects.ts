@@ -17,7 +17,7 @@ export const projects: Project[] = [
     year: 2023,
     active: true,
     description:
-      "Automatic image optimization that complies with standard Request, and Response API. Use them with any backend frameworks!",
+      'Automatic image optimization that complies with standard Request, and Response API. Use them with any backend frameworks!',
     href: 'web',
     links: {
       web: 'https://www.npmjs.com/package/@urami/core',
@@ -134,7 +134,7 @@ export const projects: Project[] = [
     links: {
       web: 'https://blog.rayriffy.com/review-actions-on-google-hackathon',
       github: 'https://github.com/rayriffy/siri-fastpass',
-    }
+    },
   },
   {
     title: 'scan-mang (แสกนแม่ง) API',
@@ -145,7 +145,7 @@ export const projects: Project[] = [
     links: {
       web: 'https://www.facebook.com/rayriffy/posts/936047413249342',
       github: 'https://github.com/rayriffy/hacktech-backend',
-    }
+    },
   },
   {
     title: 'Dockr',
@@ -156,7 +156,7 @@ export const projects: Project[] = [
     links: {
       web: 'https://www.facebook.com/rayriffy/posts/819627834891301',
       github: 'https://github.com/rayriffy/dockr',
-    }
+    },
   },
   {
     title: 'OrchidGazer',
@@ -167,6 +167,6 @@ export const projects: Project[] = [
     links: {
       web: 'https://www.facebook.com/rayriffy/posts/656233194564100',
       github: 'https://github.com/rayriffy/caffeCNN',
-    }
+    },
   },
 ]

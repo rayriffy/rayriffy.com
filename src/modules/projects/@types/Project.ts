@@ -1,4 +1,4 @@
-import type { Links } from "$core/@types/Links"
+import type { Links } from '$core/@types/Links'
 
 export interface Project {
   title: string

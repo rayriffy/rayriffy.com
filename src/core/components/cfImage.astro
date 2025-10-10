@@ -111,9 +111,9 @@ const mergedProps: astroHTML.JSX.ImgHTMLAttributes = {
 type PlaiceholderCSS = Awaited<ReturnType<typeof getPlaiceholder>>['css']
 const plaiceholderSize = 10
 const plaiceholderKey = ['plaiceholder', src, plaiceholderSize]
-let plaiceholderCSS = await cache.read<PlaiceholderCSS>(
-  plaiceholderKey
-).then(o => o?.data)
+let plaiceholderCSS = await cache
+  .read<PlaiceholderCSS>(plaiceholderKey)
+  .then(o => o?.data)
 if (!plaiceholderCSS) {
   try {
     const buffer = await fetch(src).then(async o => {

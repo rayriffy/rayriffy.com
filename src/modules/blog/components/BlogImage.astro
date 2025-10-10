@@ -1,35 +1,35 @@
 ---
-import CFImage from "$core/components/cfImage.astro";
-import { Image } from 'astro:assets';
-import { processLocalImage, isLocalBlog } from '../utils/imageHelpers';
+import CFImage from '$core/components/cfImage.astro'
+import { Image } from 'astro:assets'
+import { processLocalImage, isLocalBlog } from '../utils/imageHelpers'
 
-import type { Asset } from 'contentful';
+import type { Asset } from 'contentful'
 
 export interface Props {
-  banner: Asset | null | undefined;
-  slug: string;
-  className?: string;
-  blog: any;
+  banner: Asset | null | undefined
+  slug: string
+  className?: string
+  blog: any
 }
 
-const { banner, slug, className = "", blog } = Astro.props;
+const { banner, slug, className = '', blog } = Astro.props
 
 // Check if this is a local blog post
-const isLocal = isLocalBlog(blog);
-const imageProps = isLocal && banner ? processLocalImage(banner) : null;
+const isLocal = isLocalBlog(blog)
+const imageProps = isLocal && banner ? processLocalImage(banner) : null
 
 // Safely extract URL (handle both string and AssetFile types)
 const getAssetUrl = (asset: Asset | null | undefined): string | null => {
-  if (!asset?.fields?.file) return null;
-  const file = asset.fields.file;
-  return typeof file.url === 'string' ? file.url : null;
-};
+  if (!asset?.fields?.file) return null
+  const file = asset.fields.file
+  return typeof file.url === 'string' ? file.url : null
+}
 
-const bannerUrl = getAssetUrl(banner);
+const bannerUrl = getAssetUrl(banner)
 ---
 
-{!bannerUrl ? null : (
-  isLocal ? (
+{
+  !bannerUrl ? null : isLocal ? (
     imageProps ? (
       <Image
         src={imageProps}
@@ -63,4 +63,5 @@ const bannerUrl = getAssetUrl(banner);
       transition:name={`cover-${slug}`}
     />
   )
-)} 
+}
+

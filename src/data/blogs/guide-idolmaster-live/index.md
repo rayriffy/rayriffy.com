@@ -32,10 +32,16 @@ import React, { useState, useMemo } from 'https://esm.sh/preact/compat'
 import { toUnicode, toASCII } from 'https://esm.sh/punycode'
 
 const Component = () => {
-  const [input, setInput] = useState("")
+  const [input, setInput] = useState('')
 
-  const resultPuny = useMemo(() => toUnicode(input.length === 0 ? 'みんな' : input), [input])
-  const resultAscii = useMemo(() => toASCII(input.length === 0 ? 'みんな' : input), [input])
+  const resultPuny = useMemo(
+    () => toUnicode(input.length === 0 ? 'みんな' : input),
+    [input]
+  )
+  const resultAscii = useMemo(
+    () => toASCII(input.length === 0 ? 'みんな' : input),
+    [input]
+  )
 
   return (
     <div>
@@ -47,11 +53,15 @@ const Component = () => {
         value={input}
         onChange={e => setInput(e.target.value)}
       />
-      <p><b>Punycode: </b> {resultPuny}</p>
-      <p><b>ASCII: </b> {resultAscii}</p>
+      <p>
+        <b>Punycode: </b> {resultPuny}
+      </p>
+      <p>
+        <b>ASCII: </b> {resultAscii}
+      </p>
     </div>
   )
 }
 
-render(<Component />, document.querySelector("#root2"))
+render(<Component />, document.querySelector('#root2'))
 ```

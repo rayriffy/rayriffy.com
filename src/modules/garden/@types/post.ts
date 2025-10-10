@@ -1,6 +1,4 @@
-import type {
-  PageObjectResponse,
-} from '@notionhq/client/build/src/api-endpoints'
+import type { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 
 export type DatabaseResult = Extract<
   PageObjectResponse,

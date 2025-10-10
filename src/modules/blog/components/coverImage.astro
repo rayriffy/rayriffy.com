@@ -3,10 +3,10 @@ import { Image } from 'astro:assets'
 
 export interface Props {
   src: {
-    src: string;
-    height: number;
-    width: number;
-    format: "avif" | "png" | "webp" | "jpeg" | "jpg" | "svg" | "tiff" | "gif";
+    src: string
+    height: number
+    width: number
+    format: 'avif' | 'png' | 'webp' | 'jpeg' | 'jpg' | 'svg' | 'tiff' | 'gif'
   }
   alt: string
   class?: string
@@ -15,8 +15,4 @@ export interface Props {
 const { src, alt, class: className } = Astro.props
 ---
 
-<Image
-  src={src}
-  alt={alt}
-  class={className}
-/>
+<Image src={src} alt={alt} class={className} />

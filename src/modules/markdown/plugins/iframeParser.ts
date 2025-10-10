@@ -67,11 +67,7 @@ export const iframeParser: Plugin = () => {
         if (o.ok) return o.json()
         else throw o
       })
-      await cache.write(
-        oembedKey,
-        providersRemote,
-        1000 * 60 * 60 * 24 * 30
-      )
+      await cache.write(oembedKey, providersRemote, 1000 * 60 * 60 * 24 * 30)
     }
 
     // transform
@@ -95,9 +91,7 @@ export const iframeParser: Plugin = () => {
               createIframe(node, `https://www.youtube.com/embed/${targetValue}`)
               break
             case 'oembed':
-              const providers = await cache.read<OembedProvider[]>(
-                oembedKey
-              )
+              const providers = await cache.read<OembedProvider[]>(oembedKey)
               const extractedUrl = node.value.slice('oembed: '.length)
 
               // get provider endpoint
@@ -114,9 +108,8 @@ export const iframeParser: Plugin = () => {
                   extractedUrl,
                 ]
 
-                const cachedOembedResult = await cache.read<OembedResult>(
-                  oembedEndpointKey
-                )
+                const cachedOembedResult =
+                  await cache.read<OembedResult>(oembedEndpointKey)
 
                 if (cachedOembedResult !== null) {
                   node.type = `html`
@@ -136,11 +129,7 @@ export const iframeParser: Plugin = () => {
                       else throw o
                     })
 
-                    cache.write(
-                      oembedEndpointKey,
-                      oembedResult,
-                      1000 * 60 * 60
-                    )
+                    cache.write(oembedEndpointKey, oembedResult, 1000 * 60 * 60)
 
                     // override node
                     node.type = `html`

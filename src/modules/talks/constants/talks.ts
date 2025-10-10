@@ -7,7 +7,7 @@ export const talks: Talk[] = [
     year: 2024,
     href: 'youtube',
     description:
-      'Web APIs is capable of way more than we might think. There\'re so many unusual Web APIs to explore. We\'ll explore parts of the web that we might not known before. Did you know you can send Bluetooth signal directly to the web? or did you know you can control web by using synthesizer via Web MIDI? In this session, we will play something fun together, by controlling my jacket, and synthesizer, and explore ranges of strange Web APIs.',
+      "Web APIs is capable of way more than we might think. There're so many unusual Web APIs to explore. We'll explore parts of the web that we might not known before. Did you know you can send Bluetooth signal directly to the web? or did you know you can control web by using synthesizer via Web MIDI? In this session, we will play something fun together, by controlling my jacket, and synthesizer, and explore ranges of strange Web APIs.",
     image: {
       src: '/static/talks/webfun.jpg',
       ratio: 16 / 9,
@@ -63,9 +63,10 @@ export const talks: Talk[] = [
     },
     links: {
       youtube: 'https://youtu.be/Gaa3Te6bqrw',
-      keynote: 'https://storage.rayriffy.com/files/typescript1-easily-publishing-fully-typed-dependency-with-confidence.pdf',
-      github: 'https://l.rayriffy.com/changesets-keynote'
-    }
+      keynote:
+        'https://storage.rayriffy.com/files/typescript1-easily-publishing-fully-typed-dependency-with-confidence.pdf',
+      github: 'https://l.rayriffy.com/changesets-keynote',
+    },
   },
   {
     title: 'Rejecting client-side, embrace server-side',

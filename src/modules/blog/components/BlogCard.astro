@@ -1,26 +1,29 @@
 ---
-import dayjs from 'dayjs';
-import { Image } from 'astro:assets';
-import CFImage from "$core/components/cfImage.astro";
-import { processLocalImage } from '../utils/imageHelpers';
+import dayjs from 'dayjs'
+import { Image } from 'astro:assets'
+import CFImage from '$core/components/cfImage.astro'
+import { processLocalImage } from '../utils/imageHelpers'
 
-import type { Blog } from '../models/Blog';
+import type { Blog } from '../models/Blog'
 
 export interface Props {
-  blog: Blog;
+  blog: Blog
 }
 
-const { blog } = Astro.props;
+const { blog } = Astro.props
 
 // Process image if it's a local blog
-const imageProps = blog.isLocal && blog.banner ? processLocalImage({
-  fields: {
-    file: {
-      url: blog.banner.url,
-      contentType: blog.banner.contentType
-    }
-  }
-} as any) : null;
+const imageProps =
+  blog.isLocal && blog.banner
+    ? processLocalImage({
+        fields: {
+          file: {
+            url: blog.banner.url,
+            contentType: blog.banner.contentType,
+          },
+        },
+      } as any)
+    : null
 ---
 
 <article class="space-y-2 xl:grid xl:grid-cols-4 xl:items-start xl:space-y-0">
@@ -36,46 +39,51 @@ const imageProps = blog.isLocal && blog.banner ? processLocalImage({
         </time>
       </dd>
     </dl>
-    {blog.featured && (
-      <span class="rounded-full border-2 border-orange-700 bg-orange-100 px-2 text-sm font-semibold text-orange-700">
-        FEATURED
-      </span>
-    )}
+    {
+      blog.featured && (
+        <span class="rounded-full border-2 border-orange-700 bg-orange-100 px-2 text-sm font-semibold text-orange-700">
+          FEATURED
+        </span>
+      )
+    }
   </div>
   <div class="space-y-3 xl:col-span-3">
     <div>
       <a rel="prefetch" href={`/blog/${blog.slug}`}>
-        {blog.banner && (
-          blog.isLocal ? (
-            imageProps ? (
-              <Image
-                src={imageProps}
+        {
+          blog.banner &&
+            (blog.isLocal ? (
+              imageProps ? (
+                <Image
+                  src={imageProps}
+                  alt={blog.slug}
+                  class="h-auto w-full rounded-xl border shadow-md"
+                  transition:name={`cover-${blog.slug}`}
+                />
+              ) : (
+                <img
+                  src={blog.banner.url}
+                  alt={blog.slug}
+                  class="h-auto w-full rounded-xl border shadow-md object-cover"
+                  transition:name={`cover-${blog.slug}`}
+                />
+              )
+            ) : (
+              <CFImage
+                src={blog.banner.url}
+                width={800}
+                ratio={1500 / 788}
+                transform={{ quality: 85 }}
                 alt={blog.slug}
                 class="h-auto w-full rounded-xl border shadow-md"
                 transition:name={`cover-${blog.slug}`}
               />
-            ) : (
-              <img
-                src={blog.banner.url}
-                alt={blog.slug}
-                class="h-auto w-full rounded-xl border shadow-md object-cover"
-                transition:name={`cover-${blog.slug}`}
-              />
-            )
-          ) : (
-            <CFImage
-              src={blog.banner.url}
-              width={800}
-              ratio={1500 / 788}
-              transform={{ quality: 85 }}
-              alt={blog.slug}
-              class="h-auto w-full rounded-xl border shadow-md"
-              transition:name={`cover-${blog.slug}`}
-            />
-          )
-        )}
+            ))
+        }
       </a>
-      <h3 class="mt-4 text-2xl font-bold leading-8 tracking-tight text-gray-900 xl:w-2/3">
+      <h3
+        class="mt-4 text-2xl font-bold leading-8 tracking-tight text-gray-900 xl:w-2/3"
+      >
         <a
           rel="prefetch"
           href={`/blog/${blog.slug}`}
@@ -85,13 +93,16 @@ const imageProps = blog.isLocal && blog.banner ? processLocalImage({
         </a>
       </h3>
       <div class="mt-1 flex flex-wrap">
-        {blog.categories.map(category => (
-          <span class="mr-3 text-sm font-medium text-blue-500">
-            {category.name}
-          </span>
-        ))}
+        {
+          blog.categories.map(category => (
+            <span class="mr-3 text-sm font-medium text-blue-500">
+              {category.name}
+            </span>
+          ))
+        }
       </div>
     </div>
     <p class="max-w-none text-gray-500">{blog.subtitle}</p>
   </div>
-</article> 
+</article>
+

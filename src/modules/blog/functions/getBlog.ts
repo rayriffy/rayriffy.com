@@ -11,24 +11,28 @@ import type { BlogEntry, Blog } from '../models/Blog'
 const getLocalBlog = async (slug: string): Promise<Blog | null> => {
   try {
     const localBlogPath = path.join('src/data/blogs', slug, 'index.md')
-    
+
     // Check if the local blog exists
     try {
       await fs.access(localBlogPath)
     } catch (e) {
       return null
     }
-    
+
     const fileContent = await fs.readFile(localBlogPath, 'utf-8')
     const { data, content } = matter(fileContent)
-    
+
     // Only process if it has the local type flag
     if (data.type !== 'local') {
       return null
     }
-    
-    const bannerPath = path.join('src/data/blogs', slug, data.banner || 'cover.jpg')
-    
+
+    const bannerPath = path.join(
+      'src/data/blogs',
+      slug,
+      data.banner || 'cover.jpg'
+    )
+
     // Check if banner exists
     let bannerExists = false
     try {
@@ -37,7 +41,7 @@ const getLocalBlog = async (slug: string): Promise<Blog | null> => {
     } catch (e) {
       // Banner doesn't exist
     }
-    
+
     // Create a simplified Blog object directly
     return {
       id: data.id || slug,
@@ -47,14 +51,16 @@ const getLocalBlog = async (slug: string): Promise<Blog | null> => {
       date: data.date,
       content: content,
       featured: data.featured || false,
-      banner: bannerExists ? {
-        url: `/${bannerPath.replace(/^src\//, '')}`,
-        title: data.title,
-        contentType: 'image/jpeg'
-      } : null,
+      banner: bannerExists
+        ? {
+            url: `/${bannerPath.replace(/^src\//, '')}`,
+            title: data.title,
+            contentType: 'image/jpeg',
+          }
+        : null,
       categories: [], // Local blogs don't have categories yet
-      isLocal: true
-    };
+      isLocal: true,
+    }
   } catch (error) {
     console.error(`Error processing local blog for slug ${slug}:`, error)
     return null
@@ -84,7 +90,7 @@ export const getBlog = async (
   const localBlog = await getLocalBlog(slug)
   if (localBlog) {
     console.timeEnd('blog post ' + slug)
-    
+
     // Cache the local blog
     if (!preview) cache.write(cacheKey, localBlog, 1000 * 60 * 5)
     return localBlog
@@ -105,8 +111,8 @@ export const getBlog = async (
     return null
   }
 
-  const simplifiedBlog = mapEntryToBlog(blog);
-  
+  const simplifiedBlog = mapEntryToBlog(blog)
+
   // Cache the simplified blog
   if (!preview) cache.write(cacheKey, simplifiedBlog, 1000 * 60 * 5)
 
@@ -126,7 +132,7 @@ export const getRawBlogEntry = async (
 ): Promise<BlogEntry | null> => {
   console.time('raw blog post ' + slug)
   const mode = preview ? 'preview' : 'production'
-  
+
   // Only fetch from Contentful - local blogs don't have proper Contentful entries
   const contentful = getContentfulClient(mode)
   const blog = await contentful.withoutUnresolvableLinks
@@ -147,5 +153,5 @@ export const getRawBlogEntry = async (
  */
 export const isLocalBlogPost = async (slug: string): Promise<boolean> => {
   const localBlog = await getLocalBlog(slug)
-  return localBlog !== null;
+  return localBlog !== null
 }

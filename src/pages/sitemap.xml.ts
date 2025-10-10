@@ -22,7 +22,9 @@ export const get: APIRoute = async () => {
 
     const staticLinks = paths.map(o => o.path)
 
-    const blogLinksPromise = getAllBlogs().then(blogs => blogs.map((blog: Blog) => `/blog/${blog.slug}`))
+    const blogLinksPromise = getAllBlogs().then(blogs =>
+      blogs.map((blog: Blog) => `/blog/${blog.slug}`)
+    )
 
     const gardenPromise = getGardenPosts().then(posts =>
       posts.map(
