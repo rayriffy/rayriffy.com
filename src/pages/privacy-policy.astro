@@ -1,0 +1,145 @@
+---
+import Layout from '$app/components/layout.astro'
+import SEO from '$core/components/seo.astro'
+import Renderer from '$modules/markdown/components/renderer.astro'
+
+export const prerender = true
+
+const privacyPolicyContent = `# Privacy Policy
+
+**Last updated:** ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+
+## Introduction
+
+Welcome to rayriffy.com. This Privacy Policy explains how I collect, use, and protect your information when you visit my personal website and blog.
+
+## Information I Collect
+
+### Automatically Collected Information
+
+When you visit my website, I may automatically collect certain information about your device and usage patterns:
+
+- **Log Data**: Your IP address, browser type, operating system, referring URLs, and pages visited
+- **Cookies and Similar Technologies**: Small data files stored on your device to enhance your browsing experience
+- **Analytics Data**: Usage statistics and performance metrics to improve the website
+
+### Information You Provide
+
+I may collect information that you voluntarily provide:
+
+- **Contact Information**: When you reach out via email or contact forms
+- **Comments or Feedback**: Any messages or content you share
+- **Newsletter Subscription**: Email address if you subscribe to updates
+
+## How I Use Your Information
+
+I use the collected information for the following purposes:
+
+- **Website Operation**: To provide, maintain, and improve the website functionality
+- **Analytics**: To understand how visitors use the site and optimize the user experience
+- **Communication**: To respond to your inquiries and provide support
+- **Content Improvement**: To create better content based on user interests
+- **Security**: To protect against spam, abuse, and security threats
+
+## Information Sharing
+
+I do not sell, trade, or rent your personal information to third parties. However, I may share information in the following circumstances:
+
+- **Service Providers**: With trusted third-party services that help operate the website (e.g., analytics, hosting)
+- **Legal Requirements**: When required by law or to protect rights, property, or safety
+- **Consent**: When you explicitly consent to sharing your information
+
+## Third-Party Services
+
+This website may use third-party services that collect information:
+
+- **Google Analytics**: For website analytics and user behavior insights
+- **Cloudflare**: For content delivery and security services
+- **Social Media**: Links to social media platforms may be subject to their privacy policies
+
+## Cookies
+
+I use cookies and similar technologies to:
+
+- Remember your preferences and settings
+- Analyze website traffic and usage patterns
+- Provide social media features
+- Improve website performance and security
+
+You can control cookies through your browser settings, but disabling them may affect website functionality.
+
+## Data Security
+
+I implement appropriate security measures to protect your information:
+
+- **Encryption**: Secure data transmission using HTTPS
+- **Access Controls**: Limited access to personal information
+- **Regular Updates**: Keeping software and systems up to date
+- **Monitoring**: Regular security monitoring and threat detection
+
+## Your Rights
+
+Depending on your location, you may have certain rights regarding your personal information:
+
+- **Access**: Request information about data I collect about you
+- **Correction**: Request correction of inaccurate or incomplete information
+- **Deletion**: Request deletion of your personal information
+- **Portability**: Request a copy of your data in a readable format
+- **Objection**: Object to certain uses of your information
+
+## Data Retention
+
+I retain your information only as long as necessary for the purposes outlined in this policy:
+
+- **Analytics Data**: Typically retained for 26 months
+- **Log Files**: Usually retained for security and troubleshooting purposes
+- **Contact Information**: Retained until you request deletion or unsubscribe
+
+## Children's Privacy
+
+This website is not intended for children under 13 years of age. I do not knowingly collect personal information from children under 13. If I become aware of such collection, I will take steps to delete the information.
+
+## International Transfers
+
+Your information may be transferred to and processed in countries other than your residence. I ensure appropriate safeguards are in place to protect your information during such transfers.
+
+## Changes to This Policy
+
+I may update this Privacy Policy from time to time. Changes will be posted on this page with an updated "Last updated" date. I encourage you to review this policy periodically.
+
+## Contact Information
+
+If you have questions about this Privacy Policy or your personal information, please contact me:
+
+- **Email**: [mail@rayriffy.com](mailto:mail@rayriffy.com)
+- **Website**: [rayriffy.com/contact](/contact)
+
+## Compliance
+
+This Privacy Policy is designed to comply with applicable privacy laws, including:
+
+- General Data Protection Regulation (GDPR)
+- California Consumer Privacy Act (CCPA)
+- Other applicable privacy regulations
+
+---
+
+Thank you for visiting rayriffy.com and trusting me with your information.`
+---
+
+<Layout>
+  <SEO
+    slot="seo"
+    title="Privacy Policy"
+    description="Privacy Policy for rayriffy.com - Learn how we collect, use, and protect your information."
+  />
+
+  <div class="mx-auto mt-10 max-w-7xl px-4 pb-6 md:px-6">
+    <div class="mx-auto max-w-4xl">
+      <Renderer
+        class="prose prose-lg prose-blue max-w-none prose-headings:text-gray-900 prose-a:text-blue-600 hover:prose-a:text-blue-800"
+        content={privacyPolicyContent}
+      />
+    </div>
+  </div>
+</Layout>
