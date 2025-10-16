@@ -11,7 +11,7 @@ export interface Props {
 const {
   title,
   description,
-  image = '/cover.jpg',
+  image,
   noindex = false,
 } = Astro.props
 const transformedTitle = title ? `${title} · rayriffy` : 'rayriffy'
@@ -20,20 +20,20 @@ const transformedTitle = title ? `${title} · rayriffy` : 'rayriffy'
 <SEO
   title={transformedTitle}
   description={description}
-  openGraph={{
+  openGraph={image ? {
     basic: {
       title: transformedTitle,
       type: 'website',
       image: image!,
     },
-  }}
-  twitter={{
+  } : undefined}
+  twitter={image ? {
     creator: '@rayriffy',
     card: 'summary_large_image',
     site: 'https://rayriffy.com',
     title: transformedTitle,
     image,
     description,
-  }}
+  } : undefined}
   noindex={noindex}
 />
