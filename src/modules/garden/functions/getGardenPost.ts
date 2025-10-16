@@ -33,7 +33,7 @@ export const getGardenPost = async (slug: string) => {
 
     const payload: GardenPost = {
       title: page.properties.Topic.title[0].plain_text,
-      date: page.created_time,
+      date: page.last_edited_time ?? page.created_time,
       content: markdownBlocks,
       published: pageItem.published,
     }
