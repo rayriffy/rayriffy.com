@@ -10,11 +10,11 @@ const { src, date, camera } = Astro.props
 ---
 
 <section class="relative">
-  <!--<img-->
-  <!--  id="cover"-->
-  <!--  src={src}-->
-  <!--/>-->
-  <CfImage
+  <img
+   id="cover"
+   src={src}
+  />
+  <!-- <CfImage
     id="cover"
     src={src}
     width={{
@@ -28,7 +28,7 @@ const { src, date, camera } = Astro.props
     fetchpriority="high"
     decoding="async"
     alt="cover"
-  />
+  /> -->
   <div class="absolute top-4 left-4 flex">
     <div class="bg-black/70 px-4 py-3 rounded-xl font-mono text-xs text-white">
       <p class="space-x-1">

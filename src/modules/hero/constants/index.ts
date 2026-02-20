@@ -2,6 +2,15 @@ import type { HeroItem } from '../@types/HeroItem'
 
 export const heroItems: HeroItem[] = [
   {
+    src: '/front/5.jpg',
+    date: new Date('2025-12-14'),
+    camera: {
+      manufacturer: 'Sony',
+      model: 'ILCE-9M3',
+      lens: 'FE 28-70mm F2 GM',
+    },
+  },
+  {
     src: '/front/4.jpg',
     date: new Date('2024-12-23'),
     camera: {
